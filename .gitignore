@@ -1,0 +1,5 @@
+venv/
+outputs/
+
+log*.txt
+
