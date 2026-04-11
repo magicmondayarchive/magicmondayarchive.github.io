@@ -1,6 +1,5 @@
 venv/
 outputs/
-site/data/
 
 log*.txt
 

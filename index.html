@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magic Monday Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:      #1a1410;
+    --paper:    #f5f0e8;
+    --aged:     #e8e0cc;
+    --accent:   #5c3d1e;
+    --muted:    #8a7560;
+    --highlight:#c4a882;
+    --rule:     #c8b89a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 300;
+    min-height: 100vh;
+  }
+
+  /* -- Header -- */
+  header {
+    border-bottom: 2px solid var(--ink);
+    padding: 2.5rem 3rem 1.5rem;
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+  }
+  header h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  header .subtitle {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+
+  /* -- Search bar -- */
+  .search-bar {
+    padding: 1.2rem 3rem;
+    border-bottom: 1px solid var(--rule);
+    background: var(--aged);
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .search-bar input {
+    flex: 1;
+    min-width: 200px;
+    font-family: 'Source Serif 4', serif;
+    font-size: 1rem;
+    font-weight: 300;
+    padding: 0.55rem 0.9rem;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink);
+    outline: none;
+    border-radius: 2px;
+  }
+  .search-bar input:focus {
+    border-color: var(--accent);
+  }
+  .search-bar select {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.9rem;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  #status {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-left: auto;
+  }
+
+  /* -- Results -- */
+  #results {
+    padding: 2rem 3rem;
+    max-width: 960px;
+  }
+
+  .entry-block {
+    margin-bottom: 4rem;
+    padding-top: 1rem;
+  }
+  .entry-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--ink);
+  }
+  .entry-date {
+    font-size: 0.95rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .entry-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+  }
+  .entry-title a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .entry-title a:hover { text-decoration: underline; }
+  .entry-count {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  /* -- Comment cards -- */
+  .comment-card {
+    padding: 0.9rem 1.1rem;
+    border-left: 3px solid var(--highlight);
+    margin-bottom: 0.6rem;
+    background: white;
+  }
+  .comment-card.is-reply {
+    margin-left: 1.8rem;
+    border-left-color: var(--rule);
+    background: var(--paper);
+  }
+  .comment-meta {
+    display: flex;
+    gap: 0.8rem;
+    align-items: baseline;
+    margin-bottom: 0.35rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  .comment-user { font-weight: 400; color: var(--accent); }
+  .comment-title-line {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    color: var(--ink);
+  }
+  .comment-body {
+    font-size: 0.9rem;
+    line-height: 1.85;
+    color: #2a221a;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  mark {
+    background: #f0d080;
+    border-radius: 2px;
+    padding: 0 1px;
+  }
+
+  .no-results {
+    color: var(--muted);
+    font-style: italic;
+    padding: 3rem 0;
+  }
+
+  /* -- Show more -- */
+  .show-more {
+    display: block;
+    margin: 0.5rem 0 0;
+    font-size: 0.82rem;
+    color: var(--accent);
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+    padding: 0;
+    text-decoration: underline;
+  }
+  /* -- Match navigator -- */
+  .match-nav {
+    position: fixed;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    z-index: 100;
+  }
+  .match-nav.visible { display: flex; }
+  .match-nav button {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--accent);
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+  }
+  .match-nav button:hover { background: var(--accent); color: white; }
+  .match-nav .nav-count {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: 'Source Serif 4', serif;
+    text-align: center;
+    line-height: 1.2;
+  }
+  mark.active-mark {
+    background: #e8a020;
+    outline: 2px solid var(--accent);
+    border-radius: 2px;
+  }
+
+  /* -- Sliding toggle -- */
+  .toggle-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    white-space: nowrap;
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .toggle-label input { display: none; }
+  .toggle-track {
+    position: relative;
+    width: 2.2rem;
+    height: 1.2rem;
+    background: var(--rule);
+    border-radius: 1rem;
+    transition: background 0.2s;
+    flex-shrink: 0;
+  }
+  .toggle-thumb {
+    position: absolute;
+    top: 0.15rem;
+    left: 0.15rem;
+    width: 0.9rem;
+    height: 0.9rem;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .toggle-label input:checked ~ .toggle-track { background: var(--accent); }
+  .toggle-label input:checked ~ .toggle-track .toggle-thumb { transform: translateX(1rem); }
+
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Magic Monday Archive</h1>
+  <span class="subtitle">Ecosophia — John Michael Greer</span>
+</header>
+
+<div class="search-bar">
+  <input type="search" id="query" placeholder="Search comments..." autofocus>
+  <label class="toggle-label">
+    <input type="checkbox" id="exact-toggle">
+    <span class="toggle-track"><span class="toggle-thumb"></span></span>
+    <span class="toggle-text">Exact phrase</span>
+  </label>
+  <select id="year-filter">
+    <option value="">All years</option>
+  </select>
+  <select id="month-filter">
+    <option value="">All months</option>
+  </select>
+  <span id="status">Loading...</span>
+</div>
+
+<div id="results"></div>
+
+<div class="match-nav" id="match-nav">
+  <button id="nav-up" title="Previous match">&#8593;</button>
+  <span class="nav-count" id="nav-count">0 / 0</span>
+  <button id="nav-down" title="Next match">&#8595;</button>
+</div>
+
+<script src="data/years.js"></script>
+<script>
+const DATA = {};         // populated lazily: DATA['2017'] = [...], etc.
+const loaded = new Set();
+
+function loadYear(year) {
+  return new Promise((resolve, reject) => {
+    if (loaded.has(year)) { resolve(); return; }
+    const s = document.createElement('script');
+    s.src = `data/data_${year}.js`;
+    s.onload  = () => { loaded.add(year); resolve(); };
+    s.onerror = () => reject(new Error(`Failed to load data_${year}.js`));
+    document.head.appendChild(s);
+  });
+}
+
+function esc(str) {
+  return str.replace(/[&<>"']/g, c =>
+    ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+}
+
+
+function normalizeWS(text) {
+  return text.replace(/[\s\u00a0]+/g, ' ').trim();
+}
+
+function matchesAll(text, terms, exact) {
+  const lower = normalizeWS(text.toLowerCase());
+  if (exact) {
+    // build a regex that treats spaces in the term as \s+ so "a dog" matches "a  dog"
+    const pattern = terms[0].replace(/\s+/g, '\\s+');
+    return new RegExp(pattern, 'i').test(lower);
+  }
+  return terms.every(t => lower.includes(t));
+}
+
+function highlight(text, terms) {
+  if (!terms.length) return esc(text);
+  // For each term, replace spaces with \s+ so highlighting works across double-spaces
+  const patterns = terms.map(t =>
+    t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s+')
+  );
+  const re = new RegExp(`(${patterns.join('|')})`, 'gi');
+  return esc(text).replace(re, '<mark>$1</mark>');
+}
+
+// -- Populate year filter from manifest --
+const yearSel  = document.getElementById('year-filter');
+const monthSel = document.getElementById('month-filter');
+
+const MONTH_NAMES = {
+  "01":"January","02":"February","03":"March","04":"April",
+  "05":"May","06":"June","07":"July","08":"August",
+  "09":"September","10":"October","11":"November","12":"December"
+};
+
+function populateMonths(year) {
+  const current = monthSel.value;
+  monthSel.innerHTML = '<option value="">All months</option>';
+  const months = year
+    ? (YEAR_MONTHS[year] || [])
+    : [...new Set(Object.values(YEAR_MONTHS).flat())].sort();
+  months.forEach(m => {
+    const o = document.createElement('option');
+    o.value = m;
+    o.textContent = MONTH_NAMES[m] || m;
+    monthSel.appendChild(o);
+  });
+  // restore selection if still valid
+  if (months.includes(current)) monthSel.value = current;
+}
+
+YEARS.forEach(y => {
+  const o = document.createElement('option');
+  o.value = y; o.textContent = y;
+  yearSel.appendChild(o);
+});
+populateMonths('');
+
+// -- Render --
+const queryEl  = document.getElementById('query');
+const statusEl = document.getElementById('status');
+const resultsEl= document.getElementById('results');
+
+// -- Check if a thread (comment + all its replies) contains any match --
+function threadMatches(comment, terms, exact) {
+  const text = (comment.title || '') + ' ' + (comment.user || '') + ' ' + (comment.content || '');
+  if (matchesAll(text, terms, exact)) return true;
+  return (comment.replies || []).some(r => threadMatches(r, terms, exact));
+}
+
+// -- Render a comment and all its replies recursively --
+function commentHTML(c, terms, depth) {
+  const replyClass = depth > 0 ? ' is-reply' : '';
+  const indent = depth > 0 ? ` style="margin-left: ${depth * 2.0}rem"` : '';
+  const titleLine  = c.title
+    ? `<div class="comment-title-line">${highlight(c.title, terms)}</div>` : '';
+  const body = highlight(c.content || '', terms);
+  const repliesHTML = (c.replies || []).map(r => commentHTML(r, terms, depth + 1)).join('');
+  return `<div class="comment-card${replyClass}"${indent}>
+    ${titleLine}
+    <div class="comment-meta">
+      <span class="comment-user">${esc(c.user || 'unknown')}</span>
+    </div>
+    <div class="comment-body">${body}</div>
+  </div>${repliesHTML}`;
+}
+
+const MIN_CHARS    = 3;   // don't search until at least this many chars
+const PAGE_SIZE    = 20;  // entries to render at once
+let   debounceTimer = null;
+let   allMatchedEntries = []; // full result set, rendered in pages
+
+async function render() {
+  const raw   = queryEl.value.trim().replace(/\s+/g, ' ');
+  const year  = yearSel.value;
+  const month = monthSel.value;
+  const exact = document.getElementById('exact-toggle').checked;
+  const terms = exact ? [raw.toLowerCase()] : raw.toLowerCase().split(/\s+/).filter(Boolean);
+
+  if (!terms.length || raw.length < MIN_CHARS) {
+    const hint = raw.length > 0 ? `Type ${MIN_CHARS - raw.length} more character${MIN_CHARS - raw.length === 1 ? '' : 's'}...` : `${ Object.values(YEAR_COUNTS).reduce((a,b)=>a+b,0) } entries loaded — type to search`;
+    statusEl.textContent = hint;
+    resultsEl.innerHTML  = '';
+    return;
+  }
+
+  statusEl.textContent = 'Searching...';
+  const yearsToSearch = year ? [year] : YEARS;
+  await Promise.all(yearsToSearch.map(loadYear));
+
+  const entries = yearsToSearch.flatMap(y => DATA[y] || [])
+    .filter(e => !month || e.month === month);
+
+  allMatchedEntries = [];
+  let totalThreads = 0;
+
+  for (const entry of entries) {
+    const matchingThreads = (entry.comments || []).filter(c => threadMatches(c, terms, exact));
+    if (!matchingThreads.length) continue;
+    totalThreads += matchingThreads.length;
+    allMatchedEntries.push({ entry, matchingThreads });
+  }
+
+  statusEl.textContent = totalThreads
+    ? `${totalThreads} thread${totalThreads===1?'':'s'} across ${allMatchedEntries.length} entr${allMatchedEntries.length===1?'y':'ies'}`
+    : 'No matches';
+
+  renderPage(terms, 0);
+}
+
+function renderPage(terms, offset) {
+  const slice = allMatchedEntries.slice(offset, offset + PAGE_SIZE);
+  const html  = [];
+
+  for (const { entry, matchingThreads } of slice) {
+    const dateStr = `${entry.year}-${entry.month}-${entry.day}`;
+    html.push(`<div class="entry-block">`);
+    html.push(`<div class="entry-header">
+      <span class="entry-date">${esc(dateStr)}</span>
+      <span class="entry-title"><a href="${esc(entry.url)}" target="_blank">${esc(entry.title)}</a></span>
+      <span class="entry-count">${matchingThreads.length} thread${matchingThreads.length===1?'':'s'}</span>
+    </div>`);
+    for (const thread of matchingThreads) {
+      html.push(commentHTML(thread, terms, 0));
+    }
+    html.push(`</div>`);
+  }
+
+  const remaining = allMatchedEntries.length - offset - slice.length;
+  if (remaining > 0) {
+    html.push(`<button class="show-more" id="load-more">Show ${Math.min(remaining, PAGE_SIZE)} more entries (${remaining} remaining)...</button>`);
+  }
+
+  if (offset === 0) {
+    resultsEl.innerHTML = html.length
+      ? html.join('')
+      : `<p class="no-results">No threads matched "<em>${esc(queryEl.value.trim())}</em>".</p>`;
+  } else {
+    // Remove the old load-more button and append new results
+    const old = document.getElementById('load-more');
+    if (old) old.remove();
+    resultsEl.insertAdjacentHTML('beforeend', html.join(''));
+  }
+
+  updateNav(offset === 0);
+
+  const btn = document.getElementById('load-more');
+  if (btn) {
+    const nextOffset = offset + slice.length;
+    btn.addEventListener('click', () => renderPage(terms, nextOffset));
+  }
+}
+
+function debounceRender() {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(render, 300);
+}
+
+queryEl.addEventListener('input', debounceRender);
+yearSel.addEventListener('change', () => { populateMonths(yearSel.value); render(); });
+monthSel.addEventListener('change', render);
+document.getElementById('exact-toggle').addEventListener('change', render);
+
+// -- Match navigator --
+const matchNav   = document.getElementById('match-nav');
+const navCount   = document.getElementById('nav-count');
+let marks        = [];
+let markIndex    = -1;
+
+function updateNav(reset) {
+  const prevCount = marks.length;
+  marks = Array.from(resultsEl.querySelectorAll('mark'));
+  matchNav.classList.toggle('visible', marks.length > 0);
+  if (reset || prevCount === 0) {
+    markIndex = -1;
+    navCount.textContent = marks.length ? `0 / ${marks.length}` : '0 / 0';
+  } else {
+    // keep current position, just update the total
+    navCount.textContent = `${markIndex + 1} / ${marks.length}`;
+  }
+}
+
+function goToMark(index) {
+  if (!marks.length) return;
+  marks.forEach(m => m.classList.remove('active-mark'));
+  markIndex = (index + marks.length) % marks.length;
+  marks[markIndex].classList.add('active-mark');
+  marks[markIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  navCount.textContent = `${markIndex + 1} / ${marks.length}`;
+}
+
+document.getElementById('nav-up').addEventListener('click',   () => goToMark(markIndex <= 0 ? marks.length - 1 : markIndex - 1));
+document.getElementById('nav-down').addEventListener('click', () => goToMark(markIndex === -1 ? 0 : markIndex + 1));
+
+resultsEl.addEventListener('click', e => {
+  const mark = e.target.closest('mark');
+  if (!mark) return;
+  const index = marks.indexOf(mark);
+  if (index === -1) return;
+  marks.forEach(m => m.classList.remove('active-mark'));
+  markIndex = index;
+  mark.classList.add('active-mark');
+  navCount.textContent = `${markIndex + 1} / ${marks.length}`;
+});
+
+statusEl.textContent = `${ Object.values(YEAR_COUNTS).reduce((a,b)=>a+b,0) } entries loaded — type to search`;
+</script>
+</body>
+</html>
+
