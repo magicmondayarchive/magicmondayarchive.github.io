@@ -181,6 +181,24 @@
     padding: 3rem 0;
   }
 
+  .empty-state {
+    text-align: center;
+    padding: 5rem 2rem;
+    color: var(--muted);
+    font-style: italic;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+  .empty-state .archive-stats {
+    font-size: 1.1rem;
+    margin-bottom: 0.6rem;
+  }
+  .empty-state .archive-hint {
+    font-size: 0.9rem;
+  }
+
   /* -- Show more -- */
   .show-more {
     display: block;
@@ -392,7 +410,13 @@ function highlight(text, terms, caseSensitive, wholeWord) {
   return esc(text).replace(re, '<mark>$1</mark>');
 }
 
-// -- Populate year filter from manifest --
+const totalEntries  = Object.values(YEAR_ENTRIES).reduce((a,b) => a+b, 0);
+const totalComments = Object.values(YEAR_COMMENTS).reduce((a,b) => a+b, 0);
+const emptyStateHTML = `<div class="empty-state" id="empty-state">
+  <div class="archive-stats">${YEARS.length} years — ${totalEntries.toLocaleString()} mondays — ${totalComments.toLocaleString()} comments</div>
+</div>`;
+
+
 const yearSel  = document.getElementById('year-filter');
 const monthSel = document.getElementById('month-filter');
 
@@ -469,9 +493,14 @@ async function render() {
   const terms = exact ? [caseSensitive ? raw : raw.toLowerCase()] : (caseSensitive ? raw : raw.toLowerCase()).split(/\s+/).filter(Boolean);
 
   if (!terms.length || raw.length < MIN_CHARS) {
-    const hint = raw.length > 0 ? `Type ${MIN_CHARS - raw.length} more character${MIN_CHARS - raw.length === 1 ? '' : 's'}...` : `${ Object.values(YEAR_COUNTS).reduce((a,b)=>a+b,0) } entries loaded — type to search`;
+    const hint = raw.length > 0 ? `Type ${MIN_CHARS - raw.length} more character${MIN_CHARS - raw.length === 1 ? '' : 's'}...` : `${totalEntries.toLocaleString()} entries loaded — type to search`;
     statusEl.textContent = hint;
-    resultsEl.innerHTML  = '';
+    resultsEl.innerHTML = emptyStateHTML;
+    marks = []; markIndex = -1;
+    matchNav.classList.remove('visible');
+    jumpTop.classList.remove('visible');
+    jumpBottom.classList.remove('visible');
+    navCount.textContent = '0 / 0';
     return;
   }
 
@@ -523,6 +552,7 @@ function renderPage(terms, offset, caseSensitive, wholeWord) {
   }
 
   if (offset === 0) {
+    document.getElementById('empty-state')?.remove();
     resultsEl.innerHTML = html.length
       ? html.join('')
       : `<p class="no-results">No threads matched "<em>${esc(queryEl.value.trim())}</em>".</p>`;
@@ -603,7 +633,8 @@ resultsEl.addEventListener('click', e => {
   navCount.textContent = `${markIndex + 1} / ${marks.length}`;
 });
 
-statusEl.textContent = `${ Object.values(YEAR_COUNTS).reduce((a,b)=>a+b,0) } entries loaded — type to search`;
+statusEl.textContent = `${totalEntries.toLocaleString()} entries loaded — type to search`;
+resultsEl.innerHTML = emptyStateHTML;
 </script>
 </body>
 </html>
