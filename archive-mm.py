@@ -218,7 +218,7 @@ def main():
         entries = get_entry_links(skip)
         print(f"Found {len(entries)} entries")
 
-        for entry in entries:
+        for entry in reversed(entries):
             print(f"\n[{entry['year']}-{entry['month']}-{entry['day']} {entry['time'].replace('-', ':')}] {entry['title']} -> {entry['url']}")
 
             comments, num_pages = scrape_entry(entry["url"])
