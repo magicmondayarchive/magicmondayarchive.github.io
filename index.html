@@ -192,6 +192,29 @@
     padding: 0;
     text-decoration: underline;
   }
+  /* -- Jump buttons -- */
+  .jump-btn {
+    position: fixed;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--accent);
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+    z-index: 100;
+  }
+  .jump-btn.visible { display: flex; }
+  .jump-btn:hover { background: var(--accent); color: white; }
+  #jump-top { top: 1.5rem; right: 1.5rem; }
+  #jump-bottom { bottom: 1.5rem; right: 1.5rem; }
+
   /* -- Match navigator -- */
   .match-nav {
     position: fixed;
@@ -301,6 +324,9 @@
   <button id="nav-down" title="Next match">&#8595;</button>
 </div>
 
+<button class="jump-btn" id="jump-top" title="Jump to first match">&#8593;</button>
+<button class="jump-btn" id="jump-bottom" title="Jump to last match">&#8595;</button>
+
 <script src="data/years.js"></script>
 <script>
 const DATA = {};         // populated lazily: DATA['2017'] = [...], etc.
@@ -409,7 +435,7 @@ function commentHTML(c, terms, depth) {
   </div>${repliesHTML}`;
 }
 
-const MIN_CHARS    = 3;   // don't search until at least this many chars
+const MIN_CHARS    = 2;   // don't search until at least this many chars
 const PAGE_SIZE    = 20;  // entries to render at once
 let   debounceTimer = null;
 let   allMatchedEntries = []; // full result set, rendered in pages
@@ -508,13 +534,18 @@ document.getElementById('exact-toggle').addEventListener('change', render);
 // -- Match navigator --
 const matchNav   = document.getElementById('match-nav');
 const navCount   = document.getElementById('nav-count');
+const jumpTop    = document.getElementById('jump-top');
+const jumpBottom = document.getElementById('jump-bottom');
 let marks        = [];
 let markIndex    = -1;
 
 function updateNav(reset) {
   const prevCount = marks.length;
   marks = Array.from(resultsEl.querySelectorAll('mark'));
-  matchNav.classList.toggle('visible', marks.length > 0);
+  const hasMarks = marks.length > 0;
+  matchNav.classList.toggle('visible', hasMarks);
+  jumpTop.classList.toggle('visible', hasMarks);
+  jumpBottom.classList.toggle('visible', hasMarks);
   if (reset || prevCount === 0) {
     markIndex = -1;
     navCount.textContent = marks.length ? `0 / ${marks.length}` : '0 / 0';
@@ -535,6 +566,8 @@ function goToMark(index) {
 
 document.getElementById('nav-up').addEventListener('click',   () => goToMark(markIndex <= 0 ? marks.length - 1 : markIndex - 1));
 document.getElementById('nav-down').addEventListener('click', () => goToMark(markIndex === -1 ? 0 : markIndex + 1));
+jumpTop.addEventListener('click',    () => goToMark(0));
+jumpBottom.addEventListener('click', () => goToMark(marks.length - 1));
 
 resultsEl.addEventListener('click', e => {
   const mark = e.target.closest('mark');
