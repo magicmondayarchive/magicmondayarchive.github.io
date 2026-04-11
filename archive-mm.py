@@ -119,7 +119,7 @@ def get_page_count(soup):
 def parse_comments_from_soup(soup):
     """
     Extract a flat dict of comments from a single page's soup.
-    Returns {comment_id: {id, title, content, parent_id, replies: []}}
+    Returns {comment_id: {id, title, user, content, parent_id, replies: []}}
     """
     flat = {}
     for section in soup.find_all(id=lambda x: x and x.startswith("cmt")):
@@ -127,6 +127,15 @@ def parse_comments_from_soup(soup):
 
         title_tag = section.find(class_="comment-title")
         title = title_tag.get_text(strip=True) if title_tag else ""
+
+        poster = section.find(class_="comment-poster")
+        if poster and poster.find(class_="anonymous"):
+            user = "(Anonymous)"
+        elif poster:
+            lj_span = poster.find("span", attrs={"lj:user": True})
+            user = lj_span["lj:user"] if lj_span else "unknown"
+        else:
+            user = "unknown"
 
         content_tag = section.find(class_="comment-content")
         content = content_tag.get_text("\n", strip=True) if content_tag else ""
@@ -144,6 +153,7 @@ def parse_comments_from_soup(soup):
         flat[comment_id] = {
             "id": comment_id,
             "title": title,
+            "user": user,
             "content": content,
             "parent_id": parent_id,
             "replies": [],
