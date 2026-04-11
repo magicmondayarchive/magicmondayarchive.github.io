@@ -8,9 +8,10 @@ import os
 import glob
 from collections import defaultdict
 
+
 by_year = defaultdict(list)
 
-for json_path in sorted(glob.glob("../outputs/**/*.json", recursive=True)):
+for json_path in sorted(glob.glob("../output/**/*.json", recursive=True)):
     with open(json_path, encoding="utf-8") as f:
         try:
             entry = json.load(f)

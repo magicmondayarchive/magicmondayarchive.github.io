@@ -209,9 +209,10 @@ def scrape_entry(entry_url):
 
 
 def main():
-    out_dir = "./outputs"
+    out_dir = "./output"
     num_entries_scraped = 0
     num_pages_scraped = 0
+    num_comments_scraped = 0
 
     for skip in range(400, -1, -20):
         print(f"\n=== Index page skip={skip} ===")
@@ -224,8 +225,8 @@ def main():
             comments, num_pages = scrape_entry(entry["url"])
             def count_comments(nodes):
                 return sum(1 + count_comments(c["replies"]) for c in nodes)
-            total = count_comments(comments)
-            print(f"  {len(comments)} top-level comments, {total} total")
+            num_comments = count_comments(comments)
+            print(f"  {len(comments)} top-level comments, {num_comments} total")
 
             filename = make_filename(entry)
             year_dir = os.path.join(out_dir, entry["year"] or "unknown")
@@ -237,11 +238,12 @@ def main():
 
             num_entries_scraped += 1
             num_pages_scraped += num_pages
+            num_comments_scraped += num_comments
             time.sleep(ENTRY_DELAY)
 
         time.sleep(INDEX_DELAY)
 
-    print(f"\nDone! Scraped {num_entries_scraped} {'entry' if num_entries_scraped == 1 else 'entries'}, {num_pages_scraped} pages")
+    print(f"\nDone! Scraped {num_entries_scraped} entries, {num_pages_scraped} pages, {num_comments_scraped} comments")
 
 
 if __name__ == "__main__":
