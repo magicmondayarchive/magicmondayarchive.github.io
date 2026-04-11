@@ -1,5 +1,5 @@
 venv/
-outputs/
+output/
 
 log*.txt
 
