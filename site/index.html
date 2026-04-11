@@ -149,14 +149,14 @@
     gap: 0.8rem;
     align-items: baseline;
     margin-bottom: 0.35rem;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: var(--muted);
   }
   .comment-user { font-weight: 400; color: var(--accent); }
   .comment-title-line {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     margin-bottom: 0.3rem;
     color: var(--ink);
   }
@@ -192,6 +192,48 @@
     padding: 0;
     text-decoration: underline;
   }
+  /* -- Match navigator -- */
+  .match-nav {
+    position: fixed;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    z-index: 100;
+  }
+  .match-nav.visible { display: flex; }
+  .match-nav button {
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    background: var(--paper);
+    color: var(--accent);
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, color 0.15s;
+  }
+  .match-nav button:hover { background: var(--accent); color: white; }
+  .match-nav .nav-count {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: 'Source Serif 4', serif;
+    text-align: center;
+    line-height: 1.2;
+  }
+  mark.active-mark {
+    background: #e8a020;
+    outline: 2px solid var(--accent);
+    border-radius: 2px;
+  }
+
   /* -- Sliding toggle -- */
   .toggle-label {
     display: flex;
@@ -253,6 +295,12 @@
 
 <div id="results"></div>
 
+<div class="match-nav" id="match-nav">
+  <button id="nav-up" title="Previous match">&#8593;</button>
+  <span class="nav-count" id="nav-count">0 / 0</span>
+  <button id="nav-down" title="Next match">&#8595;</button>
+</div>
+
 <script src="data/years.js"></script>
 <script>
 const DATA = {};         // populated lazily: DATA['2017'] = [...], etc.
@@ -274,16 +322,29 @@ function esc(str) {
     ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 }
 
-function highlight(text, terms) {
-  if (!terms.length) return esc(text);
-  const re = new RegExp(`(${terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|')})`, 'gi');
-  return esc(text).replace(re, '<mark>$1</mark>');
+
+function normalizeWS(text) {
+  return text.replace(/[\s\u00a0]+/g, ' ').trim();
 }
 
 function matchesAll(text, terms, exact) {
-  const lower = text.toLowerCase();
-  if (exact) return lower.includes(terms.join(' '));
+  const lower = normalizeWS(text.toLowerCase());
+  if (exact) {
+    // build a regex that treats spaces in the term as \s+ so "a dog" matches "a  dog"
+    const pattern = terms[0].replace(/\s+/g, '\\s+');
+    return new RegExp(pattern, 'i').test(lower);
+  }
   return terms.every(t => lower.includes(t));
+}
+
+function highlight(text, terms) {
+  if (!terms.length) return esc(text);
+  // For each term, replace spaces with \s+ so highlighting works across double-spaces
+  const patterns = terms.map(t =>
+    t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s+')
+  );
+  const re = new RegExp(`(${patterns.join('|')})`, 'gi');
+  return esc(text).replace(re, '<mark>$1</mark>');
 }
 
 // -- Populate year filter from manifest --
@@ -348,67 +409,143 @@ function commentHTML(c, terms, depth) {
   </div>${repliesHTML}`;
 }
 
+const MIN_CHARS    = 3;   // don't search until at least this many chars
+const PAGE_SIZE    = 20;  // entries to render at once
+let   debounceTimer = null;
+let   allMatchedEntries = []; // full result set, rendered in pages
+
 async function render() {
-  const raw   = queryEl.value.trim();
-  const terms = raw.toLowerCase().split(/\s+/).filter(Boolean);
+  const raw   = queryEl.value.trim().replace(/\s+/g, ' ');
   const year  = yearSel.value;
   const month = monthSel.value;
   const exact = document.getElementById('exact-toggle').checked;
+  const terms = exact ? [raw.toLowerCase()] : raw.toLowerCase().split(/\s+/).filter(Boolean);
 
-  if (!terms.length) {
-    statusEl.textContent = `${ Object.values(YEAR_COUNTS).reduce((a,b)=>a+b,0) } entries loaded — type to search`;
+  if (!terms.length || raw.length < MIN_CHARS) {
+    const hint = raw.length > 0 ? `Type ${MIN_CHARS - raw.length} more character${MIN_CHARS - raw.length === 1 ? '' : 's'}...` : `${ Object.values(YEAR_COUNTS).reduce((a,b)=>a+b,0) } entries loaded — type to search`;
+    statusEl.textContent = hint;
     resultsEl.innerHTML  = '';
     return;
   }
 
-  // Load only the needed year file(s), then search
-  statusEl.textContent = 'Loading...';
+  statusEl.textContent = 'Searching...';
   const yearsToSearch = year ? [year] : YEARS;
   await Promise.all(yearsToSearch.map(loadYear));
 
   const entries = yearsToSearch.flatMap(y => DATA[y] || [])
     .filter(e => !month || e.month === month);
 
+  allMatchedEntries = [];
   let totalThreads = 0;
-  let totalEntries = 0;
-  const html = [];
 
   for (const entry of entries) {
     const matchingThreads = (entry.comments || []).filter(c => threadMatches(c, terms, exact));
     if (!matchingThreads.length) continue;
-
     totalThreads += matchingThreads.length;
-    totalEntries++;
+    allMatchedEntries.push({ entry, matchingThreads });
+  }
 
+  statusEl.textContent = totalThreads
+    ? `${totalThreads} thread${totalThreads===1?'':'s'} across ${allMatchedEntries.length} entr${allMatchedEntries.length===1?'y':'ies'}`
+    : 'No matches';
+
+  renderPage(terms, 0);
+}
+
+function renderPage(terms, offset) {
+  const slice = allMatchedEntries.slice(offset, offset + PAGE_SIZE);
+  const html  = [];
+
+  for (const { entry, matchingThreads } of slice) {
     const dateStr = `${entry.year}-${entry.month}-${entry.day}`;
-
     html.push(`<div class="entry-block">`);
     html.push(`<div class="entry-header">
       <span class="entry-date">${esc(dateStr)}</span>
       <span class="entry-title"><a href="${esc(entry.url)}" target="_blank">${esc(entry.title)}</a></span>
       <span class="entry-count">${matchingThreads.length} thread${matchingThreads.length===1?'':'s'}</span>
     </div>`);
-
     for (const thread of matchingThreads) {
       html.push(commentHTML(thread, terms, 0));
     }
-
     html.push(`</div>`);
   }
 
-  statusEl.textContent = totalThreads
-    ? `${totalThreads} thread${totalThreads===1?'':'s'} across ${totalEntries} entr${totalEntries===1?'y':'ies'}`
-    : 'No matches';
+  const remaining = allMatchedEntries.length - offset - slice.length;
+  if (remaining > 0) {
+    html.push(`<button class="show-more" id="load-more">Show ${Math.min(remaining, PAGE_SIZE)} more entries (${remaining} remaining)...</button>`);
+  }
 
-  resultsEl.innerHTML = html.length
-    ? html.join('')
-    : `<p class="no-results">No threads matched "<em>${esc(raw)}</em>".</p>`;
+  if (offset === 0) {
+    resultsEl.innerHTML = html.length
+      ? html.join('')
+      : `<p class="no-results">No threads matched "<em>${esc(queryEl.value.trim())}</em>".</p>`;
+  } else {
+    // Remove the old load-more button and append new results
+    const old = document.getElementById('load-more');
+    if (old) old.remove();
+    resultsEl.insertAdjacentHTML('beforeend', html.join(''));
+  }
+
+  updateNav(offset === 0);
+
+  const btn = document.getElementById('load-more');
+  if (btn) {
+    const nextOffset = offset + slice.length;
+    btn.addEventListener('click', () => renderPage(terms, nextOffset));
+  }
 }
 
-queryEl.addEventListener('input', render);
+function debounceRender() {
+  clearTimeout(debounceTimer);
+  debounceTimer = setTimeout(render, 300);
+}
+
+queryEl.addEventListener('input', debounceRender);
 yearSel.addEventListener('change', () => { populateMonths(yearSel.value); render(); });
 monthSel.addEventListener('change', render);
 document.getElementById('exact-toggle').addEventListener('change', render);
+
+// -- Match navigator --
+const matchNav   = document.getElementById('match-nav');
+const navCount   = document.getElementById('nav-count');
+let marks        = [];
+let markIndex    = -1;
+
+function updateNav(reset) {
+  const prevCount = marks.length;
+  marks = Array.from(resultsEl.querySelectorAll('mark'));
+  matchNav.classList.toggle('visible', marks.length > 0);
+  if (reset || prevCount === 0) {
+    markIndex = -1;
+    navCount.textContent = marks.length ? `0 / ${marks.length}` : '0 / 0';
+  } else {
+    // keep current position, just update the total
+    navCount.textContent = `${markIndex + 1} / ${marks.length}`;
+  }
+}
+
+function goToMark(index) {
+  if (!marks.length) return;
+  marks.forEach(m => m.classList.remove('active-mark'));
+  markIndex = (index + marks.length) % marks.length;
+  marks[markIndex].classList.add('active-mark');
+  marks[markIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  navCount.textContent = `${markIndex + 1} / ${marks.length}`;
+}
+
+document.getElementById('nav-up').addEventListener('click',   () => goToMark(markIndex <= 0 ? marks.length - 1 : markIndex - 1));
+document.getElementById('nav-down').addEventListener('click', () => goToMark(markIndex === -1 ? 0 : markIndex + 1));
+
+resultsEl.addEventListener('click', e => {
+  const mark = e.target.closest('mark');
+  if (!mark) return;
+  const index = marks.indexOf(mark);
+  if (index === -1) return;
+  marks.forEach(m => m.classList.remove('active-mark'));
+  markIndex = index;
+  mark.classList.add('active-mark');
+  navCount.textContent = `${markIndex + 1} / ${marks.length}`;
+});
 
 statusEl.textContent = `${ Object.values(YEAR_COUNTS).reduce((a,b)=>a+b,0) } entries loaded — type to search`;
 </script>
