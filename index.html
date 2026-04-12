@@ -56,6 +56,7 @@
     gap: 1rem;
     align-items: center;
     flex-wrap: wrap;
+    position: relative;
   }
   .search-bar input {
     flex: 1;
@@ -92,7 +93,53 @@
     text-align: right;
   }
 
-  /* -- Results -- */
+  /* -- Toggles + help wrapper -- */
+  .toggle-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    padding-right: 1.4rem;
+  }
+
+  /* -- Help button -- */
+  .help-btn {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 50%;
+    border: 1px solid var(--rule);
+    background: none;
+    color: var(--muted);
+    font-size: 0.7rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -0.4rem;
+    right: 0;
+    transition: border-color 0.15s, color 0.15s;
+  }
+  .help-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .help-popover {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: calc(100% + 0.5rem);
+    background: var(--paper);
+    border: 2px solid var(--rule);
+    border-radius: 30px;
+    padding: 0.9rem 1.1rem;
+    font-size: 0.82rem;
+    color: var(--ink);
+    line-height: 1.6;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    z-index: 200;
+    width: 18rem;
+    font-style: normal;
+  }
+  .help-popover.visible { display: block; }
+
   #results {
     padding: 2rem 3rem;
     max-width: 960px;
@@ -195,9 +242,6 @@
     font-size: 1.1rem;
     margin-bottom: 0.6rem;
   }
-  .empty-state .archive-hint {
-    font-size: 0.9rem;
-  }
 
   /* -- Show more -- */
   .show-more {
@@ -212,6 +256,7 @@
     padding: 0;
     text-decoration: underline;
   }
+
   /* -- Jump buttons -- */
   .jump-btn {
     position: fixed;
@@ -322,7 +367,18 @@
 
 <div class="search-bar">
   <input type="search" id="query" placeholder="Search comments..." autofocus>
-  <div style="display:flex; flex-direction:column; gap:0.7rem;">
+  <div class="toggle-group">
+    <button class="help-btn" id="help-btn">?</button>
+    <div class="help-popover" id="help-popover">
+      <strong>Search tips</strong><br><br>
+      By default, all words must appear somewhere in the comment, but can be in any order.<br><br>
+      <strong>Exact phrase</strong> — words must appear in the order you typed them. e.g. useful to match "middle pillar" as one term.<br><br>
+      <strong>Whole word</strong> — words won't match on substrings. e.g. "MP" won't match on "i<strong>mp</strong>ressive".<br><br>
+      <strong>Case sensitive</strong> — "Magic" won't match "magic".
+	  <br><br><hr><br>
+	  <strong>Highlighted matches</strong><br><br>
+	  Clicking on a match will update the right-side nav with the current match.
+    </div>
     <label class="toggle-label">
       <input type="checkbox" id="exact-toggle">
       <span class="toggle-track"><span class="toggle-thumb"></span></span>
@@ -361,7 +417,7 @@
 
 <script src="data/years.js"></script>
 <script>
-const DATA = {};         // populated lazily: DATA['2017'] = [...], etc.
+const DATA = {};
 const loaded = new Set();
 
 function loadYear(year) {
@@ -416,6 +472,15 @@ const emptyStateHTML = `<div class="empty-state" id="empty-state">
   <div class="archive-stats">${YEARS.length} years — ${totalEntries.toLocaleString()} mondays — ${totalComments.toLocaleString()} comments</div>
 </div>`;
 
+// -- Help popover --
+const helpBtn     = document.getElementById('help-btn');
+const helpPopover = document.getElementById('help-popover');
+
+helpBtn.addEventListener('click', e => {
+  e.stopPropagation();
+  helpPopover.classList.toggle('visible');
+});
+document.addEventListener('click', () => helpPopover.classList.remove('visible'));
 
 const yearSel  = document.getElementById('year-filter');
 const monthSel = document.getElementById('month-filter');
@@ -465,7 +530,7 @@ function threadMatches(comment, terms, exact, caseSensitive, wholeWord) {
 function commentHTML(c, terms, depth, caseSensitive, wholeWord) {
   const replyClass = depth > 0 ? ' is-reply' : '';
   const indent = depth > 0 ? ` style="margin-left: ${depth * 2.0}rem"` : '';
-  const titleLine  = c.title
+  const titleLine = c.title
     ? `<div class="comment-title-line">${highlight(c.title, terms, caseSensitive, wholeWord)}</div>` : '';
   const body = highlight(c.content || '', terms, caseSensitive, wholeWord);
   const repliesHTML = (c.replies || []).map(r => commentHTML(r, terms, depth + 1, caseSensitive, wholeWord)).join('');
