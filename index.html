@@ -191,6 +191,12 @@
     margin-bottom: 0.25rem;
     font-style: italic;
   }
+  .comment-edit-time {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+    font-style: italic;
+  }
   .comment-img {
     display: block;
     max-width: 100%;
@@ -220,10 +226,11 @@
     font-size: 0.9rem;
     line-height: 1.85;
     color: #2a221a;
-    white-space: pre-wrap;
     word-break: break-word;
   }
   mark { background: #f0d080; border-radius: 2px; padding: 0 1px; }
+  mark.active-mark { background: #e8a020; outline: 2px solid var(--accent); border-radius: 2px; }
+  .comment-card.active-card { outline: 2px solid var(--accent); }
   .no-results { color: var(--muted); font-style: italic; padding: 3rem 0; }
 
   .empty-state {
@@ -311,8 +318,6 @@
     text-align: center;
     line-height: 1.2;
   }
-  mark.active-mark { background: #e8a020; outline: 2px solid var(--accent); border-radius: 2px; }
-  .comment-card.active-card { outline: 2px solid var(--accent); }
 
   /* -- Sliding toggle -- */
   .toggle-label {
@@ -456,6 +461,21 @@ function highlight(text, terms, caseSensitive, wholeWord) {
   return esc(text).replace(re, '<mark>$1</mark>');
 }
 
+// -- Split content on [IMAGE:N] tokens and render text + inline load buttons --
+function renderContent(content, images, terms, caseSensitive, wholeWord) {
+  const parts = content.split(/(\[IMAGE:\d+\])/);
+  return parts.map(part => {
+    const m = part.match(/^\[IMAGE:(\d+)\]$/);
+    if (m) {
+      const img = (images || [])[parseInt(m[1])];
+      if (!img || !img.local_path) return '';
+      const src = esc(img.local_path);
+      return `<span style="display:block"><button class="load-img-btn" onclick="loadImg(this,'${src}')">Load image</button></span>`;
+    }
+    return `<span>${highlight(part, terms, caseSensitive, wholeWord).replace(/\n/g, '<br>')}</span>`;
+  }).join('');
+}
+
 const totalEntries  = Object.values(YEAR_ENTRIES).reduce((a,b) => a+b, 0);
 const totalComments = Object.values(YEAR_COMMENTS).reduce((a,b) => a+b, 0);
 const emptyStateHTML = `<div class="empty-state" id="empty-state">
@@ -469,7 +489,7 @@ function loadImg(btn, src) {
   btn.parentNode.replaceWith(img);
 }
 
-
+// -- Help popover --
 const helpBtn     = document.getElementById('help-btn');
 const helpPopover = document.getElementById('help-popover');
 
@@ -530,12 +550,9 @@ function commentHTML(c, terms, depth, caseSensitive, wholeWord) {
     ? `<div class="comment-title-line">${highlight(c.title, terms, caseSensitive, wholeWord)}</div>` : '';
   const dateLine = c.date
     ? `<div class="comment-date">${esc(c.date)}</div>` : '';
-  const body = highlight(c.content || '', terms, caseSensitive, wholeWord);
-  const imagesHTML = (c.images || []).filter(img => img.local_path).map(img =>
-    `<div class="comment-img-wrap">
-      <button class="load-img-btn" onclick="loadImg(this, '${esc(img.local_path)}')">Load image</button>
-    </div>`
-  ).join('');
+  const body = renderContent(c.content || '', c.images, terms, caseSensitive, wholeWord);
+  const editLine = c.edit_time
+    ? `<div class="comment-edit-time">Edited ${esc(c.edit_time)}</div>` : '';
   const repliesHTML = (c.replies || []).map(r => commentHTML(r, terms, depth + 1, caseSensitive, wholeWord)).join('');
   return `<div class="comment-card${replyClass}"${indent}>
     ${titleLine}
@@ -544,7 +561,7 @@ function commentHTML(c, terms, depth, caseSensitive, wholeWord) {
       <span class="comment-user">${esc(c.user || 'unknown')}</span>
     </div>
     <div class="comment-body">${body}</div>
-    ${imagesHTML}
+    ${editLine}
   </div>${repliesHTML}`;
 }
 
@@ -567,7 +584,7 @@ async function render() {
     const hint = raw.length > 0 ? `Type ${MIN_CHARS - raw.length} more character${MIN_CHARS - raw.length === 1 ? '' : 's'}...` : `${totalEntries.toLocaleString()} entries loaded — type to search`;
     statusEl.textContent = hint;
     resultsEl.innerHTML = emptyStateHTML;
-    marks = []; markIndex = -1;
+    matchedCards = []; cardIndex = -1;
     matchNav.classList.remove('visible');
     jumpTop.classList.remove('visible');
     jumpBottom.classList.remove('visible');

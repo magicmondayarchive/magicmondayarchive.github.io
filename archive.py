@@ -161,6 +161,8 @@ def download_image(src, images_dir, comment_date):
 def parse_comments_from_soup(soup, images_dir):
     """
     Extract a flat dict of comments from a single page's soup.
+    Images are embedded inline in content as [IMAGE:N] placeholders,
+    preserving their original position in the text.
     Returns {comment_id: {id, title, user, date, content, images, parent_id, replies: []}}
     """
     flat = {}
@@ -189,18 +191,34 @@ def parse_comments_from_soup(soup, images_dir):
 
         content_tag = section.find(class_="comment-content")
         images = []
+        edit_time = ""
         if content_tag:
+            # Remove edittime div before extracting text so it doesn't appear in content
+            edittime_div = content_tag.find(class_="edittime")
+            if edittime_div:
+                inner = edittime_div.find("span", title=True)
+                if inner:
+                    edit_time = inner["title"]
+                edittime_div.decompose()
+
             # Replace <br> tags with newlines before extracting text
             for br in content_tag.find_all("br"):
                 br.replace_with("\n")
 
-            # Download any images and record their local path and remote url
+            # Download images and replace each <img> tag in-place with an
+            # [IMAGE:N] index placeholder so position is preserved in content
             for img in content_tag.find_all("img"):
                 src = img.get("src", "")
                 if src:
-                    images.append(download_image(src, images_dir, date))
+                    result = download_image(src, images_dir, date)
+                    idx = len(images)
+                    images.append(result)
+                    if result["local_path"]:
+                        img.replace_with(f'[IMAGE:{idx}]')
+                    else:
+                        img.replace_with("")
 
-            content = content_tag.get_text("\n", strip=True)
+            content = content_tag.get_text("", strip=True)
         else:
             content = ""
 
@@ -208,20 +226,16 @@ def parse_comments_from_soup(soup, images_dir):
             continue
 
         parent_id = None
-        parent_li = section.find("li", class_="commentparent")
-        if parent_li:
-            parent_a = parent_li.find("a", href=True)
-            if parent_a:
-                parent_id = extract_cmt_id(parent_a["href"])
 
         flat[comment_id] = {
+            "parent_id": parent_id,
             "id": comment_id,
             "title": title,
             "date": date,
             "user": user,
             "content": content,
             **({"images": images} if images else {}),
-            "parent_id": parent_id,
+            **({"edit_time": edit_time} if edit_time else {}),
             "replies": [],
         }
     return flat
