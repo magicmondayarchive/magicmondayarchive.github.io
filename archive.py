@@ -198,12 +198,8 @@ def parse_comments_from_soup(soup, images_dir):
             if edittime_div:
                 inner = edittime_div.find("span", title=True)
                 if inner:
-                    edit_time = inner["title"]
+                    edit_time = inner.get_text(strip=True)
                 edittime_div.decompose()
-
-            # Replace <br> tags with newlines before extracting text
-            for br in content_tag.find_all("br"):
-                br.replace_with("\n")
 
             # Download images and replace each <img> tag in-place with an
             # [IMAGE:N] index placeholder so position is preserved in content
@@ -218,7 +214,7 @@ def parse_comments_from_soup(soup, images_dir):
                     else:
                         img.replace_with("")
 
-            content = content_tag.get_text("", strip=True)
+            content = content_tag.decode_contents()
         else:
             content = ""
 

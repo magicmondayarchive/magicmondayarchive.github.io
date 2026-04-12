@@ -452,13 +452,13 @@ function matchesAll(text, terms, exact, caseSensitive, wholeWord) {
 }
 
 function highlight(text, terms, caseSensitive, wholeWord) {
-  if (!terms.length) return esc(text);
+  if (!terms.length) return text;
   const patterns = terms.map(t => {
     const escaped = t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s+');
     return wholeWord ? `\\b${escaped}\\b` : escaped;
   });
   const re = new RegExp(`(${patterns.join('|')})`, caseSensitive ? 'g' : 'gi');
-  return esc(text).replace(re, '<mark>$1</mark>');
+  return text.replace(re, '<mark>$1</mark>');
 }
 
 // -- Split content on [IMAGE:N] tokens and render text + inline load buttons --
@@ -472,7 +472,7 @@ function renderContent(content, images, terms, caseSensitive, wholeWord) {
       const src = esc(img.local_path);
       return `<span style="display:block"><button class="load-img-btn" onclick="loadImg(this,'${src}')">Load image</button></span>`;
     }
-    return `<span>${highlight(part, terms, caseSensitive, wholeWord).replace(/\n/g, '<br>')}</span>`;
+    return highlight(part, terms, caseSensitive, wholeWord);
   }).join('');
 }
 
@@ -552,7 +552,7 @@ function commentHTML(c, terms, depth, caseSensitive, wholeWord) {
     ? `<div class="comment-date">${esc(c.date)}</div>` : '';
   const body = renderContent(c.content || '', c.images, terms, caseSensitive, wholeWord);
   const editLine = c.edit_time
-    ? `<div class="comment-edit-time">Edited ${esc(c.edit_time)}</div>` : '';
+    ? `<div class="comment-edit-time">Edited Date: ${esc(c.edit_time)}</div>` : '';
   const repliesHTML = (c.replies || []).map(r => commentHTML(r, terms, depth + 1, caseSensitive, wholeWord)).join('');
   return `<div class="comment-card${replyClass}"${indent}>
     ${titleLine}
