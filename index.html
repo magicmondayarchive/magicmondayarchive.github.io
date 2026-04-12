@@ -682,8 +682,8 @@ function goToMark(index) {
   navCount.textContent = `${markIndex + 1} / ${marks.length}`;
 }
 
-document.getElementById('nav-up').addEventListener('click',   () => goToMark(markIndex <= 0 ? marks.length - 1 : markIndex - 1));
-document.getElementById('nav-down').addEventListener('click', () => goToMark(markIndex === -1 ? 0 : markIndex + 1));
+document.getElementById('nav-up').addEventListener('click',   () => { if (markIndex > 0) goToMark(markIndex - 1); });
+document.getElementById('nav-down').addEventListener('click', () => { if (markIndex < marks.length - 1) goToMark(markIndex + 1); });
 jumpTop.addEventListener('click',    () => goToMark(0));
 jumpBottom.addEventListener('click', () => goToMark(marks.length - 1));
 
