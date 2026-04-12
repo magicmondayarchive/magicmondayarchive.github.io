@@ -11,7 +11,7 @@ from collections import defaultdict
 
 by_year = defaultdict(list)
 
-for json_path in sorted(glob.glob("./output/**/*.json", recursive=True)):
+for json_path in sorted(glob.glob("./data/archive/**/*.json", recursive=True)):
     with open(json_path, encoding="utf-8") as f:
         try:
             entry = json.load(f)
@@ -19,8 +19,6 @@ for json_path in sorted(glob.glob("./output/**/*.json", recursive=True)):
             by_year[year].append(entry)
         except json.JSONDecodeError as e:
             print(f"Skipping {json_path}: {e}")
-
-os.makedirs("./data", exist_ok=True)
 
 for year, entries in by_year.items():
     entries.sort(key=lambda e: (e.get("month",""), e.get("day","")))

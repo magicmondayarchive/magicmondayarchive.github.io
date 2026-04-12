@@ -71,9 +71,7 @@
     outline: none;
     border-radius: 2px;
   }
-  .search-bar input:focus {
-    border-color: var(--accent);
-  }
+  .search-bar input:focus { border-color: var(--accent); }
   .search-bar select {
     font-family: 'Source Serif 4', serif;
     font-size: 0.9rem;
@@ -145,10 +143,7 @@
     max-width: 960px;
   }
 
-  .entry-block {
-    margin-bottom: 4rem;
-    padding-top: 1rem;
-  }
+  .entry-block { margin-bottom: 4rem; padding-top: 1rem; }
   .entry-header {
     display: flex;
     align-items: baseline;
@@ -164,22 +159,10 @@
     text-transform: uppercase;
     white-space: nowrap;
   }
-  .entry-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.35rem;
-    font-weight: 600;
-  }
-  .entry-title a {
-    color: var(--accent);
-    text-decoration: none;
-  }
+  .entry-title { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 600; }
+  .entry-title a { color: var(--accent); text-decoration: none; }
   .entry-title a:hover { text-decoration: underline; }
-  .entry-count {
-    font-size: 0.95rem;
-    color: var(--muted);
-    margin-left: auto;
-    white-space: nowrap;
-  }
+  .entry-count { font-size: 0.95rem; color: var(--muted); margin-left: auto; white-space: nowrap; }
 
   /* -- Comment cards -- */
   .comment-card {
@@ -202,6 +185,30 @@
     color: var(--muted);
   }
   .comment-user { font-weight: 400; color: var(--accent); }
+  .comment-date {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 0.25rem;
+    font-style: italic;
+  }
+  .comment-img {
+    display: block;
+    max-width: 100%;
+    margin-top: 0.6rem;
+    border-radius: 2px;
+  }
+  .load-img-btn {
+    margin-top: 0.6rem;
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.8rem;
+    color: var(--accent);
+    background: none;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    padding: 0.25rem 0.6rem;
+    cursor: pointer;
+  }
+  .load-img-btn:hover { border-color: var(--accent); }
   .comment-title-line {
     font-family: 'Playfair Display', serif;
     font-style: italic;
@@ -216,17 +223,8 @@
     white-space: pre-wrap;
     word-break: break-word;
   }
-  mark {
-    background: #f0d080;
-    border-radius: 2px;
-    padding: 0 1px;
-  }
-
-  .no-results {
-    color: var(--muted);
-    font-style: italic;
-    padding: 3rem 0;
-  }
+  mark { background: #f0d080; border-radius: 2px; padding: 0 1px; }
+  .no-results { color: var(--muted); font-style: italic; padding: 3rem 0; }
 
   .empty-state {
     text-align: center;
@@ -238,10 +236,7 @@
     left: 50%;
     transform: translate(-50%, 0%);
   }
-  .empty-state .archive-stats {
-    font-size: 1.1rem;
-    margin-bottom: 0.6rem;
-  }
+  .empty-state .archive-stats { font-size: 1.1rem; margin-bottom: 0.6rem; }
 
   /* -- Show more -- */
   .show-more {
@@ -316,11 +311,8 @@
     text-align: center;
     line-height: 1.2;
   }
-  mark.active-mark {
-    background: #e8a020;
-    outline: 2px solid var(--accent);
-    border-radius: 2px;
-  }
+  mark.active-mark { background: #e8a020; outline: 2px solid var(--accent); border-radius: 2px; }
+  .comment-card.active-card { outline: 2px solid var(--accent); }
 
   /* -- Sliding toggle -- */
   .toggle-label {
@@ -355,7 +347,6 @@
   }
   .toggle-label input:checked ~ .toggle-track { background: var(--accent); }
   .toggle-label input:checked ~ .toggle-track .toggle-thumb { transform: translateX(1rem); }
-
 </style>
 </head>
 <body>
@@ -436,7 +427,6 @@ function esc(str) {
     ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 }
 
-
 function normalizeWS(text) {
   return text.replace(/[\s\u00a0]+/g, ' ').trim();
 }
@@ -472,7 +462,14 @@ const emptyStateHTML = `<div class="empty-state" id="empty-state">
   <div class="archive-stats">${YEARS.length} years — ${totalEntries.toLocaleString()} mondays — ${totalComments.toLocaleString()} comments</div>
 </div>`;
 
-// -- Help popover --
+function loadImg(btn, src) {
+  const img = document.createElement('img');
+  img.src = src;
+  img.className = 'comment-img';
+  btn.parentNode.replaceWith(img);
+}
+
+
 const helpBtn     = document.getElementById('help-btn');
 const helpPopover = document.getElementById('help-popover');
 
@@ -514,7 +511,6 @@ YEARS.forEach(y => {
 });
 populateMonths('');
 
-// -- Render --
 const queryEl  = document.getElementById('query');
 const statusEl = document.getElementById('status');
 const resultsEl= document.getElementById('results');
@@ -532,17 +528,27 @@ function commentHTML(c, terms, depth, caseSensitive, wholeWord) {
   const indent = depth > 0 ? ` style="margin-left: ${depth * 2.0}rem"` : '';
   const titleLine = c.title
     ? `<div class="comment-title-line">${highlight(c.title, terms, caseSensitive, wholeWord)}</div>` : '';
+  const dateLine = c.date
+    ? `<div class="comment-date">${esc(c.date)}</div>` : '';
   const body = highlight(c.content || '', terms, caseSensitive, wholeWord);
+  const imagesHTML = (c.images || []).filter(img => img.local_path).map(img =>
+    `<div class="comment-img-wrap">
+      <button class="load-img-btn" onclick="loadImg(this, '${esc(img.local_path)}')">Load image</button>
+    </div>`
+  ).join('');
   const repliesHTML = (c.replies || []).map(r => commentHTML(r, terms, depth + 1, caseSensitive, wholeWord)).join('');
   return `<div class="comment-card${replyClass}"${indent}>
     ${titleLine}
+    ${dateLine}
     <div class="comment-meta">
       <span class="comment-user">${esc(c.user || 'unknown')}</span>
     </div>
     <div class="comment-body">${body}</div>
+    ${imagesHTML}
   </div>${repliesHTML}`;
 }
 
+// -- Render --
 const MIN_CHARS    = 2;   // don't search until at least this many chars
 const PAGE_SIZE    = 20;  // entries to render at once
 let   debounceTimer = null;
@@ -642,6 +648,7 @@ function debounceRender() {
   debounceTimer = setTimeout(render, 300);
 }
 
+// -- Event listeners --
 queryEl.addEventListener('input', debounceRender);
 yearSel.addEventListener('change', () => { populateMonths(yearSel.value); render(); });
 monthSel.addEventListener('change', render);
@@ -654,48 +661,47 @@ const matchNav   = document.getElementById('match-nav');
 const navCount   = document.getElementById('nav-count');
 const jumpTop    = document.getElementById('jump-top');
 const jumpBottom = document.getElementById('jump-bottom');
-let marks        = [];
-let markIndex    = -1;
+let matchedCards = [];  // comment cards that contain at least one mark
+let cardIndex    = -1;
 
 function updateNav(reset) {
-  const prevCount = marks.length;
-  marks = Array.from(resultsEl.querySelectorAll('mark'));
-  const hasMarks = marks.length > 0;
-  matchNav.classList.toggle('visible', hasMarks);
-  jumpTop.classList.toggle('visible', hasMarks);
-  jumpBottom.classList.toggle('visible', hasMarks);
-  if (reset || prevCount === 0) {
-    markIndex = -1;
-    navCount.textContent = marks.length ? `0 / ${marks.length}` : '0 / 0';
+  matchedCards = Array.from(resultsEl.querySelectorAll('.comment-card'))
+    .filter(card => card.querySelector('mark'));
+  const hasMatches = matchedCards.length > 0;
+  matchNav.classList.toggle('visible', hasMatches);
+  jumpTop.classList.toggle('visible', hasMatches);
+  jumpBottom.classList.toggle('visible', hasMatches);
+  if (reset) {
+    cardIndex = -1;
+    navCount.textContent = hasMatches ? `0 / ${matchedCards.length}` : '0 / 0';
   } else {
-    // keep current position, just update the total
-    navCount.textContent = `${markIndex + 1} / ${marks.length}`;
+    navCount.textContent = `${cardIndex + 1} / ${matchedCards.length}`;
   }
 }
 
-function goToMark(index) {
-  if (!marks.length) return;
-  marks.forEach(m => m.classList.remove('active-mark'));
-  markIndex = (index + marks.length) % marks.length;
-  marks[markIndex].classList.add('active-mark');
-  marks[markIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
-  navCount.textContent = `${markIndex + 1} / ${marks.length}`;
+function goToCard(index) {
+  if (!matchedCards.length) return;
+  matchedCards.forEach(c => c.classList.remove('active-card'));
+  cardIndex = (index + matchedCards.length) % matchedCards.length;
+  matchedCards[cardIndex].classList.add('active-card');
+  matchedCards[cardIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+  navCount.textContent = `${cardIndex + 1} / ${matchedCards.length}`;
 }
 
-document.getElementById('nav-up').addEventListener('click',   () => { if (markIndex > 0) goToMark(markIndex - 1); });
-document.getElementById('nav-down').addEventListener('click', () => { if (markIndex < marks.length - 1) goToMark(markIndex + 1); });
-jumpTop.addEventListener('click',    () => goToMark(0));
-jumpBottom.addEventListener('click', () => goToMark(marks.length - 1));
+document.getElementById('nav-up').addEventListener('click',   () => { if (cardIndex > 0) goToCard(cardIndex - 1); });
+document.getElementById('nav-down').addEventListener('click', () => { if (cardIndex < matchedCards.length - 1) goToCard(cardIndex + 1); });
+jumpTop.addEventListener('click',    () => goToCard(0));
+jumpBottom.addEventListener('click', () => goToCard(matchedCards.length - 1));
 
 resultsEl.addEventListener('click', e => {
-  const mark = e.target.closest('mark');
-  if (!mark) return;
-  const index = marks.indexOf(mark);
+  const card = e.target.closest('.comment-card');
+  if (!card || !card.querySelector('mark')) return;
+  const index = matchedCards.indexOf(card);
   if (index === -1) return;
-  marks.forEach(m => m.classList.remove('active-mark'));
-  markIndex = index;
-  mark.classList.add('active-mark');
-  navCount.textContent = `${markIndex + 1} / ${marks.length}`;
+  matchedCards.forEach(c => c.classList.remove('active-card'));
+  cardIndex = index;
+  card.classList.add('active-card');
+  navCount.textContent = `${cardIndex + 1} / ${matchedCards.length}`;
 });
 
 statusEl.textContent = `${totalEntries.toLocaleString()} entries loaded — type to search`;

@@ -2,16 +2,18 @@ from datetime import datetime
 import json
 import os
 import re
-import requests
+# import requests
 import sys
 import time
 
 from bs4 import BeautifulSoup
+from curl_cffi import requests as cffi_requests
 
 
-INDEX_DELAY=60.0
-ENTRY_DELAY=15.0
-PAGE_DELAY=1.0
+INDEX_DELAY=600
+ENTRY_DELAY=60
+PAGE_DELAY=30
+IMAGE_DELAY=10
 
 BASE_URL = "https://ecosophia.dreamwidth.org"
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; personal-archiver-thank-you-JMG/1.0)"}
@@ -40,10 +42,18 @@ log_filename = datetime.now().strftime("./log_%Y-%m-%d_%H-%M.txt")
 sys.stdout = Tee(log_filename)
 
 
-def fetch(url):
-    r = requests.get(url, headers=HEADERS)
-    r.raise_for_status()
-    return BeautifulSoup(r.text, "html.parser")
+def fetch(url, retries=10):
+    for attempt in range(retries):
+        try:
+            # r = requests.get(url, headers=HEADERS, timeout=(30, 120))
+            r = cffi_requests.get(url, impersonate="chrome120", timeout=(30, 120))
+            r.raise_for_status()
+            return BeautifulSoup(r.text, "html.parser")
+        except Exception as e:
+            wait = 30 * (2 ** attempt)  # 30s, 60s, 120s, 240s, 480s
+            print(f"  [retry {attempt+1}/{retries}] {e} — waiting {wait}s")
+            time.sleep(wait)
+    raise RuntimeError(f"Failed to fetch {url} after {retries} retries")
 
 
 def get_entry_links(skip):
@@ -78,7 +88,7 @@ def get_entry_links(skip):
             time_tag = dt_span.find("span", class_="time")
             if time_tag:
                 # "02:16 pm" -> "02-16PM"
-                raw_time = time_tag.get_text(strip=True)          # "02:16 pm"
+                raw_time = time_tag.get_text(strip=True)
                 t_match = re.match(r"(\d+):(\d+)\s*(am|pm)", raw_time, re.I)
                 if t_match:
                     time_str = f"{t_match.group(1)}-{t_match.group(2)}{t_match.group(3).upper()}"
@@ -88,7 +98,11 @@ def get_entry_links(skip):
             "url": entry_url,
             "year": year, "month": month, "day": day, "time": time_str,
         })
-    return entries
+
+    # Check if there are more pages by looking for the page-back link
+    has_next = bool(soup.find("li", class_="page-back"))
+
+    return entries, has_next
 
 
 def extract_cmt_id(url):
@@ -106,7 +120,6 @@ def get_page_count(soup):
     if not pages_div:
         return 1
 
-    # All page links have class "comment-page"; find the highest page number
     max_page = 1
     for a in pages_div.find_all("a", class_="comment-page"):
         m = re.search(r"page=(\d+)", a["href"])
@@ -116,10 +129,39 @@ def get_page_count(soup):
     return max_page
 
 
-def parse_comments_from_soup(soup):
+def download_image(src, images_dir, comment_date):
+    """
+    Download an image from src into images_dir.
+    Prepends comment_date to the filename to ensure uniqueness.
+    Returns a dict with url and local_path (None if download failed).
+    """
+    try:
+        base = re.sub(r"[^\w.\-]", "_", src.split("/")[-1].split("?")[0])
+        if not base:
+            return {"url": src, "local_path": None}
+        safe_date = re.sub(r"[^\w\-]", "_", comment_date) if comment_date else "unknown"
+        filename = f"{safe_date}_{base}"
+        out_path = os.path.join(images_dir, filename)
+        os.makedirs(images_dir, exist_ok=True)
+        if os.path.exists(out_path):
+            return {"url": src, "local_path": out_path}
+        # r = requests.get(src, headers=HEADERS, timeout=10)
+        r = cffi_requests.get(src, impersonate="chrome120", timeout=(30, 120))
+        r.raise_for_status()
+        with open(out_path, "wb") as f:
+            f.write(r.content)
+        print(f"    [image] Saved {filename}")
+        time.sleep(IMAGE_DELAY)
+        return {"url": src, "local_path": out_path}
+    except Exception as e:
+        print(f"    [image] Failed to download {src}: {e}")
+        return {"url": src, "local_path": None}
+
+
+def parse_comments_from_soup(soup, images_dir):
     """
     Extract a flat dict of comments from a single page's soup.
-    Returns {comment_id: {id, title, user, content, parent_id, replies: []}}
+    Returns {comment_id: {id, title, user, date, content, images, parent_id, replies: []}}
     """
     flat = {}
     for section in soup.find_all(id=lambda x: x and x.startswith("cmt")):
@@ -127,6 +169,14 @@ def parse_comments_from_soup(soup):
 
         title_tag = section.find(class_="comment-title")
         title = title_tag.get_text(strip=True) if title_tag else ""
+
+        date = ""
+        datetime_span = section.find(class_="datetime")
+        if datetime_span:
+            inner = datetime_span.find("span", title=True)
+            if inner:
+                # e.g. "2018-05-14 04:38 am (UTC)" -> "2018-05-14 04:38 am"
+                date = inner.get_text(strip=True).replace("(UTC)", "").strip()
 
         poster = section.find(class_="comment-poster")
         if poster and poster.find(class_="anonymous"):
@@ -138,7 +188,21 @@ def parse_comments_from_soup(soup):
             user = "unknown"
 
         content_tag = section.find(class_="comment-content")
-        content = content_tag.get_text("\n", strip=True) if content_tag else ""
+        images = []
+        if content_tag:
+            # Replace <br> tags with newlines before extracting text
+            for br in content_tag.find_all("br"):
+                br.replace_with("\n")
+
+            # Download any images and record their local path and remote url
+            for img in content_tag.find_all("img"):
+                src = img.get("src", "")
+                if src:
+                    images.append(download_image(src, images_dir, date))
+
+            content = content_tag.get_text("\n", strip=True)
+        else:
+            content = ""
 
         if not content:
             continue
@@ -153,8 +217,10 @@ def parse_comments_from_soup(soup):
         flat[comment_id] = {
             "id": comment_id,
             "title": title,
+            "date": date,
             "user": user,
             "content": content,
+            **({"images": images} if images else {}),
             "parent_id": parent_id,
             "replies": [],
         }
@@ -173,6 +239,16 @@ def build_tree(flat):
             flat[parent_id]["replies"].append(comment)
         else:
             roots.append(comment)
+
+    # Remove empty replies lists to keep JSON clean
+    def prune(nodes):
+        for node in nodes:
+            if node["replies"]:
+                prune(node["replies"])
+            else:
+                del node["replies"]
+    prune(roots)
+
     return roots
 
 
@@ -184,63 +260,75 @@ def make_filename(entry):
     return f"{date_str}{time_str}_{safe_title}.json"
 
 
-def scrape_entry(entry_url):
+def scrape_entry(entry_url, images_base_dir, entry):
     """
     Fetch all pages of an entry (using expand_all=1&page=n),
     merge comments across pages, then build a nested tree.
     """
-    # Fetch page 1 first to find out the total page count
+    images_dir = images_base_dir
     page1_url = entry_url.rstrip("/") + "?expand_all=1&page=1#comments"
     print(f"  Fetching page 1: {page1_url}")
     soup1 = fetch(page1_url)
     total_pages = get_page_count(soup1)
     print(f"  Total pages: {total_pages}")
 
-    flat = parse_comments_from_soup(soup1)
+    flat = parse_comments_from_soup(soup1, images_dir)
 
     for page_num in range(2, total_pages + 1):
         page_url = entry_url.rstrip("/") + f"?expand_all=1&page={page_num}#comments"
         print(f"  Fetching page {page_num}: {page_url}")
         soup = fetch(page_url)
-        flat.update(parse_comments_from_soup(soup))
+        flat.update(parse_comments_from_soup(soup, images_dir))
         time.sleep(PAGE_DELAY)
 
     return build_tree(flat), total_pages
 
 
 def main():
-    out_dir = "./output"
-    num_entries_scraped = 0
-    num_pages_scraped = 0
+    out_dir = "./data/archive"
+    os.makedirs(out_dir, exist_ok=True)
+
+    num_entries_scraped  = 0
+    num_pages_scraped    = 0
     num_comments_scraped = 0
 
-    for skip in range(400, -1, -20):
+    skip = 0
+    while True:
         print(f"\n=== Index page skip={skip} ===")
-        entries = get_entry_links(skip)
+        entries, has_next = get_entry_links(skip)
         print(f"Found {len(entries)} entries")
 
-        for entry in reversed(entries):
+        for entry in entries:
             print(f"\n[{entry['year']}-{entry['month']}-{entry['day']} {entry['time'].replace('-', ':')}] {entry['title']} -> {entry['url']}")
 
-            comments, num_pages = scrape_entry(entry["url"])
+            year_dir   = os.path.join(out_dir, entry["year"] or "unknown")
+            os.makedirs(year_dir, exist_ok=True)
+            filename   = make_filename(entry)
+            entry_dir  = os.path.join(year_dir, filename.removesuffix(".json"))
+            images_dir = os.path.join(entry_dir, "images")
+            os.makedirs(entry_dir, exist_ok=True)
+
+            comments, num_pages = scrape_entry(entry["url"], images_dir, entry)
             def count_comments(nodes):
-                return sum(1 + count_comments(c["replies"]) for c in nodes)
+                return sum(1 + count_comments(c.get("replies", [])) for c in nodes)
             num_comments = count_comments(comments)
             print(f"  {len(comments)} top-level comments, {num_comments} total")
 
-            filename = make_filename(entry)
-            year_dir = os.path.join(out_dir, entry["year"] or "unknown")
-            os.makedirs(year_dir, exist_ok=True)
-            out_path = os.path.join(year_dir, filename)
+            out_path = os.path.join(entry_dir, "entry.json")
             with open(out_path, "w", encoding="utf-8") as f:
                 json.dump({**entry, "comments": comments}, f, indent=4, ensure_ascii=False)
             print(f"  Saved -> {out_path}")
 
-            num_entries_scraped += 1
-            num_pages_scraped += num_pages
+            num_entries_scraped  += 1
+            num_pages_scraped    += num_pages
             num_comments_scraped += num_comments
             time.sleep(ENTRY_DELAY)
 
+        if not has_next:
+            print("\nNo more pages (page-back not found). Done!")
+            break
+
+        skip += 20
         time.sleep(INDEX_DELAY)
 
     print(f"\nDone! Scraped {num_entries_scraped} entries, {num_pages_scraped} pages, {num_comments_scraped} comments")
