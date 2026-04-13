@@ -1,3 +1,4 @@
+import argparse
 from datetime import datetime
 import hashlib
 import json
@@ -16,15 +17,14 @@ ENTRY_DELAY=60
 PAGE_DELAY=30
 IMAGE_DELAY=10
 
+# HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; personal-archiver-thank-you-JMG/1.0)"}
 BASE_URL = "https://ecosophia.dreamwidth.org"
-
 IMAGE_IGNORE = {
     "https://www.dreamwidth.org/img/silk/identity/user.png",
 }
 
 CACHE_DIR = "./data/cache"
-
-HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; personal-archiver-thank-you-JMG/1.0)"}
+SKIP_MISSING_IMAGES = False  # set by --skip-missing-images flag
 
 MONTHS = {"Jan": "01", "Feb": "02", "Mar": "03", "Apr": "04",
           "May": "05", "Jun": "06", "Jul": "07", "Aug": "08",
@@ -172,6 +172,9 @@ def download_image(src, images_dir, comment_date):
             # Already downloaded — skip network call and sleep
             print(f"    [image] Cached {filename}")
             return {"url": src, "local_path": out_path}
+        if SKIP_MISSING_IMAGES:
+            print(f"    [image] Skipped {filename}")
+            return {"url": src, "local_path": None}
         # r = requests.get(src, headers=HEADERS, timeout=10)
         r = cffi_requests.get(src, impersonate="chrome120", timeout=(30, 120))
         r.raise_for_status()
@@ -301,6 +304,66 @@ def make_filename(entry):
     return f"{date_str}{time_str}_{safe_title}.json"
 
 
+def parse_entry_post(soup, images_dir):
+    """
+    Extract the opening post (class="entry") as a comment-like dict,
+    to be prepended as the first item in the comment list.
+    """
+    entry_div = soup.find(class_="entry")
+    if not entry_div:
+        return None
+
+    content_tag = entry_div.find(class_="entry-content")
+    if not content_tag:
+        return None
+
+    images = []
+
+    # Remove edittime if present
+    edittime_div = content_tag.find(class_="edittime")
+    if edittime_div:
+        edittime_div.decompose()
+
+    # Download images and replace with placeholders
+    for img in content_tag.find_all("img"):
+        src = img.get("src", "")
+        if not src or src in IMAGE_IGNORE:
+            img.decompose()
+            continue
+        result = download_image(src, images_dir, "")
+        idx = len(images)
+        images.append(result)
+        img.replace_with(f'[IMAGE:{idx}]')
+
+    content = content_tag.decode_contents()
+
+    # Get poster username
+    poster_span = entry_div.find("span", attrs={"lj:user": True})
+    user = poster_span["lj:user"] if poster_span else "ecosophia"
+
+    # Get date
+    date = ""
+    dt_span = entry_div.find("span", class_="datetime")
+    if dt_span:
+        inner = dt_span.find("span", title=True)
+        if inner:
+            date = inner.get_text(strip=True).replace("(UTC)", "").strip()
+        else:
+            date = dt_span.get_text(" ", strip=True)
+
+    post = {
+        "id": entry_div.get("id", "entry-post"),
+        "title": "",
+        "date": date,
+        "user": user,
+        "content": content,
+        "replies": [],
+    }
+    if images:
+        post["images"] = images
+    return post
+
+
 def scrape_entry(entry_url, images_dir):
     """
     Fetch all pages of an entry (using expand_all=1&page=n),
@@ -314,6 +377,7 @@ def scrape_entry(entry_url, images_dir):
     print(f"  Total pages: {total_pages}")
 
     all_cached = from_cache
+    entry_post = parse_entry_post(soup1, images_dir)
     flat = parse_comments_from_soup(soup1, images_dir)
 
     for page_num in range(2, total_pages + 1):
@@ -325,7 +389,10 @@ def scrape_entry(entry_url, images_dir):
             all_cached = False
             time.sleep(PAGE_DELAY)
 
-    return build_tree(flat), total_pages, all_cached
+    comments = build_tree(flat)
+    if entry_post:
+        comments = [entry_post] + comments
+    return comments, total_pages, all_cached
 
 
 def main():
@@ -383,5 +450,11 @@ def main():
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--skip-missing-images", action="store_true",
+                        help="Skip downloading images that are not already cached locally")
+    args = parser.parse_args()
+    if args.skip_missing_images:
+        SKIP_MISSING_IMAGES = True
     main()
 
