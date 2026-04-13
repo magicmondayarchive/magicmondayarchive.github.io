@@ -468,9 +468,8 @@ function renderContent(content, images, terms, caseSensitive, wholeWord) {
     const m = part.match(/^\[IMAGE:(\d+)\]$/);
     if (m) {
       const img = (images || [])[parseInt(m[1])];
-      if (!img || !img.local_path) return '';
-      const src = esc(img.local_path);
-      return `<span style="display:block"><button class="load-img-btn" onclick="loadImg(this,'${src}')">Load image</button></span>`;
+      const src = img && img.local_path ? esc(img.local_path) : 'assets/images/image_missing.png';
+      return `<span style="display:block"><button class="load-img-btn" onclick="loadImg(event, this,'${src}')">Load image</button></span>`;
     }
     return highlight(part, terms, caseSensitive, wholeWord);
   }).join('');
@@ -482,7 +481,10 @@ const emptyStateHTML = `<div class="empty-state" id="empty-state">
   <div class="archive-stats">${YEARS.length} years — ${totalEntries.toLocaleString()} mondays — ${totalComments.toLocaleString()} comments</div>
 </div>`;
 
-function loadImg(btn, src) {
+function loadImg(event, btn, src) {
+  // Prevent the parent <a> tag from navigating when the button is clicked
+  event.preventDefault();
+  event.stopPropagation();
   const img = document.createElement('img');
   img.src = src;
   img.className = 'comment-img';
@@ -535,9 +537,14 @@ const queryEl  = document.getElementById('query');
 const statusEl = document.getElementById('status');
 const resultsEl= document.getElementById('results');
 
+function stripHTML(text) {
+  return text.replace(/<[^>]*>/g, ' ').replace(/\[IMAGE:\d+\]/g, '');
+}
+
 // -- Check if a thread (comment + all its replies) contains any match --
+// A thread matches if ANY single comment within it contains ALL terms
 function threadMatches(comment, terms, exact, caseSensitive, wholeWord) {
-  const text = (comment.title || '') + ' ' + (comment.user || '') + ' ' + (comment.content || '');
+  const text = (comment.title || '') + ' ' + (comment.user || '') + ' ' + stripHTML(comment.content || '');
   if (matchesAll(text, terms, exact, caseSensitive, wholeWord)) return true;
   return (comment.replies || []).some(r => threadMatches(r, terms, exact, caseSensitive, wholeWord));
 }

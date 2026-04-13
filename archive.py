@@ -1,4 +1,5 @@
 from datetime import datetime
+import hashlib
 import json
 import os
 import re
@@ -16,6 +17,13 @@ PAGE_DELAY=30
 IMAGE_DELAY=10
 
 BASE_URL = "https://ecosophia.dreamwidth.org"
+
+IMAGE_IGNORE = {
+    "https://www.dreamwidth.org/img/silk/identity/user.png",
+}
+
+CACHE_DIR = "./data/cache"
+
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; personal-archiver-thank-you-JMG/1.0)"}
 
 MONTHS = {"Jan": "01", "Feb": "02", "Mar": "03", "Apr": "04",
@@ -42,13 +50,29 @@ log_filename = datetime.now().strftime("./log_%Y-%m-%d_%H-%M.txt")
 sys.stdout = Tee(log_filename)
 
 
+def url_to_cache_path(url):
+    """Convert a URL to a cache file path using a hash of the URL."""
+    key = hashlib.md5(url.encode()).hexdigest()
+    return os.path.join(CACHE_DIR, f"{key}.html")
+
+
 def fetch(url, retries=10):
+    """Returns (soup, from_cache)."""
+    cache_path = url_to_cache_path(url)
+    if os.path.exists(cache_path):
+        print(f"  [cache] {url}")
+        with open(cache_path, encoding="utf-8") as f:
+            return BeautifulSoup(f.read(), "html.parser"), True
+
+    os.makedirs(CACHE_DIR, exist_ok=True)
     for attempt in range(retries):
         try:
             # r = requests.get(url, headers=HEADERS, timeout=(30, 120))
             r = cffi_requests.get(url, impersonate="chrome120", timeout=(30, 120))
             r.raise_for_status()
-            return BeautifulSoup(r.text, "html.parser")
+            with open(cache_path, "w", encoding="utf-8") as f:
+                f.write(r.text)
+            return BeautifulSoup(r.text, "html.parser"), False
         except Exception as e:
             wait = 30 * (2 ** attempt)  # 30s, 60s, 120s, 240s, 480s
             print(f"  [retry {attempt+1}/{retries}] {e} — waiting {wait}s")
@@ -59,7 +83,7 @@ def fetch(url, retries=10):
 def get_entry_links(skip):
     url = f"{BASE_URL}/?tag=magic+monday&skip={skip}"
     print(f"Fetching index page: {url}")
-    soup = fetch(url)
+    soup, _ = fetch(url)
 
     entries = []
     for h3 in soup.find_all("h3", class_="entry-title"):
@@ -134,6 +158,7 @@ def download_image(src, images_dir, comment_date):
     Download an image from src into images_dir.
     Prepends comment_date to the filename to ensure uniqueness.
     Returns a dict with url and local_path (None if download failed).
+    Skips sleep if the image was already downloaded.
     """
     try:
         base = re.sub(r"[^\w.\-]", "_", src.split("/")[-1].split("?")[0])
@@ -144,6 +169,8 @@ def download_image(src, images_dir, comment_date):
         out_path = os.path.join(images_dir, filename)
         os.makedirs(images_dir, exist_ok=True)
         if os.path.exists(out_path):
+            # Already downloaded — skip network call and sleep
+            print(f"    [image] Cached {filename}")
             return {"url": src, "local_path": out_path}
         # r = requests.get(src, headers=HEADERS, timeout=10)
         r = cffi_requests.get(src, impersonate="chrome120", timeout=(30, 120))
@@ -205,14 +232,13 @@ def parse_comments_from_soup(soup, images_dir):
             # [IMAGE:N] index placeholder so position is preserved in content
             for img in content_tag.find_all("img"):
                 src = img.get("src", "")
-                if src:
-                    result = download_image(src, images_dir, date)
-                    idx = len(images)
-                    images.append(result)
-                    if result["local_path"]:
-                        img.replace_with(f'[IMAGE:{idx}]')
-                    else:
-                        img.replace_with("")
+                if not src or src in IMAGE_IGNORE:
+                    img.decompose()
+                    continue
+                result = download_image(src, images_dir, date)
+                idx = len(images)
+                images.append(result)
+                img.replace_with(f'[IMAGE:{idx}]')
 
             content = content_tag.decode_contents()
         else:
@@ -222,6 +248,11 @@ def parse_comments_from_soup(soup, images_dir):
             continue
 
         parent_id = None
+        parent_li = section.find("li", class_="commentparent")
+        if parent_li:
+            parent_a = parent_li.find("a", href=True)
+            if parent_a:
+                parent_id = extract_cmt_id(parent_a["href"])
 
         flat[comment_id] = {
             "parent_id": parent_id,
@@ -270,28 +301,31 @@ def make_filename(entry):
     return f"{date_str}{time_str}_{safe_title}.json"
 
 
-def scrape_entry(entry_url, images_base_dir, entry):
+def scrape_entry(entry_url, images_dir):
     """
     Fetch all pages of an entry (using expand_all=1&page=n),
     merge comments across pages, then build a nested tree.
+    Returns (comments, total_pages, all_cached).
     """
-    images_dir = images_base_dir
     page1_url = entry_url.rstrip("/") + "?expand_all=1&page=1#comments"
     print(f"  Fetching page 1: {page1_url}")
-    soup1 = fetch(page1_url)
+    soup1, from_cache = fetch(page1_url)
     total_pages = get_page_count(soup1)
     print(f"  Total pages: {total_pages}")
 
+    all_cached = from_cache
     flat = parse_comments_from_soup(soup1, images_dir)
 
     for page_num in range(2, total_pages + 1):
         page_url = entry_url.rstrip("/") + f"?expand_all=1&page={page_num}#comments"
         print(f"  Fetching page {page_num}: {page_url}")
-        soup = fetch(page_url)
+        soup, from_cache = fetch(page_url)
         flat.update(parse_comments_from_soup(soup, images_dir))
-        time.sleep(PAGE_DELAY)
+        if not from_cache:
+            all_cached = False
+            time.sleep(PAGE_DELAY)
 
-    return build_tree(flat), total_pages
+    return build_tree(flat), total_pages, all_cached
 
 
 def main():
@@ -307,6 +341,7 @@ def main():
         print(f"\n=== Index page skip={skip} ===")
         entries, has_next = get_entry_links(skip)
         print(f"Found {len(entries)} entries")
+        any_entry_live = False
 
         for entry in entries:
             print(f"\n[{entry['year']}-{entry['month']}-{entry['day']} {entry['time'].replace('-', ':')}] {entry['title']} -> {entry['url']}")
@@ -318,7 +353,7 @@ def main():
             images_dir = os.path.join(entry_dir, "images")
             os.makedirs(entry_dir, exist_ok=True)
 
-            comments, num_pages = scrape_entry(entry["url"], images_dir, entry)
+            comments, num_pages, entry_cached = scrape_entry(entry["url"], images_dir)
             def count_comments(nodes):
                 return sum(1 + count_comments(c.get("replies", [])) for c in nodes)
             num_comments = count_comments(comments)
@@ -332,14 +367,17 @@ def main():
             num_entries_scraped  += 1
             num_pages_scraped    += num_pages
             num_comments_scraped += num_comments
-            time.sleep(ENTRY_DELAY)
+            if not entry_cached:
+                any_entry_live = True
+                time.sleep(ENTRY_DELAY)
 
         if not has_next:
             print("\nNo more pages (page-back not found). Done!")
             break
 
         skip += 20
-        time.sleep(INDEX_DELAY)
+        if any_entry_live:
+            time.sleep(INDEX_DELAY)
 
     print(f"\nDone! Scraped {num_entries_scraped} entries, {num_pages_scraped} pages, {num_comments_scraped} comments")
 
