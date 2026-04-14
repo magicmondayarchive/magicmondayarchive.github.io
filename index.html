@@ -97,6 +97,19 @@
     min-width: 14rem;
     text-align: right;
   }
+  .filter-group {
+    display: flex;
+    gap: 1rem;
+  }
+  @media (max-width: 600px) {
+    .search-bar { padding: 1rem 1.5rem; }
+    .search-bar input { width: 100%; flex: none; min-width: 0; }
+    .toggle-group { width: 100%; flex: none; flex-direction: row; flex-wrap: wrap; gap: 0.6rem; padding-right: 0; }
+    .filter-group { width: 100%; flex: none; }
+    .filter-group select { flex: 1; }
+    #status { margin-left: 0; min-width: 0; width: 100%; text-align: left; }
+    .help-btn { position: relative; top: auto; right: auto; align-self: center; }
+  }
 
   /* -- Toggles + help wrapper -- */
   .toggle-group {
@@ -412,12 +425,14 @@
       <span class="toggle-text">Case sensitive</span>
     </label>
   </div>
-  <select id="year-filter">
-    <option value="">All years</option>
-  </select>
-  <select id="month-filter">
-    <option value="">All months</option>
-  </select>
+  <div class="filter-group">
+    <select id="year-filter">
+      <option value="">All years</option>
+    </select>
+    <select id="month-filter">
+      <option value="">All months</option>
+    </select>
+  </div>
   <span id="status">Loading...</span>
 </div>
 
@@ -521,11 +536,31 @@ function loadImg(event, btn, src) {
 const helpBtn     = document.getElementById('help-btn');
 const helpPopover = document.getElementById('help-popover');
 
+// -- Mobile: wrap popover in a full-screen overlay --
+let helpOverlay = null;
+if (window.innerWidth <= 600) {
+  helpOverlay = document.createElement('div');
+  helpOverlay.style.cssText = 'display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:299;align-items:center;justify-content:center;';
+  document.body.appendChild(helpOverlay);
+  helpOverlay.appendChild(helpPopover);
+  helpPopover.style.cssText = 'display:block;position:relative;top:auto;left:auto;width:calc(100vw - 3rem);max-height:80vh;overflow-y:auto;';
+  helpOverlay.addEventListener('click', e => {
+    if (e.target === helpOverlay) helpOverlay.style.display = 'none';
+  });
+}
+
 helpBtn.addEventListener('click', e => {
   e.stopPropagation();
-  helpPopover.classList.toggle('visible');
+  if (helpOverlay) {
+    helpOverlay.style.display = helpOverlay.style.display === 'flex' ? 'none' : 'flex';
+  } else {
+    helpPopover.classList.toggle('visible');
+  }
 });
-document.addEventListener('click', () => helpPopover.classList.remove('visible'));
+document.addEventListener('click', () => {
+  helpPopover.classList.remove('visible');
+  if (helpOverlay) helpOverlay.style.display = 'none';
+});
 
 const yearSel  = document.getElementById('year-filter');
 const monthSel = document.getElementById('month-filter');
