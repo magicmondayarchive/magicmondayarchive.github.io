@@ -414,17 +414,18 @@
 <script src="data/years.js"></script>
 <script>
 const DATA = {};
-const loaded = new Set();
+const loading = {};  // year -> Promise (in-flight or resolved)
 
 function loadYear(year) {
-  return new Promise((resolve, reject) => {
-    if (loaded.has(year)) { resolve(); return; }
+  if (year in loading) return loading[year];
+  loading[year] = new Promise((resolve, reject) => {
     const s = document.createElement('script');
     s.src = `data/data_${year}.js`;
-    s.onload  = () => { loaded.add(year); resolve(); };
+    s.onload  = () => resolve();
     s.onerror = () => reject(new Error(`Failed to load data_${year}.js`));
     document.head.appendChild(s);
   });
+  return loading[year];
 }
 
 function esc(str) {
