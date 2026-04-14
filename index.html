@@ -18,12 +18,15 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
+  html { overflow-x: hidden; }
+
   body {
     background: var(--paper);
     color: var(--ink);
     font-family: 'Source Serif 4', Georgia, serif;
     font-weight: 300;
     min-height: 100vh;
+    overflow-x: hidden;
   }
 
   /* -- Header -- */
@@ -33,18 +36,22 @@
     display: flex;
     align-items: baseline;
     gap: 2rem;
+    flex-wrap: wrap;
   }
   header h1 {
     font-family: 'Playfair Display', Georgia, serif;
     font-size: 2.2rem;
     font-weight: 600;
     letter-spacing: -0.02em;
-    white-space: nowrap;
   }
   header .subtitle {
     font-style: italic;
     color: var(--muted);
     font-size: 0.95rem;
+  }
+  @media (max-width: 600px) {
+    header { padding: 1.5rem 1.5rem 1rem; gap: 0.4rem; flex-direction: column; }
+    header h1 { font-size: 1.6rem; }
   }
 
   /* -- Search bar -- */
@@ -142,8 +149,16 @@
     padding: 2rem 3rem;
     max-width: 960px;
   }
+  #results:has(.empty-state) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50vh;
+    max-width: 100%;
+    padding: 0;
+  }
 
-  .entry-block { margin-bottom: 4rem; padding-top: 1rem; }
+  .entry-block { margin-bottom: 4rem; padding-top: 1rem; overflow-x: auto; }
   .entry-header {
     display: flex;
     align-items: baseline;
@@ -175,6 +190,7 @@
     margin-left: 1.8rem;
     border-left-color: var(--rule);
     background: var(--paper);
+    min-width: 280px;
   }
   .comment-meta {
     display: flex;
@@ -247,10 +263,6 @@
     padding: 5rem 2rem;
     color: var(--muted);
     font-style: italic;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 0%);
   }
   .empty-state .archive-stats { font-size: 1.1rem; margin-bottom: 0.6rem; }
 
