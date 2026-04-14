@@ -197,6 +197,15 @@
     margin-top: 0.4rem;
     font-style: italic;
   }
+  .comment-metadata {
+    margin-top: 0.6rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.78rem;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+  .comment-metadata .meta-tags { margin-top: 0.2rem; }
   .comment-img {
     display: block;
     max-width: 100%;
@@ -459,7 +468,11 @@ function highlight(text, terms, caseSensitive, wholeWord) {
     return wholeWord ? `\\b${escaped}\\b` : escaped;
   });
   const re = new RegExp(`(${patterns.join('|')})`, caseSensitive ? 'g' : 'gi');
-  return text.replace(re, '<mark>$1</mark>');
+  // Only highlight text nodes — skip content inside HTML tags
+  return text.replace(/(<[^>]*>)|([^<]+)/g, (match, tag, textNode) => {
+    if (tag) return tag;
+    return textNode.replace(re, '<mark>$1</mark>');
+  });
 }
 
 // -- Split content on [IMAGE:N] tokens and render text + inline load buttons --
@@ -561,6 +574,18 @@ function commentHTML(c, terms, depth, caseSensitive, wholeWord) {
   const body = renderContent(c.content || '', c.images, terms, caseSensitive, wholeWord);
   const editLine = c.edit_time
     ? `<div class="comment-edit-time">Edited Date: ${esc(c.edit_time)}</div>` : '';
+  let metaLine = '';
+  if (c.metadata) {
+    const m = c.metadata;
+    const parts = [];
+    if (m.mood)  parts.push(`<span><strong>Mood:</strong> ${esc(m.mood)}</span>`);
+    if (m.music) parts.push(`<span><strong>Music:</strong> ${esc(m.music)}</span>`);
+    const tagLinks = m.tags
+      ? m.tags.map(t => `<a href="https://ecosophia.dreamwidth.org/tag/${encodeURIComponent(t)}" target="_blank">${esc(t)}</a>`).join(', ')
+      : '';
+    if (tagLinks) parts.push(`<span class="meta-tags"><strong>Tags:</strong> ${tagLinks}</span>`);
+    if (parts.length) metaLine = `<div class="comment-metadata">${parts.join('<br>')}</div>`;
+  }
   const repliesHTML = (c.replies || []).map(r => commentHTML(r, terms, depth + 1, caseSensitive, wholeWord)).join('');
   return `<div class="comment-card${replyClass}"${indent}>
     ${titleLine}
@@ -570,6 +595,7 @@ function commentHTML(c, terms, depth, caseSensitive, wholeWord) {
     </div>
     <div class="comment-body">${body}</div>
     ${editLine}
+    ${metaLine}
   </div>${repliesHTML}`;
 }
 
