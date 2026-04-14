@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset='UTF-8'/>
+	<meta http-equiv='Cache-Control' content='no-cache, no-store, must-revalidate' />
+	<meta http-equiv='Pragma' content='no-cache' />
+	<meta http-equiv='Expires' content='0' />
+	<link rel='icon' type='image/x-icon' href='/favicon.ico' />
+	<style>
+		* {
+		    margin: 0;
+		    padding: 0;
+		    box-sizing: border-box;
+		}
+
+		body {
+		    background-color: #011010;
+		}
+
+		img {
+		    max-width: 100%;
+		    max-height: 100%;
+		}
+
+		.page {
+		    display: flex;
+		    flex-wrap: wrap;
+		}
+
+		.section {
+		    justify-content: center;
+		    align-items: center;
+		}
+
+		#banner-top,
+		#banner-bottom {
+		    display: none;
+		    min-width: 728px;
+		    min-height: 90px;
+		    margin: 5px;
+		}
+
+		#left-rail,
+		#right-rail {
+		    display: none;
+		    min-width: 160px;
+		    min-height: 600px;
+		    margin: 5px;
+		}
+
+		#content {
+		    display: flex;
+		    width: 100vw;
+		    height: 100vh;
+		}
+
+		@media only screen and (min-width: 1078px) {
+
+		    #banner-top,
+		    #banner-bottom {
+		        width: calc(100vw - 160px - 160px - 30px);
+		        height: 90px;
+		    }
+
+		    #left-rail,
+		    #right-rail {
+		        width: 160px;
+		        height: calc(100vh - 10px);
+		    }
+		}
+
+		@media only screen and (min-width: 738px) and (max-width: 1078px) {
+
+		    #banner-top,
+		    #banner-bottom {
+		        width: calc(100vw - 10px);
+		        height: 90px;
+		    }
+
+		    #left-rail,
+		    #right-rail {
+		        display: none;
+		    }
+		}
+
+		@media only screen and (max-width: 737px) {
+
+		    #banner-top,
+		    #banner-bottom {
+		        width: calc(100vw - 10px);
+		        height: 50px;
+		    }
+
+		    #left-rail,
+		    #right-rail {
+		        display: none;
+		    }
+		}
+	</style>
+</head>
+<body>
+	<div class='page'>
+		<div class='section left-rail' id='left-rail'>
+			<script type='text/javascript' src='https://ads4.krushmedia.com/?c=b&m=s&placementId=56' async></script>
+		</div>
+		<div>
+			<div class='section banner-top' id='banner-top'>
+				<script type='text/javascript' src='https://ads4.krushmedia.com/?c=b&m=s&placementId=86' async></script>
+			</div>
+			<div class='section content' id='content'>
+				<img id='image'>
+			</div>
+			<div class='section banner-bottom' id='banner-bottom'>
+				<script type='text/javascript' src='https://ads4.krushmedia.com/?c=b&m=s&placementId=87' async></script>
+			</div>
+		</div>
+		<div class='section right-rail' id='right-rail'>
+			<script type='text/javascript' src='https://ads4.krushmedia.com/?c=b&m=s&placementId=61' async></script>
+		</div>
+	</div>
+	<script>
+		(function() {
+		    let path = window.location.pathname;
+		    let file = path.substr(path.lastIndexOf('/') + 1);
+		    let img = 'https://hosting.photobucket.com' + path;
+
+		    document.title = 'Photobucket | ' + file;
+		    document.getElementById('image').src = img;
+			imgElement.setAttribute('cache-control', 'no-cache, no-store, must-revalidate');
+            imgElement.setAttribute('alt', file);
+            imgElement.src = img;
+		})();
+	</script>
+</body>
+</html>

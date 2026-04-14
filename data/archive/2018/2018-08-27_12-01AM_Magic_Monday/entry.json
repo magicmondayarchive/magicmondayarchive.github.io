@@ -1,0 +1,960 @@
+{
+    "title": "Magic Monday",
+    "url": "https://ecosophia.dreamwidth.org/31850.html",
+    "year": "2018",
+    "month": "08",
+    "day": "27",
+    "time": "12-01AM",
+    "comments": [
+        {
+            "id": "cmt1832042",
+            "title": "(no subject)",
+            "date": "2018-08-27 04:18 am",
+            "user": "(Anonymous)",
+            "content": "First!....<br/><br/>Hey jmg, what do you think of the controversy behind slender man?",
+            "replies": [
+                {
+                    "id": "cmt1832298",
+                    "title": "(no subject)",
+                    "date": "2018-08-27 04:24 am",
+                    "user": "ecosophia",
+                    "content": "Well, actually, I haven't paid any attention to it. I don't follow pop culture at all, you know. "
+                },
+                {
+                    "id": "cmt1837674",
+                    "title": "(no subject)",
+                    "date": "2018-08-27 03:17 pm",
+                    "user": "(Anonymous)",
+                    "content": "My iconographic two cents:<br/><br/>Slenderman is an interesting mix of the signifiers of contrasting flavours of evil. I’m undecided whether to describe it in terms of Steiner’s ‘Luciferian/Ahrimanic’ axis, or the tabletop wargamer’s ‘Lawful/Chaotic’ axis, or propose my own ‘Banal/Florid’ axis. <br/><br/>On the one hand he is a lanky bald male in a Men-in-Black suit, with facial bone structure evoking ‘The Scream’ but lacking eyes or mouth, surveilling unsuspecting children - literally, a faceless authority figure. On the other hand later depictions sometimes give him tentacles, which seems to have become an understood signifier of ‘evil not of this world/plane’ thanks to the influence of Lovecraft, Japanese media’s cephalopoid incubi, and garden-variety invertebrate phobia. (Cf. the -chan mages’ hoax deity Ebola-chan, depicted similarly.)<br/><br/>Regarding his two teenage cultists, that’s a sad story of two people with prodromal psychotic symptoms feeding off each other. The intended victim survived, but both the perpetrators will live out their lives in locked psych wards. They had thought the sacrifice would protect their families, and that they would be rewarded by going to live with Slenderman in his mansion in the woods (which seems to be their own spontaneous addition to his lore.) I’m reminded of traditional fairy beliefs, and also of people who wait for the Space Brothers to take them away."
+                }
+            ]
+        },
+        {
+            "id": "cmt1832554",
+            "title": "(no subject)",
+            "date": "2018-08-27 04:47 am",
+            "user": "(Anonymous)",
+            "content": "That makes sense, slenderman is some internet horror story meme (they call it a “creepy pasta”) which somehow inspired two preteen girls to murder another girl.",
+            "replies": [
+                {
+                    "id": "cmt1833066",
+                    "title": "(no subject)",
+                    "date": "2018-08-27 05:10 am",
+                    "user": "ecosophia",
+                    "content": "Fair enough. The thing is, people have been getting caught up in media memes with lethal effects for a very long time. Back in 1774, Johann Wolfgang von Goethe published a book called <i>The Sorrows of Young Werther</i>; it was more or less the <i>Twilight</i> of the late 18th century, a slobbery mess of overdone emotions that turned into a runaway bestseller. (Goethe went on to become a first-rate writer, poet, scientist, and statesman, so there's hope for Stephenie Meyer.) The main character falls in love with a married woman, mopes about it for a while, and then kills himself. It sparked a wave of copycat suicides, in which young men who were frustrated in love dressed up like Werther and killed themselves the same way he did. Thus it's not surprising to hear that another meme has claimed a victim...",
+                    "replies": [
+                        {
+                            "id": "cmt1833578",
+                            "title": "(no subject)",
+                            "date": "2018-08-27 05:41 am",
+                            "user": "(Anonymous)",
+                            "content": "I’ve heard of that Goethe story before."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cmt1833834",
+            "title": "unary <-> binary <-> ternary",
+            "date": "2018-08-27 06:42 am",
+            "user": "jmaurice",
+            "content": "Hello,<br/>good morning.<br/><br/>In this essay,<br/><br/>www.rachel.org/files/document/On_reading_Globalize_Liberation.htm<br/><br/>In the part about quantitative levels of Relationship (or something like that, to my limited understanding) you say a few words to the effect that, mages prefer to opt mostly for unary, binary or ternary levels of thinking instead of opting for the higher numbers (four and onwards). And also to the effect that the levels can be switched mostly in a certain order (unary &lt;-&gt; binary &lt;-&gt; ternary... and so on).<br/><br/>These two effects you say to have complex reasons, too complex to be detailled in the essay.<br/><br/>Would you mind perhaps elaborating on that here? I suspect the complexities would involve in part some occult philosophy, so asking this here would be relevant.<br/><br/><br/><br/>I was also wondering, on an unrelated line of thinking, what would be the occult theory behind the act of automating an action through a tool, or through a machine ? Is there a difference in kind between the two ? I guess you covered that in your old ADR posts about the human machine, but then what are the respective occult implications of the two ?<br/><br/>And how would some of the common religions react to it? For instance, perhaps automating through a machine could be a sin in some cases, for some of the Christian religions, but it could also become a holy action in some other cases... I guess this is really a gray area, probably overlapping with the ethics of work in general, and we could use a set of frameworks through which assessing one's subjective values about it.",
+            "replies": [
+                {
+                    "id": "cmt1841258",
+                    "title": "Re: unary <-> binary <-> ternary",
+                    "date": "2018-08-27 08:21 pm",
+                    "user": "ecosophia",
+                    "content": "1a) The main reason the first three numbers are central to magical strategy is that it's very difficult for the human mind to keep track of the interactions once you go beyond that. With three elements, you have a total of seven possible factors -- a alone, b alone, c alone, a + b, a + c, b + c, and a + b + c; if you go to four factors you've got fifteen, and beyond that it really piles up. So if you're going to have a strategy that you can understand, a threefold pattern is about the largest you can use. <br/><br/>1b) It's not unary &lt;-&gt; binary &lt;-&gt; ternary, it's unary -&gt; binary -&gt; ternary -&gt; unary. Not a two-way relationship, in other words, but a one-way process that cycles back around to the beginning. In occult philosophy that's the basic formula for manifested existence -- as the alchemists put it, \"out of the one comes the two, out of the two comes the three, and out of the three comes the one again as the fourth.\" Thus everything in existence will tend to follow that same pattern. <br/><br/>2) There's a difference between a tool and a machine; you might want to read Ivan Illich's classic work <i>Tools for Conviviality</i> in this regard. A tool is a device for amplifying human capacities, while a machine is a device for replacing human capacities. When you use a tool, you get skilled at it; when you use a machine, you lose what skills you might have had. As for common religions, you'll have to ask them; I don't belong to a common religion! ",
+                    "replies": [
+                        {
+                            "id": "cmt1860202",
+                            "title": "Re: unary <-> binary <-> ternary",
+                            "date": "2018-08-28 04:19 am",
+                            "user": "(Anonymous)",
+                            "content": "(jmaurice again)<br/><br/>Thanks a lot for taking the time to answer even though you're tired.<br/>I'll try to find more answers by myself.<br/><br/>I gather that a tool works on a unary level, helping one get more skilled.<br/>Whereas with automation, you basically try to affect one actor negatively, taking away some opportunity to develop from her/him, in order to affect you.<br/>With regards to the raspberry jam's principle, it will ultimately affect you the same way though.<br/><br/>Now it is worth pondering the motivations behind one automating a task away from somebody else.<br/>If you do it to \"steal\" the social value of sby else's work and strengthen that of your own work in the process, your own work being to manage that automation process... Then you create a process that will ultimately affect you. That kind of process is negative, in that once it has affected you, you no longer have a part to play in it. So ultimately it is a self-defeating process since it eliminates all the potential actors.<br/><br/>Is there a motivation for automating things, that will not engender such a negative process ? <br/>Not by definition, it seems, unless you define the social value of someone other than by the economic value of their work. But it is impossible to do that within a human society since societies are first driven by their economic necessities...<br/>I know that I am wrong here, however it is weird, there is a block on my reasoning, since even the creation of value other than economic value still has to feed one, and thus be rewarded economically like economic value.<br/><br/>Do we lack the social tools to do that? Or perhaps it is one of the cardinal sins of treating religions like an outdated modes of thinking, since institutionalized religions do provide such a process for rewarding economically non-economic value ? But what of the abuses inherent to the institutionalized religions?<br/><br/>Just thinking out loud in this space, any comments are welcome.<br/>",
+                            "replies": [
+                                {
+                                    "id": "cmt1860458",
+                                    "title": "Re: unary <-> binary <-> ternary",
+                                    "date": "2018-08-28 04:43 am",
+                                    "user": "ecosophia",
+                                    "content": "Sounds like the beginning of a very useful train of thought, or just possibly a series of meditations. I'd encourage you to keep following that line of ideas and see where they take you. "
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cmt1834090",
+            "title": "Middle Pillar Exercise (MPE)",
+            "date": "2018-08-27 06:56 am",
+            "user": "(Anonymous)",
+            "content": "Dear Micheal<br/><br/>I had been practicing LBRP for some time and the MPE,then stopped.<br/>Now I have restarted by practises by doing the LBRP regularly first.<br/>I feel I am ready for the MPE and have restarted it.<br/><br/>I'd like to know what benefits will accrue from a regular practice of MPE.<br/><br/>Especially concerning the energy centres. What does it do to them?<br/><br/>Thank You<br/><br/><br/>",
+            "replies": [
+                {
+                    "id": "cmt1841514",
+                    "title": "Re: Middle Pillar Exercise (MPE)",
+                    "date": "2018-08-27 08:23 pm",
+                    "user": "ecosophia",
+                    "content": "The Middle Pillar exercise is basically a workout for your energy body. Most of us, unless we do some kind of energy practice, have flabby, unfit energy bodies clogged with the etheric and astral equivalent of waste material. Waking up the energy centers and circulating energy through the aura, which is what the Middle Pillar exercise does, clears away the gunk and strengthens and tones your entire energy body, resulting in improved mental and physical health, and in greatly expanded capacities for magical action. ",
+                    "replies": [
+                        {
+                            "id": "cmt1853290",
+                            "title": "Re: Middle Pillar Exercise (MPE)",
+                            "date": "2018-08-28 01:22 am",
+                            "user": "(Anonymous)",
+                            "content": "Is there any version of the Middle Pillar Exercise for all those other gods?",
+                            "replies": [
+                                {
+                                    "id": "cmt1857642",
+                                    "title": "Re: Middle Pillar Exercise (MPE)",
+                                    "date": "2018-08-28 02:54 am",
+                                    "user": "ecosophia",
+                                    "content": "<a href=\"https://ecosophia.dreamwidth.org/25161.html\">Why, yes there is.</a>. "
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cmt1834602",
+            "title": "(no subject)",
+            "date": "2018-08-27 08:01 am",
+            "user": "ganeshling",
+            "content": "Dear JMG,<br/><br/>Last Magic Monday you've recommended someone to exercise affirmations and mentioned that this practice came out of New Thought movement. Could you recommend a book covering the subject in detail? I've used the practice with good results and recommended it to others. I failed, however, to find any decent reading material on it. It is just too popular these days, making it hard to find anything in the piles of fluff.",
+            "replies": [
+                {
+                    "id": "cmt1841770",
+                    "title": "(no subject)",
+                    "date": "2018-08-27 08:25 pm",
+                    "user": "ecosophia",
+                    "content": "I'm not at all sure what books to recommend. I got my training on the subject from an old correspondence course -- the Order of Essenes course written by Burks Hamner -- which I'll be making available shortly online. (Stay tuned for an announcement.) Yes, there's a lot of fluff out there in print! ",
+                    "replies": [
+                        {
+                            "id": "cmt1850474",
+                            "title": "(no subject)",
+                            "date": "2018-08-28 12:40 am",
+                            "user": "ganeshling",
+                            "content": "&gt; Stay tuned for an announcement.<br/><br/>Oh, that sounds exciting. I will! :-}<br/><br/>Thank you!"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cmt1835114",
+            "title": "valley magic",
+            "date": "2018-08-27 08:51 am",
+            "user": "(Anonymous)",
+            "content": "Most Wise and Exalted Magus, <br/><br/>My wife and I got incredibly lucky and are renting a house in the back of a beautiful valley. Our neighbors include a Buddhist temple and a Catholic church, along with several other religious places nearby. Given the recent subject of religious ceremonial magic, how do you think this could affect my Celtic Golden Dawn practice? The same stream of water flows through all our backyards. <br/><br/>Also we found a beautiful old Butsudan and want to put it to use. Can I incorporate it into my current Celtic Golden Dawn practice? It does have three spaces on the inside that could represent the three rays of light as well as storage for incense, wands, and caldrons. I could make a stand for it that houses my altar underneath. <br/><br/>Or would it be better in another part of the house to use more traditionally as a place to leave offerings for friendly neighborhood spirits, talk with ancestors, etc?<br/><br/>The possibilities are very exciting, and I definitely got the feeling there's a lot to work with there. Thanks in advance for your answer. ",
+            "replies": [
+                {
+                    "id": "cmt1842282",
+                    "title": "Re: valley magic",
+                    "date": "2018-08-27 08:26 pm",
+                    "user": "ecosophia",
+                    "content": "1) Presumably the Catholic church and the Buddhist temple don't interfere with each other, so you should be fine. <br/><br/>2) Ask the spirit of the Butsudan! Yes, you really can do this. Ask it, and try to sense its response. "
+                }
+            ]
+        },
+        {
+            "id": "cmt1835370",
+            "title": "SOP for another",
+            "date": "2018-08-27 11:43 am",
+            "user": "(Anonymous)",
+            "content": "Good morning!<br/><br/>Is is possible/ethical/productive to perform the SOP for another person who is unable to do so for him- or herself due to physical and/or mental limitations?  If not, is there something preferable to do to protect such a vulnerable individual?",
+            "replies": [
+                {
+                    "id": "cmt1842538",
+                    "title": "Re: SOP for another",
+                    "date": "2018-08-27 08:29 pm",
+                    "user": "ecosophia",
+                    "content": "You can certainly do the Sphere of Protection for another person if you have that person's consent to do so. Simply visualize the person in the center of the space in which you're doing the working, and invoke and banish for that person. If you don't have that person's consent, unless you're that person's parent or guardian, you don't have the right to do magic for them, period. "
+                },
+                {
+                    "id": "cmt1845098",
+                    "title": "Re: SOP for another",
+                    "date": "2018-08-27 09:02 pm",
+                    "user": "(Anonymous)",
+                    "content": "Thanks for the reply!<br/><br/>The person I'm concerned about is a relative who has dementia so I'm not sure that I could reasonably claim that this individual would be able to give informed consent. Perhaps there's something else that might afford this person some measure of protection from the poor treatment that, unfortunately, too many people in his condition receive?",
+                    "replies": [
+                        {
+                            "id": "cmt1849194",
+                            "title": "Re: SOP for another",
+                            "date": "2018-08-28 12:32 am",
+                            "user": "ecosophia",
+                            "content": "In a case when someone's unable to give informed consent, it's legitimate to talk to their legal guardian or the family members who take care of them, and ask their permission instead. Remember that you don't have to use the word \"magic\" in making the request. \"There's this traditional blessing ritual I learned about, and I'd like to do it for him -- do you think he'd mind?\"",
+                            "replies": [
+                                {
+                                    "id": "cmt1853546",
+                                    "title": "Re: SOP for another",
+                                    "date": "2018-08-28 01:49 am",
+                                    "user": "(Anonymous)",
+                                    "content": "My mom suffered from vascular dementia.  Not only will the relatives be grateful for anything you want to do for the patient, they’ll probably appreciate blessings themselves.  Taking care of a dementia victim is hard.  Mom was relatively easy to handle—she could go to the bathroom, she didn’t scream, call the police, set fires, attack people, or wander off—and she was still exhausting, for the same reason a crawling baby’s exhausting. Babies and dementia victims need to be watched every second they’re awake.  Those relatives will be grateful for any help, spiritual or practical, they can get.",
+                                    "replies": [
+                                        {
+                                            "id": "cmt1854314",
+                                            "title": "Re: SOP for another",
+                                            "date": "2018-08-28 02:25 am",
+                                            "user": "ecosophia",
+                                            "content": "That seems likely to me, too, but it's still good ethics to ask. "
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cmt1835882",
+            "title": "(no subject)",
+            "date": "2018-08-27 12:11 pm",
+            "user": "(Anonymous)",
+            "content": "I'm going to try the hoodoo bath in the next few days and want to clarify a few things. When you stand in a tub, does that mean the bath or could it be a plastic washing up tub that you can just fit both feet in? That would use less water and make the ingredients more concentrated. When you have finished do you dry yourself normally, air dry, or can you have a regular bath straight afterwards? Does the cloth you use need anything done with it afterwards or can it just go back into normal use? I don't have access to any really big trees, so would small but stocky fruit trees or vigourous bushes welcome the left over water? What about vegetable beds?",
+            "replies": [
+                {
+                    "id": "cmt1842794",
+                    "title": "(no subject)",
+                    "date": "2018-08-27 08:33 pm",
+                    "user": "ecosophia",
+                    "content": "Hoodoo baths used to be done in old-fashioned tin washing tubs, so you can use something smaller; a higher concentration, though, isn't necessarily a good idea. (Do you want a high concentration of cayenne pepper on certain sensitive portions of your anatomy?) It's best to air dry, but you can towel off; the towel should be laundered before being used again, and the same is true of the washcloth. As for trees, it should be a tree -- something with a strong vertical trunk; the larger the better, but if a good healthy fruit tree is the biggest tree you can find, that's good. Don't put it on your vegetable beds, because then your vegetables will be charged with the negative energies you were trying to get rid of! "
+                }
+            ]
+        },
+        {
+            "id": "cmt1836138",
+            "title": "(no subject)",
+            "date": "2018-08-27 12:17 pm",
+            "user": "(Anonymous)",
+            "content": "I've read in a couple of sources that the official formation of the Soviet Union in 1922 was timed to create an astrological chart with a pattern called the 'occult star'. If this is so, why did they do it and what effect did it have?",
+            "replies": [
+                {
+                    "id": "cmt1843050",
+                    "title": "(no subject)",
+                    "date": "2018-08-27 08:34 pm",
+                    "user": "ecosophia",
+                    "content": "I'm not familiar with the pattern. Can you point me to a source that explains this in more detail? ",
+                    "replies": [
+                        {
+                            "id": "cmt1866090",
+                            "title": "(no subject)",
+                            "date": "2018-08-29 07:37 am",
+                            "user": "(Anonymous)",
+                            "content": "The most detail I've seen is in <i>Freemasonry, Bolshevik Occultism and God-Building in Lunacharsky's 'Vasilisa the Wise'</i> by Rosalie Stafford. It's a very strange book and so different from anything else I've read about the Russian Revolution I don't know what to make of it. There is this about later Stalin-era astrology and occult architecture - http://andrewgough.co.uk/stalin-2/. I've also got the books <i>Modern Occultism in Late Imperial Russia</i> and <i>The Occult in Russian and Soviet Society</i> but haven't got round to reading them yet.",
+                            "replies": [
+                                {
+                                    "id": "cmt1867370",
+                                    "title": "(no subject)",
+                                    "date": "2018-08-29 08:11 pm",
+                                    "user": "(Anonymous)",
+                                    "content": "Wrote that wrong - the second should have been <i>The Occult in Russian and Soviet Culture</i>."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cmt1836394",
+            "title": "(no subject)",
+            "date": "2018-08-27 12:49 pm",
+            "user": "(Anonymous)",
+            "content": "Parts of the second chapter (Some Practical Applications of Occultism) of Dion Fortune’s book “Applied Magic” really struck a chord with me. But I’m not sure how exactly to apply her suggestions.<br/><br/>The issue she describes here very much resonated with me:<br/><br/>“We think we would be happy if only certain things were changed; but no, the conditions are in ourselves … When I was working in a nerve clinic we saw this happen over and over again. The same sort of trouble kept recurring in the same life. … Or again, a woman may be continually falling under the power of a bully … There must be some prominent factor in our own make-up which draws from the invisible forces.”<br/><br/>She later offers the following remedy:<br/><br/>“The only way to deal with these is by changing your character by meditation, by building thought-forms or by deliberately destroying what we call the thought-forms which are the channels of the undesirable things towards you. These are the practical applications of Occultism, and we do not need to be adepts to apply these.”<br/><br/>My question is, is there a systematic method a person should follow to change their character by meditation and to build helpful thought-forms? Is there a book you would recommend to learn more about this?<br/><br/>Thank you!<br/>",
+            "replies": [
+                {
+                    "id": "cmt1843306",
+                    "title": "(no subject)",
+                    "date": "2018-08-27 08:40 pm",
+                    "user": "ecosophia",
+                    "content": "Sure. W.E. Butler covers it, among many other things, in his useful book <i>Apprenticed to Magic</i>. The short form, though, is that you start by meditating on the unhelpful patterns in your life, trying to understand (a) how you help to create those patterns, and (b) what emotional payoff you get from doing so -- because there's always an emotional payoff; that's what keeps the pattern in place. Then you imagine yourself doing something different. <br/><br/>In the case of the woman who keeps on falling under the power of a bully, she might start by meditating on how that's happened in the past, and what emotional payoff she gets from being bullied and being under someone else's control. Then she imagines a situation in which she encounters a bully, and instead of letting herself be dominated, she stands up to the bully in one way or another. She does this again and again, paying close attention to the emotional reactions she feels -- these can reveal previously hidden emotional payoffs or childhood patterns that feed into the situation -- but over and over again, building in her imagination forms that portray her as strong, as self-confident, as able and willing to resist bullying...and those thought-forms will inevitably express themselves in her outer life. "
+                }
+            ]
+        },
+        {
+            "id": "cmt1837162",
+            "title": "Geomancy",
+            "date": "2018-08-27 03:04 pm",
+            "user": "jpc2",
+            "content": "JMG<br/><br/>I have too many of your books:-) Don't have some of the really early ones. All are good. Some get reread fairly regularly. Most have been read at least twice. Of the non fiction, 'World Full of Gods' is the one I go back to most. <br/><br/>I find the books on Druidry and Magic very interesting in an intellectual sense but not an I need/want/could do this sense. The exception is 'The Art and Practice of Geomancy'. I started following it for a short bit about 3 years ago. But LIFE happened a now I ready to try again. <br/><br/>It has been about 10 years since you wrote it. Is there anything you would update/add/change to the basic path you laid out?<br/><br/>Coop Janitor",
+            "replies": [
+                {
+                    "id": "cmt1843562",
+                    "title": "Re: Geomancy",
+                    "date": "2018-08-27 08:42 pm",
+                    "user": "ecosophia",
+                    "content": "Not a thing. Both my books on geomancy -- the earlier one, <i>Earth Divination, Earth Magic</i>, will be reprinted shortly -- cover the system as I know and practice it today. "
+                }
+            ]
+        },
+        {
+            "id": "cmt1837418",
+            "title": "Suicide",
+            "date": "2018-08-27 03:15 pm",
+            "user": "(Anonymous)",
+            "content": "Dear JMG, <br/>I am reading Dione Fortune's, \"Through the Gates of Death,\" and it is  fascinating.  I understand she was a devout Christian and probably not in favour of suicide. <br/><br/>That said, if one, in due time, decides to end their own life rather than experiencing living far too long in illness, will such an act, done soberly and thoughtfully, have any negative repercussions to the journey of the spirit?<br/><br/>Thank you so much for Magic Mondays.  <br/>PS My cousin woke me again last night but I asked him three times to stop it because he was hurting me and he desisted.  I will have to get on with consecrating that knife and learning how to cut an energetic cord.<br/>Max Rogers",
+            "replies": [
+                {
+                    "id": "cmt1843818",
+                    "title": "Re: Suicide",
+                    "date": "2018-08-27 08:44 pm",
+                    "user": "ecosophia",
+                    "content": "The standard occult teaching on suicide is that if you kill yourself to get out of something, you'll just have to go through the same thing all over again in your next life. Karma is karma, and it's not optional.",
+                    "replies": [
+                        {
+                            "id": "cmt1846634",
+                            "title": "Re: Suicide",
+                            "date": "2018-08-27 09:34 pm",
+                            "user": "(Anonymous)",
+                            "content": "If you kill yourself to avoid dementia, would that mean your next life would get dementia as well?",
+                            "replies": [
+                                {
+                                    "id": "cmt1849450",
+                                    "title": "Re: Suicide",
+                                    "date": "2018-08-28 12:32 am",
+                                    "user": "ecosophia",
+                                    "content": "Or something else that would give you the experience you were trying to avoid. "
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cmt1837930",
+            "title": "Ogham few order",
+            "date": "2018-08-27 03:20 pm",
+            "user": "(Anonymous)",
+            "content": "I recently bought the Celtic Tree Oracle set of divination cards, which are really beautiful, and I think will be useful for me in learning ogham. I was unaware before purchasing though that the ordering of the first aicme is BLVSN instead of BLNVS. It seems as though it is only the few assignment that is different, and the tree symbolism and general divination meaning is similar to how you assign it in the Druidry Handbook. Will the different few ordering have any effect on divination? I would like to follow your examples in the Druidry Handbook to be consistent, so my plan is to just follow the tree and name on the card and ignore the different few assignment in the first aicme. Do you think this would be alright? ",
+            "replies": [
+                {
+                    "id": "cmt1844074",
+                    "title": "Re: Ogham few order",
+                    "date": "2018-08-27 08:45 pm",
+                    "user": "ecosophia",
+                    "content": "I use that very deck, and I do exactly what you've said you'd like to do, so I think you'll be just fine. :-)"
+                }
+            ]
+        },
+        {
+            "id": "cmt1838186",
+            "title": "Aikido",
+            "date": "2018-08-27 03:32 pm",
+            "user": "(Anonymous)",
+            "content": "I know you have mentioned in the past that some martial arts systems, like tai chi, may not mix well with western occult practices. I have considered taking up some martial arts instruction in the next year or so because I think it would be good for me to ground myself in a physical discipline to balance my tendency to focus more on abstract mental and spiritual activities. I am a few months into a path to work through your Druidry Handbook and Druid Magic Handbook and was wondering if you thought that practicing a martial art such as Aikido might conflict with this. From my limited perspective on both practices, it seems like they could mesh well together as they both work with the life force. What would be your recommendation on pursuing both at the same time, and if Aikido would not be a good choice, do you know of another physical activity that works with the life force that would not conflict with druid magic practices?",
+            "replies": [
+                {
+                    "id": "cmt1844330",
+                    "title": "Re: Aikido",
+                    "date": "2018-08-27 08:52 pm",
+                    "user": "ecosophia",
+                    "content": "Aikido ought to fit very well with the material in <i>The Druidry Handbook</i> and <i>The Druid Magic Handbook</i>. While aikido has a strong esoteric element, it (and the Japanese esoteric traditions from which it derives) doesn't use the kind of energy-circulating exercises that can mess you up if you combine them with Druid spiritual practices and magic.<br/><br/>Another art that combines well with Druidry, in my experience, is shintaido. It's far less common than aikido, but it's another modern Japanese martial art with roots in Japanese esotericism, and its philosophy meshes very well with that of Druidry. ",
+                    "replies": [
+                        {
+                            "id": "cmt1847402",
+                            "title": "Re: Aikido",
+                            "date": "2018-08-27 09:39 pm",
+                            "user": "(Anonymous)",
+                            "content": "Thank you for this! My hunch was that it could be a very complementary practice, so I'm happy to hear that is the case. I wonder how difficult it will be to find an instructor who actually teaches the esoteric elements as well instead of stripping the practice down to solely physical, self defense perspectives. I'll look into shintaido as well. ",
+                            "replies": [
+                                {
+                                    "id": "cmt1849706",
+                                    "title": "Re: Aikido",
+                                    "date": "2018-08-28 12:34 am",
+                                    "user": "ecosophia",
+                                    "content": "Good question. Fortunately the basic physical training is where you start out anyway, so any competent teacher can give you the groundwork; from there, as you develop skill, you can look for teachers who can pass on the inner dimension. "
+                                },
+                                {
+                                    "id": "cmt1864810",
+                                    "title": "Re: Aikido",
+                                    "date": "2018-08-28 10:33 pm",
+                                    "user": "(Anonymous)",
+                                    "content": "If you are by any chance in San Diego California, I can recommend an instructor I used to study with years ago before I moved out of the state"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cmt1838442",
+            "title": "magic and tai chi",
+            "date": "2018-08-27 04:16 pm",
+            "user": "(Anonymous)",
+            "content": "Hi JMG,<br/><br/>Over the last several months I've been establishing daily practices inspired by your writings- first daily tarot divination, now adding daily discursive meditation on the Cosmic Doctrine. It's starting to feel like I'm going somewhere, however slowly. Now to contemplate adding the third leg of the 'cauldron', some form of ceremonial magic or energy work.<br/><br/>I'm starting to feel a draw toward Dion Fortune and her work. (I'm now reading Psychic Self-Defense in addition to Cos. Doc.) Since I'm not familiar with the current scene, do you have a sense of where the Society of the Inner Light is at now and whether that would be a good system and scene for a newbie with no connections?<br/><br/>My alternative at this point is trying again to take up Tai Chi practice with a reputable teacher here in my town. I know that's worked well for you, but you've recommended not mixing Tai Chi and magic. Any advice for me in deciding between the two? Thank you.<br/><br/>Dylan",
+            "replies": [
+                {
+                    "id": "cmt1844586",
+                    "title": "Re: magic and tai chi",
+                    "date": "2018-08-27 08:56 pm",
+                    "user": "ecosophia",
+                    "content": "The Society of the Inner Light is a very solid option if you live in Britain and are able to attend events at their headquarters there; they also have a correspondence course for people who live elsewhere, and I've heard good things about the course. Another organization that might be worth considering is the Servants of the Light (SOL), which was founded by Fortune's student W.E. Butler and teaches a system very closely derived from hers; it has lodges all over North America and Europe, and a very extensive correspondence course. I know a number of members and have worked with an SOL lodge in ritual, and can highly recommend the organization. <br/><br/>The decision, though, has to be yours. Have you considered doing tarot divinations on the subject? ",
+                    "replies": [
+                        {
+                            "id": "cmt1864042",
+                            "title": "Re: magic and tai chi",
+                            "date": "2018-08-28 04:12 pm",
+                            "user": "(Anonymous)",
+                            "content": "Thank you for the detailed recommendation! I'll do the tarot reading and meditate on it. - D"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cmt1838698",
+            "title": "(no subject)",
+            "date": "2018-08-27 04:24 pm",
+            "user": "fluiddruid",
+            "content": "Greetings, John.<br/><br/>you mentioned before that magic is a way of moving away from the world. That had me scratch my head a few times. The context was that (you said) maybe some people aren't ready for magic and they want to move into the world rather than away from it. <br/><br/>Just to clarify, did you mean moving away from the world of humans? Not away from the world in general? Because where would that be, a place away from the world? I wouldn't want to move away from the world in general, the world is beautiful, however the human world is a mess. I wish I could be something more interesting than human.",
+            "replies": [
+                {
+                    "id": "cmt1844842",
+                    "title": "(no subject)",
+                    "date": "2018-08-27 09:00 pm",
+                    "user": "ecosophia",
+                    "content": "I used that phrase as shorthand in a specific context, and yeah, taken out of context, it's kind of hard to understand. Basically, the point is that the first part of your life -- roughly from birth to somewhere in the early 20s -- your main focus should be coming to grips with the world into which you've been born: getting used to your body, interacting with family and friends, getting an education, starting the process of finding a career, and so on. It's \"the world\" in the sense that your attention needs to be outward, toward your surroundings. <br/><br/>After that, it's time to begin turning inward, and coming to grips with yourself. If you don't do that by the time you hit middle age, you get the classic midlife crisis -- which itself is simply a reflection of the basic process of ripening that will end in physical death. That's what I was talking about. ",
+                    "replies": [
+                        {
+                            "id": "cmt1846890",
+                            "title": "(no subject)",
+                            "date": "2018-08-27 09:36 pm",
+                            "user": "(Anonymous)",
+                            "content": "I see. That is indeed a good advice. Thank you for clarifying that.<br/>I got my timing right for turning inward then, even if unintentionally. <br/>I suppose I will be spared from the midlife crisis since I've already come to grips with my mortality (very much thanks to you)."
+                        },
+                        {
+                            "id": "cmt1847146",
+                            "title": "(no subject)",
+                            "date": "2018-08-27 09:37 pm",
+                            "user": "(Anonymous)",
+                            "content": "This seems odd, given you said before you've been into magic since your teens before (if I remember correctly). Why do you advise something different from what you practiced?",
+                            "replies": [
+                                {
+                                    "id": "cmt1849962",
+                                    "title": "(no subject)",
+                                    "date": "2018-08-28 12:35 am",
+                                    "user": "ecosophia",
+                                    "content": "It's precisely because I started magic earlier than I should have that I recommend people wait until they're out of adolescence before taking up serious study and practice of occultism. I had to go back and do a lot of catching up in my thirties. "
+                                }
+                            ]
+                        },
+                        {
+                            "id": "cmt1847658",
+                            "title": "Rites of Passage",
+                            "date": "2018-08-27 09:46 pm",
+                            "user": "(Anonymous)",
+                            "content": "This is a subject I've deeply interested in!  My brother had a dream recently of him fighting two wolves, and in line with Jungian dream theory I suggested he was battling with himself and that perhaps the wolves indicated a weakness.  It got me later thinking that perhaps since wolves clean out the weak, that it meant he should allow the wolves to win in order for his weaknesses to be cleared and provide him the opportunity for a rebirth.  This made me aware there are a lot of periods of our life changing as our consciousness changes.  Rites of Passage were physical experiences helping to manifest these changes to the world within which we live but now they have become less and less common.  These things were often conducted by a person, or groups of people who helped guide someone through these changing aspects.  Do you think a revival of Rites of Passages would be something which would benefit people?",
+                            "replies": [
+                                {
+                                    "id": "cmt1850218",
+                                    "title": "Re: Rites of Passage",
+                                    "date": "2018-08-28 12:38 am",
+                                    "user": "ecosophia",
+                                    "content": "The irony here is that the old fraternal lodges used to function in that role; back in the day, becoming a Freemason, an Odd Fellow, or whatever other lodge your family had connections with was an important part of the maturation process for many men, and women's lodges, clubs, and societies had a similar function in the lives of many women. Unfortunately these days, in the end of American society that's interested in rites of passage, suggesting that American culture has anything worthwhile to offer is tantamount to blasphemy -- so the old potent rites go on neglected by all but a few, and people keep wondering aloud why we don't have any rites of passage...",
+                                    "replies": [
+                                        {
+                                            "id": "cmt1854058",
+                                            "title": "Re: Rites of Passage",
+                                            "date": "2018-08-28 02:04 am",
+                                            "user": "(Anonymous)",
+                                            "content": "Forgive me for not being aware that Rites of Passage were still a part of American culture, although very neglected.  Honestly, other than a few wedding ceremonies being conducted in ways with potent symbolism, I've never encountered nor heard mention of other rites.  I know some places to look now though, thank you!  It's no wonder that the hand fasting ceremony I attended this weekend, which was conducted by a Freemason, felt very powerful and meaningful...<br/><br/>Thanks again!<br/>Prizm",
+                                            "replies": [
+                                                {
+                                                    "id": "cmt1864298",
+                                                    "title": "Re: Rites of Passage",
+                                                    "date": "2018-08-28 04:38 pm",
+                                                    "user": "robertmathiesen",
+                                                    "content": "Mark C. Carnes, _Secret Ritual and Manhood in Victorian America_ (1989), gives a reasonably good survey of the old lodges and their systems.  You can get a good idea from it of how much ritual power has been lost since, say, 1945. <br/><br/>Since ritual is possibly the most powerful of all the programming languages that the human brain and nervous system are able to read, the decline of ritual practice in everyday life has had catastrophic consequences for our modern society, as well as for the maturation of individual humans.  <br/><br/>The emotions that some of us now invest in petty (and ineffective) rituals like the Pledge of Allegiance are a good indication of how great the human need for powerful ritual systems really is, and how desperate our need for them has become."
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cmt1838954",
+            "title": "Egregor",
+            "date": "2018-08-27 04:42 pm",
+            "user": "(Anonymous)",
+            "content": "Hi JMG,<br/> In one of your comments (Post - “A Heathen Lesser Ritual Of The Pentagram”) you say: <br/><br/> “...That will also help build the egregor, so that when the book comes out, complete novices to magic will find a good solid egregor in place to guide and protect them while they work through the basics and get to the point where they can stand on their own two feet, magically speaking...”<br/><br/>A couple of comments before yours,  somebody had suggested the book<br/>“The Secret of the She-Bear by Marie Cachet” ( as a source for reincarnation in Heathenism).<br/><br/>I looked up the author and found she is married to Varg Vikernes, a Norwegian musician, blogger and writer of a series of books on Paganism but a controversial person having served 14 years in prison  for murder (1994) and also convicted for inciting racial hatred against jews and muslims  (2014).<br/><br/>My question is: <br/><br/>Could these pagans behaviours load the egregor with negative vibes?<br/><br/>Thank you.<br/>",
+            "replies": [
+                {
+                    "id": "cmt1845354",
+                    "title": "Re: Egregor",
+                    "date": "2018-08-27 09:03 pm",
+                    "user": "ecosophia",
+                    "content": "Sure. The Heathen tradition has had to do a lot of work to distance itself from those corners of it that get mired in negative energies. Fortunately that's been fairly successful. Nearly all spiritual traditions have at least a little of this to deal with; it's simply one of the things you learn to cope with, and there are fairly straightforward ways to keep from being influenced by the negative energies so long as the tradition isn't completely corrupt. ",
+                    "replies": [
+                        {
+                            "id": "cmt1848426",
+                            "title": "Re: Egregor",
+                            "date": "2018-08-27 10:37 pm",
+                            "user": "(Anonymous)",
+                            "content": "Any suggestions for us Roman Catholics?  The tradition itself isn’t corrupt, but the U. S. bishops are.",
+                            "replies": [
+                                {
+                                    "id": "cmt1850730",
+                                    "title": "Re: Egregor",
+                                    "date": "2018-08-28 12:46 am",
+                                    "user": "ecosophia",
+                                    "content": "Your tradition has massive problems but it's probably not beyond saving. Of course daily prayer and meditation are essential -- if your tradition is going to survive, the help you need isn't going to come from human beings -- and other personal devotional practices, the more old-fashioned the better, are worth pursuing along the same lines. It might also be worth looking into joining a tertiary order or some other lay organization not quite so directly under the thumb of the episcopal hierarchy, to work with others to help reopen the egregor of at least part of the church to the divine influence it needs so badly. You've got a long hard road ahead of you, but I seem to recall Jesus mentioning to his followers that this has certain benefits in the long run...",
+                                    "replies": [
+                                        {
+                                            "id": "cmt1853802",
+                                            "title": "Re: Egregor",
+                                            "date": "2018-08-28 01:57 am",
+                                            "user": "(Anonymous)",
+                                            "content": "Thanks, John!"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "cmt1859946",
+                    "title": "Re: Egregor",
+                    "date": "2018-08-28 04:12 am",
+                    "user": "(Anonymous)",
+                    "content": "Varg was/is? quite an original. Might be worth looking into where he stands today, and what he has learned...<br/>Berserker",
+                    "replies": [
+                        {
+                            "id": "cmt1860714",
+                            "title": "Re: Egregor",
+                            "date": "2018-08-28 04:45 am",
+                            "user": "ecosophia",
+                            "content": "I'll probably leave that to my coauthor Sven, who is handling the specifically Heathen end of things. My side of the project consists of making sure that the system we craft is magically effective and energetically balanced. ",
+                            "replies": [
+                                {
+                                    "id": "cmt1861994",
+                                    "title": "Re: Egregor",
+                                    "date": "2018-08-28 06:29 am",
+                                    "user": "(Anonymous)",
+                                    "content": "Varg Vikernes has distinctly and obviously matured from his very rough youth and very hard life, is a devoted father of seven, lives a lifestyle of simplicity and hard green permaculture, and has become quite an impressive teacher. He will still be persecuted for the rest of his life for wrongthink."
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "cmt1862250",
+                    "title": "Re: Egregor",
+                    "date": "2018-08-28 06:45 am",
+                    "user": "(Anonymous)",
+                    "content": "Also, this attempt to poison the well against Marie Cachet should not go unhighlighted. \"these pagans behaviours\", indeed. What a load of shale.",
+                    "replies": [
+                        {
+                            "id": "cmt1865066",
+                            "title": "Re: Egregor",
+                            "date": "2018-08-28 11:16 pm",
+                            "user": "(Anonymous)",
+                            "content": "she bought four rifles and was arrested on suspicion of planning acts of terrorism...<br/><br/>yes sir! these pagans behaviours alright!",
+                            "replies": [
+                                {
+                                    "id": "cmt1865834",
+                                    "title": "Re: Egregor",
+                                    "date": "2018-08-29 07:14 am",
+                                    "user": "(Anonymous)",
+                                    "content": "And she was released without charge, due to being conspicuously innocent. That, and this slander, are part of the harassment campaign against them. You have your own icky vibes and egregor issues to deal with."
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cmt1839210",
+            "title": "(no subject)",
+            "date": "2018-08-27 04:56 pm",
+            "user": "(Anonymous)",
+            "content": "You said the revival Druids came up with the concept of evolution before Darwin. How much detail did they go into and how close were they to how the theory turned out?",
+            "replies": [
+                {
+                    "id": "cmt1845610",
+                    "title": "(no subject)",
+                    "date": "2018-08-27 09:06 pm",
+                    "user": "ecosophia",
+                    "content": "Well, remember that what Darwin worked out wasn't evolution, it was natural selection -- the process by which evolution takes place. The Druids of the Revival didn't anticipate that. In a variety of 18th and early 19th century writings, though, Druids argued that all life begins with single-celled organisms and proceeds from there through ever more complex forms. They didn't cover it in a lot of detail but the idea was there. "
+                }
+            ]
+        },
+        {
+            "id": "cmt1839722",
+            "title": "Sports and Games",
+            "date": "2018-08-27 05:42 pm",
+            "user": "(Anonymous)",
+            "content": "Thanks again for this Magic Monday opportunity.<br/><br/>My question today is sparked a bit my interest in sports and Cuchulain.  As the story goes, Setanta sets out down the road to his uncle's with a stick in hand hitting a ball and dart to make the travel seem faster.  When he arrives in Ulster, he then wants to participate in the game of hurling with the other kids and because of this delaying him to the feast of Hulain, he later kills the hound guarding the premises and becomes known as Cuchulain.  With this story in mind, I'm curious how games and sports may have any relation to the occult?  To your knowledge, are there any games or activities which one can participate in to better help gain understanding and knowledge of the occult?<br/><br/>Thanks,<br/>Prizm",
+            "replies": [
+                {
+                    "id": "cmt1850986",
+                    "title": "Re: Sports and Games",
+                    "date": "2018-08-28 12:48 am",
+                    "user": "ecosophia",
+                    "content": "That's one of those branches of occultism that got lost at the end of the Renaissance and hasn't yet been revived. The martial arts, Western as well as Eastern, are about the closest we've got at this point -- that, and the substantial overlap between old-fashioned strength training and occultism. Beyond that? You've got your work cut out for you. ",
+                    "replies": [
+                        {
+                            "id": "cmt1863786",
+                            "title": "Re: Sports and Games",
+                            "date": "2018-08-28 03:56 pm",
+                            "user": "(Anonymous)",
+                            "content": "Wait, huh-wha? As a committed powerlifter but entirely armchair magician, this stopped me cold. I guess this is related to the early \"physical culture\" movement out of which modern weightlifting was born, but I guess I'll have to wait to find out, because dang it, it's Tuesday now. Okay, have to remember to ask about this in a week."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cmt1840234",
+            "title": "Statue of Liberty connection to occult?",
+            "date": "2018-08-27 05:55 pm",
+            "user": "slclaire",
+            "content": "Hello JMG,<br/><br/>Awhile ago in a Magic Monday post you answered a question about drawing the Sphere of Protection symbols by suggesting a trial with keeping one's fingers in place while reciting the words that go with each symbol. Having tried this, I have found that when I inscribe the circle for Spirit Above in the invoking form and recite the invocation I get a sense of the Statue of Liberty, with her right hand holding the torch corresponding to the solar current being invoked. I am wondering if that is coincidence or if you are aware of any connection to occultism its designer, Frédéric-Auguste Bartholdi, may have had? Even if there isn't, he may have sensed something about what appears to me as the solar character of the US that he expressed in the form of the statue.",
+            "replies": [
+                {
+                    "id": "cmt1851242",
+                    "title": "Re: Statue of Liberty connection to occult?",
+                    "date": "2018-08-28 12:52 am",
+                    "user": "ecosophia",
+                    "content": "Bartholdi was a Freemason, at a time when French Freemasonry had extensive links to the occult, but that's as much as I know about him. On the other hand, whether or not he was an occultist, it's a powerful and evocative image, and if it works for you, by all means work with it. "
+                }
+            ]
+        },
+        {
+            "id": "cmt1840490",
+            "title": "Where to start?",
+            "date": "2018-08-27 06:14 pm",
+            "user": "(Anonymous)",
+            "content": "Hi JMG,<br/><br/>How do I figure out which one of the paths is the one more suitable for me? I'm just wondering where to start: Druid Magic Handbook, Celtic Golden Dawn or else?<br/><br/>Is there a divination or something I can do to get some guidance? I'm a complete newbie.<br/><br/>Many thanks!",
+            "replies": [
+                {
+                    "id": "cmt1851498",
+                    "title": "Re: Where to start?",
+                    "date": "2018-08-28 12:54 am",
+                    "user": "ecosophia",
+                    "content": "Read the books all the way through, and try to get a sense of which one appeals most to you. Remember that after you've finished the course of study in one, you can go back and do the other; remember also that ultimately it doesn't matter that much -- however you learn the basic skills of magic, the important thing is that you learn them. If it comes down to it and you just can't decide, flip a coin and go with the answer -- that'll be good training for the will. "
+                }
+            ]
+        },
+        {
+            "id": "cmt1840746",
+            "title": "Flex time and tarot",
+            "date": "2018-08-27 06:34 pm",
+            "user": "(Anonymous)",
+            "content": "Hello JMG<br/><br/>I started the tri-element practice in April.<br/>-Since few weeks I noticed that time sometimes seem to stretch, when I do something ordinary and somewhat assign a certain duration to it, then realize it isn't that late yet as I expected. This is unexpected as usually it was the other way around and I felt always short on time. This is quite welcome and pleasant. Unrelated or have you come across similar experience?<br/>-Tarot: I ask daily of three cards \" myself, situation, outcome\". I noticed sometimes the \"myself\" seem to describe not me but my husband's day. I never ask of that. Is is possible or am I just reading it wrong?<br/>-also Tarot: the cards build a story over several days it seems, particularly the ones on the ends, so the personal card builds a theme usually over 4-5 days, the outcome cards can go on for even longer. So I started to look at the pattern of a time band connecting the outer cards as well. Again, am I reading too much into obvious developing things or can I learn how to utilize that? <br/>- my Tarot displays dark humor and even irony, or is it me projecting my own personality?  I use Morgan-Greer, it's probably too abstract for a beginner but the art is very compelling.<br/><br/>Thank you as always!<br/>Anne",
+            "replies": [
+                {
+                    "id": "cmt1851754",
+                    "title": "Re: Flex time and tarot",
+                    "date": "2018-08-28 12:56 am",
+                    "user": "ecosophia",
+                    "content": "Time factors are complicated in divination and magic, so what you're experiencing is pretty much normal. As for the tarot, remember that the cards tell you what they want to tell you, which may not be exactly what you want to know. The divination process is very much like a conversation with another person, and it's when that dimension of it develops that you know you're getting somewhere with the practice. "
+                }
+            ]
+        },
+        {
+            "id": "cmt1841002",
+            "title": "Meditation",
+            "date": "2018-08-27 07:51 pm",
+            "user": "(Anonymous)",
+            "content": "Hello JMG,<br/><br/>I was wondering if you have any tips for avoiding drowsiness in meditation. I often have to fit my daily meditation in shortly after waking or shortly before sleeping, and I frequently wind up drifting into sleep or half-sleep. Even when I don't completely fall into slumber the intrusion of hypnagogic imagery into my thoughts really impairs my concentration. <br/><br/>Thanks,<br/>Fred N",
+            "replies": [
+                {
+                    "id": "cmt1852522",
+                    "title": "Re: Meditation",
+                    "date": "2018-08-28 01:01 am",
+                    "user": "ecosophia",
+                    "content": "That's a common problem in the early stages of meditation, and it's caused by your mind trying to weasel out of the hard work of meditating. It can help to make yourself a little physically uncomfortable. When I was learning to meditate and had trouble with that, it happened to be winter, we couldn't afford to heat the apartment beyond the minimum necessary to keep the pipes from freezing, and I habitually meditate seated on a folding metal chair. When sleepiness showed up, I'd simply strip naked and meditate that way, and the temperature did the trick. I didn't have to do it often, either -- aversive therapy really does work in some contexts. ",
+                    "replies": [
+                        {
+                            "id": "cmt1863018",
+                            "title": "Re: Meditation",
+                            "date": "2018-08-28 12:09 pm",
+                            "user": "(Anonymous)",
+                            "content": "Thanks for the suggestion! <br/><br/>-Fred N"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cmt1842026",
+            "title": "Banishing ritual for someone",
+            "date": "2018-08-27 08:26 pm",
+            "user": "(Anonymous)",
+            "content": "Hi JMG,<br/><br/>My partner has asked if I can perform a banishing ritual for her. She has her own practice (not  Druidical) but wants some support as she thinks a bad spirit got into her through a dream last night. <br/><br/>Is that something that is a) possible for me to do?<br/>And b) a wise/useful thing to do?<br/><br/>Would love your thinking on that? And if it is ok, what else would I add to the ritual given its for someone else?<br/><br/>Many thanks,<br/>Edward",
+            "replies": [
+                {
+                    "id": "cmt1852778",
+                    "title": "Re: Banishing ritual for someone",
+                    "date": "2018-08-28 01:03 am",
+                    "user": "ecosophia",
+                    "content": "You can certainly do a banishing ritual for someone who asks for your help. As long as you have their consent, that's fine, and it's something I've done many times. You should have her sit in the middle of the space, so that you can do the banishing around her; have her face east, and stand just behind her when you do the opening and closing gestures, so that she benefits from the calling down of the energies. "
+                }
+            ]
+        },
+        {
+            "id": "cmt1845866",
+            "title": "Pick a Planet, Any Planet",
+            "date": "2018-08-27 09:11 pm",
+            "user": "(Anonymous)",
+            "content": "I’m preparing to follow your advice, on the magical and material planes, to gather the funds necessary to move, and so - I hope - improve my situation. <br/><br/>As before, I mean to use the planetary magic in Regardie’s “The Art of True Healing.” Hence I must pick a planet to work with. <br/><br/>So far I’ve had unsuccessful outcomes with Mercury and Jupiter, due to mistakes on my part and for reasons relating to my horoscope, respectively. Venus will not serve; my chart makes this clear. Among benefics, that leaves the Sun. <br/><br/>My natal Sun is the best-placed planet in my chart. Regardie’s text seems to suggest this would be a suitable choice. In your opinion, is that the case? <br/><br/>I may return to the other planets eventually, but currently I don’t feel confident about working with them, given the foregoing history. <br/><br/>Kevin",
+            "replies": [
+                {
+                    "id": "cmt1854570",
+                    "title": "Re: Pick a Planet, Any Planet",
+                    "date": "2018-08-28 02:26 am",
+                    "user": "ecosophia",
+                    "content": "Give it a try. You might also look into other forms of magic, since so far you haven't had good results with that one..."
+                }
+            ]
+        },
+        {
+            "id": "cmt1846122",
+            "title": "(no subject)",
+            "date": "2018-08-27 09:24 pm",
+            "user": "(Anonymous)",
+            "content": "In the small town where I live, there's an old open cistern that was discovered during some construction and uncovered.  When I walk around it clockwise with something in my hand, I feel an urge to toss it in.  If it's not just a small remainder of naughty boy habits long forgotten, what is it?<br/><br/>Jon from Virginia",
+            "replies": [
+                {
+                    "id": "cmt1854826",
+                    "title": "(no subject)",
+                    "date": "2018-08-28 02:27 am",
+                    "user": "ecosophia",
+                    "content": "Do you usually make it a habit to walk around open cisterns clockwise? "
+                }
+            ]
+        },
+        {
+            "id": "cmt1846378",
+            "title": "Switched tarot suit attributions",
+            "date": "2018-08-27 09:33 pm",
+            "user": "(Anonymous)",
+            "content": "I've started reading Dion Fortune's Mystical Qabala, as I have a pagan Qabala-based tarot deck I've always liked, and finally decided I wanted to be able to use it properly.<br/><br/>The hitch though, is that the creator has signed Wands to Air, and Swords to Fire, and of course I've just discovered that is opposite of the usual Western occult system.<br/><br/>I'm now struggling with my cards' symbolism, because Swords -  Fire - Restriction - death that gives life, and the association with Mars and Geburah made sense to me with that suit on the pillar of severity. And, however, I had no strong feelings about, except that they were just kinda left over so went with Air.<br/><br/>The tarot deck designer further ascribes Fire to Will/action and Air to Mind, and I have yet to see Fortune link those concepts quite the same way. There, however, I could more easily see how the suits would be reversed, with Wands representing will through the association with Yod, masculine principle and Chockmah... And Swords left over so just going with Mind. Sigh...<br/><br/>I don't know how much of a problem this is in terms of grokking the Tree now - so long as Fire and Air are in the right places on the pillars, does it matter if the tarot suit is switched (since the tarot uses the Tree, not the other way around)? Or does this utterly scramble the interpretation of the glyph - if my mind can't \"see\" why a wand \"obviously\" goes with fire, am I missing something critical? I'm stuck in circles with my brain going:<br/>Air=Mind/Consciousness yep<br/>Wands=Will yep<br/>Fire=Swords yep<br/>Fire=Will sure<br/>I can't figure out why a sword would go with Air/Mind. Clearly there is some bridging concept I'm missing... Or I need a new deck that makes that clear...<br/>",
+            "replies": [
+                {
+                    "id": "cmt1855338",
+                    "title": "Re: Switched tarot suit attributions",
+                    "date": "2018-08-28 02:38 am",
+                    "user": "ecosophia",
+                    "content": "People have been stumbling over that one for getting on for two centuries now. You can read any number of long disquisitions, some pedantic and others frantic, insisting on one or the other attribution -- and then there's the deck I used to have that assigned Swords to Earth and Pentacles to Air/Spirit! <br/><br/>In the traditional system, wand and cup are among other things penis and vagina symbols, thus the creative fire and the receptive water; wands are also fire as an emblem of the will, which must always be single like the straight shaft of the wand. The sword is double-edged, and represents the mind because the basic function of the mind is analysis, cutting things apart to understand them. Wand and cup also typically go together in mythic symbolism -- you have the Grail and the Spear, for example -- and sword and shield or platter go together. <br/><br/>But you can use a different arrangement of symbols if that works for you..."
+                },
+                {
+                    "id": "cmt1861482",
+                    "title": "Re: Switched tarot suit attributions",
+                    "date": "2018-08-28 05:40 am",
+                    "user": "(Anonymous)",
+                    "content": "What deck is that?  That’s the association I use and that’s how I read my cards.  I usually ignore the complimentary tarot booklet so i can just read the cards that way.  I don’t use Qabalah and rarely use the Tree of Life.  I haven’t bought a new deck in over a decade because I can’t find one that uses this symbolism.  <br/><br/>My reasoning is swords are forged in fire and wands are also represented by the spear (sword, spear, cauldron, stone) and the spear is thrown through the air.  I know in a sense it’s totally arbitrary and you should use whatever works for you.  Also, I know the element-direction associations vary by region so again, it’s best for each individual to do what works for them).  "
+                },
+                {
+                    "id": "cmt1861738",
+                    "title": "Re: Switched tarot suit attributions",
+                    "date": "2018-08-28 05:51 am",
+                    "user": "(Anonymous)",
+                    "content": "I’m not sure if my first comment went through (I know it’s late).  Also I forgot to sign it anyway.<br/><br/>What deck is this?  It sounds perfect for me!<br/><br/>Jessi Thompson<br/>anotheramethyst "
+                }
+            ]
+        },
+        {
+            "id": "cmt1847914",
+            "title": "Distinguishing higher self and others",
+            "date": "2018-08-27 10:35 pm",
+            "user": "sea_spray",
+            "content": "Hi JMG <br/><br/>I often get a little voice in the back of my head with little bits of advice (Like \"stop driving and rest for a bit\" when I'm feeling tired). I've tried asking this voice who it is and is it my sub-conscious. I get a feeling like mouth shut, not answering. When I ask gods a similar question I get what I think of as a translation error, I don't know enough to understand the answer.<br/><br/>Could this little voice be my higher self or a guardian sprit and how can I tell.",
+            "replies": [
+                {
+                    "id": "cmt1855594",
+                    "title": "Re: Distinguishing higher self and others",
+                    "date": "2018-08-28 02:39 am",
+                    "user": "ecosophia",
+                    "content": "If it won't answer, you probably can't tell. You'll just have to wait until it decides to talk. "
+                }
+            ]
+        },
+        {
+            "id": "cmt1848170",
+            "title": "Frankincense",
+            "date": "2018-08-27 10:35 pm",
+            "user": "guillem66",
+            "content": "Will burning frankincense during my daily SOP amplify its effects?<br/><br/>",
+            "replies": [
+                {
+                    "id": "cmt1855850",
+                    "title": "Re: Frankincense",
+                    "date": "2018-08-28 02:39 am",
+                    "user": "ecosophia",
+                    "content": "Try it and see! "
+                }
+            ]
+        },
+        {
+            "id": "cmt1848682",
+            "title": "Gardd y Cof",
+            "date": "2018-08-27 11:26 pm",
+            "user": "mesosylvania",
+            "content": "Happy Magic Monday!<br/><br/>I was rereading your \"Ars Memorativa\" article, and I would love to explore this practice alongside my Druidry Handbook/DMH practice. I thought it would be nice to have the symbolism and \"flavor\" match the Druid symbolism, and my first thought was to use the Wheel of the Year as the basic structure. But, I'm a little leery of this, since I don't want my memory visualizations to interfere with future pathworking exercises. <br/><br/>Do you have any initial thoughts or ideas on how I might start building a Druid themed memory practice?",
+            "replies": [
+                {
+                    "id": "cmt1856106",
+                    "title": "Re: Gardd y Cof",
+                    "date": "2018-08-28 02:42 am",
+                    "user": "ecosophia",
+                    "content": "I'd avoid the Wheel of the Year for now, for precisely that reason. Instead, why not do something based on the Ogham? They were originally a mnemonic system, you know, so it's not as though you'd be doing something unusual with them. You could, for example, have a garden with five spaces in it, each of them containing the five trees of the Ogham, and you could put images beside the trees to memorize things. Once you've gotten comfortable with a simple system like that -- and it helps to start out with a simple memory palace -- you can go on to try something more complex. "
+                }
+            ]
+        },
+        {
+            "id": "cmt1848938",
+            "title": "(no subject)",
+            "date": "2018-08-27 11:51 pm",
+            "user": "(Anonymous)",
+            "content": "How much would you say the practices in your books are universal? Being from a tropical country in the Southern Hemisphere where most people have some degree of non-European ancestry and where westernization started less than a century ago, many of the more practical things talked about here sound foreign, unpractical and counter-intuitive to me.<br/><br/>So, how much do magical practices and teachings depend on the climate, geography, ethnic make-up and culture of a place?",
+            "replies": [
+                {
+                    "id": "cmt1856362",
+                    "title": "(no subject)",
+                    "date": "2018-08-28 02:44 am",
+                    "user": "ecosophia",
+                    "content": "The magic taught in my books has been successfully practiced in Australia, New Zealand, China, Japan, and Brazil, among other places, so it apparently travels pretty well. Still, if it feels inappropriate to you, listen to that, and learn and practice something else instead. "
+                }
+            ]
+        },
+        {
+            "id": "cmt1852010",
+            "title": "Visualization question.",
+            "date": "2018-08-28 01:00 am",
+            "user": "syfen",
+            "content": "Archdruid,<br/><br/>A few months ago I asked a question about getting better at visualization and you advised me to practice for 10 minutes a day, starting simple then getting more complex as I go along. I've gradually added it to my daily routine, and I can already see the results of my practice (pun totally intended.) However, I was wondering, is it important to feel the existence of the object - as in texture, weight, mass, and etc...that I visualize? Or is that more advanced and better practiced once I get better at basic visualization? <br/><br/>Regards,<br/><br/>Syfen",
+            "replies": [
+                {
+                    "id": "cmt1856618",
+                    "title": "Re: Visualization question.",
+                    "date": "2018-08-28 02:46 am",
+                    "user": "ecosophia",
+                    "content": "Like so much else in magical training, that depends on personal factors. That said, most people find it easier to visualize when they bring in the other senses as well, and there's no particular reason not to give it a try. It's not more advanced, it's just another aspect of the training of the imagination. ",
+                    "replies": [
+                        {
+                            "id": "cmt1858922",
+                            "title": "Re: Visualization question.",
+                            "date": "2018-08-28 03:20 am",
+                            "user": "syfen",
+                            "content": "I too find it easier to visualize if I use my other senses, I found myself doing it reflexively so thought to ask. Thank you for your advice, I'll continue using my other senses during practice."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cmt1852266",
+            "title": "(no subject)",
+            "date": "2018-08-28 01:00 am",
+            "user": "(Anonymous)",
+            "content": "<br/>Hello again and happy Monday!<br/><br/>Do you think that name numerology has any truth to it?<br/><br/>Thank you, hope you have a good week. ",
+            "replies": [
+                {
+                    "id": "cmt1856874",
+                    "title": "(no subject)",
+                    "date": "2018-08-28 02:46 am",
+                    "user": "ecosophia",
+                    "content": "I've never found it to be useful. If I recall correctly, according to the books I read back in the day, someone with my name should be stuffy, conventional, and good at math. "
+                }
+            ]
+        },
+        {
+            "id": "cmt1853034",
+            "title": "(no subject)",
+            "date": "2018-08-28 01:15 am",
+            "user": "(Anonymous)",
+            "content": "Are there generic ways to \"tone\" the energy body that wouldn't clash with either Eastern or Western practices, or do the specific practices themselves create/form the energy body in a such a way that makes generic energy body work impossible?<br/><br/>Could observing/feeling the subtle sensations of the breath in different parts of your body (such as in your feet, stomach, shoulders, the whole body at once) be a way of \"toning\" the energy body?<br/><br/>-isaac<br/>",
+            "replies": [
+                {
+                    "id": "cmt1857130",
+                    "title": "(no subject)",
+                    "date": "2018-08-28 02:49 am",
+                    "user": "ecosophia",
+                    "content": "As far as I know, a generic system of energy work is like a generic system of physical exercises -- that is, there isn't one. If you're engaged in physical training, you need to choose what muscular capacities you're going to develop -- speed? raw power? subtle neuromuscular control? something else? -- knowing that the gains you make in one will be balanced by limitations in another. <br/><br/>In the same way, the energy training you do will depend on the work you plan to do with your energy body, and that will depend in turn on the tradition you want to follow. ",
+                    "replies": [
+                        {
+                            "id": "cmt1859434",
+                            "title": "(no subject)",
+                            "date": "2018-08-28 03:39 am",
+                            "user": "(Anonymous)",
+                            "content": "Ok, so there's nothing like calisthenics or walking which are simple/mostly universal and only likely to enhance whatever you end up doing down the road?",
+                            "replies": [
+                                {
+                                    "id": "cmt1860970",
+                                    "title": "(no subject)",
+                                    "date": "2018-08-28 04:47 am",
+                                    "user": "ecosophia",
+                                    "content": "Not that I know of. Even something as simple as breathing exercises needs to be coordinated with the direction you plan on working in further on. "
+                                },
+                                {
+                                    "id": "cmt1864554",
+                                    "title": "(no subject)",
+                                    "date": "2018-08-28 08:08 pm",
+                                    "user": "robertmathiesen",
+                                    "content": "One good analog in magic to walking (or calisthenics) is simply learning always to pay close, detailed and sustained attention to the world around you.  Especially pay attention to the parts of the world around you that you feel you ought not to pay attention to."
+                                }
+                            ]
+                        },
+                        {
+                            "id": "cmt1859690",
+                            "title": "(no subject)",
+                            "date": "2018-08-28 03:39 am",
+                            "user": "(Anonymous)",
+                            "content": "Thank you very much for your time by the way."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "cmt1855082",
+            "title": "Heathen Middle Pillar Exercise",
+            "date": "2018-08-28 02:34 am",
+            "user": "(Anonymous)",
+            "content": "Hi JMG,<br/><br/>I’m a few days into the Heathen Middle Pillar exercise, and this morning woke to what seemed a distant echo of menstrual cramps.  It cleared up within a few minutes.  Not painful at all, but interesting, as I’m 59 and the days of monthly Advil and a heating pad ended a decade ago.  <br/><br/>So,<br/><br/>Would this be an indication that I’m going about this properly, but may have some extra work to do at the Mannar/Skadi center?  <br/><br/>If yes, will consistent practice likely clear this up?  Other advice?  <br/><br/>Thanks!<br/>OtterGirl<br/><br/>",
+            "replies": [
+                {
+                    "id": "cmt1857386",
+                    "title": "Re: Heathen Middle Pillar Exercise",
+                    "date": "2018-08-28 02:51 am",
+                    "user": "ecosophia",
+                    "content": "Yes, and regular practice will take care of it. If you have someone you can ask to massage you, gentle deep rubbing of the lower half of the belly and of the muscles of the sacrum (the triangle of muscle-over-bone just above the tailbone in back) will help that along quite a bit. "
+                }
+            ]
+        },
+        {
+            "id": "cmt1859178",
+            "title": "(no subject)",
+            "date": "2018-08-28 03:29 am",
+            "user": "(Anonymous)",
+            "content": "So say I've already worked through a book/system initiating myself into the planetary spheres/archangels. Would it be a bad mix to, for instance, start an eastern meditation retreat on a Saturday by invoking Cassiel for discipline?<br/><br/>Thank you!",
+            "replies": [
+                {
+                    "id": "cmt1861226",
+                    "title": "(no subject)",
+                    "date": "2018-08-28 04:49 am",
+                    "user": "ecosophia",
+                    "content": "If you were planning on baking a cake, would you decide to add in a couple of ingredients from a recipe for eggplant Parmigiana? "
+                }
+            ]
+        }
+    ]
+}
