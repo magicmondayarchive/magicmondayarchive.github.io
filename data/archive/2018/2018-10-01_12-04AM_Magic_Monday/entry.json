@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://mindreels.files.wordpress.com/2014/12/l-frank-baum.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2018/2018-10-01_12-04AM_Magic_Monday/images/unknown_l-frank-baum.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2018/2018-10-01_12-04AM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

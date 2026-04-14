@@ -15,15 +15,15 @@
             "images": [
                 {
                     "url": "https://i.ytimg.com/vi/tOI_1tDwv98/maxresdefault.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-10-04_12-19AM_Magic_Monday/images/unknown_maxresdefault.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-10-04_12-19AM_Magic_Monday/images/unknown_pixel.gif"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-10-04_12-19AM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

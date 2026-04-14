@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://i.ebayimg.com/images/g/h-UAAOSwE0tc91SK/s-l400.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-08-30_11-37PM_Magic_Monday/images/unknown_s-l400.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-08-30_11-37PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

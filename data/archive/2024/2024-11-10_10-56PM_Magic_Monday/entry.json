@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://cdn11.bigcommerce.com/s-ngzg0zcz0u/images/stencil/608x608/products/503960/501444/9781915952011__23096.1706889858.jpg?c=1",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-11-10_10-56PM_Magic_Monday/images/unknown_9781915952011__23096.1706889858.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-11-10_10-56PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {
@@ -444,7 +444,7 @@
                                     "images": [
                                         {
                                             "url": "https://ecosophia.dreamwidth.org/file/286114.png",
-                                            "local_path": null
+                                            "local_path": "./data/archive/2024/2024-11-10_10-56PM_Magic_Monday/images/2024-11-12_03_54_am_286114.png"
                                         }
                                     ]
                                 }

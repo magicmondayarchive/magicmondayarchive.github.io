@@ -15,15 +15,15 @@
             "images": [
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/184597.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2023/2023-04-23_11-18PM_Magic_Monday/images/unknown_184597.jpg"
                 },
                 {
                     "url": "https://i1.wp.com/www.philipcarr-gomm.com/wp-content/uploads/sharp@druidry.org_20171213_153031.jpg?ssl=1",
-                    "local_path": null
+                    "local_path": "./data/archive/2023/2023-04-23_11-18PM_Magic_Monday/images/unknown_sharp_druidry.org_20171213_153031.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2023/2023-04-23_11-18PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

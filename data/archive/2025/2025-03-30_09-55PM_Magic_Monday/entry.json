@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://productimages.worldofbooks.com/1912573857.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2025/2025-03-30_09-55PM_Magic_Monday/images/unknown_1912573857.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2025/2025-03-30_09-55PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

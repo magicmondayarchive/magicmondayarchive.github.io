@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://hatch.kookscience.com/w/images/thumb/7/75/L_W_de_Laurence_-_frontis.jpg/1200px-L_W_de_Laurence_-_frontis.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-06-30_11-46PM_Magic_Monday/images/unknown_1200px-L_W_de_Laurence_-_frontis.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-06-30_11-46PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

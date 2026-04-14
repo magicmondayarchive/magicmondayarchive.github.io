@@ -15,15 +15,15 @@
             "images": [
                 {
                     "url": "https://cdn.quotesgram.com/img/14/85/2057963464-manly_hall_archival_G1-686x1024.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-11-21_11-31PM_Magic_Monday/images/unknown_2057963464-manly_hall_archival_G1-686x1024.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-11-21_11-31PM_Magic_Monday/images/unknown_pixel.gif"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-11-21_11-31PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

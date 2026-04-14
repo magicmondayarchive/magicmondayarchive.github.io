@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://cdn.shopify.com/s/files/1/0895/0864/products/42-17214683_1024x1024.jpeg?v=1450885027",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-10-04_11-39PM_Magic_Monday/images/unknown_42-17214683_1024x1024.jpeg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-10-04_11-39PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

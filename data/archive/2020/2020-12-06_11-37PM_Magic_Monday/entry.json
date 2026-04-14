@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://cpb-us-e1.wpmucdn.com/sites.dartmouth.edu/dist/6/48/files/2015/02/Splendor2.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-12-06_11-37PM_Magic_Monday/images/unknown_Splendor2.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-12-06_11-37PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

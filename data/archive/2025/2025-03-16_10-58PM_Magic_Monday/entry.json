@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://images.booksense.com/images/119/520/9781801520119.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2025/2025-03-16_10-58PM_Magic_Monday/images/unknown_9781801520119.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2025/2025-03-16_10-58PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://images.squarespace-cdn.com/content/558ef1dae4b0a675d66b3f55/1452641314849-U2RZQTT8ZNXYW8K84T9B/CS-80.jpg?content-type=image%2Fjpeg",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-08-04_11-38PM_Magic_Monday/images/unknown_CS-80.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-08-04_11-38PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

@@ -15,15 +15,15 @@
             "images": [
                 {
                     "url": "https://i.pinimg.com/736x/f8/f6/78/f8f678e63bbcf62ea910ad735f9c87d3--golden-dawn-the-golden.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-03-21_11-39PM_Magic_Monday/images/unknown_f8f678e63bbcf62ea910ad735f9c87d3--golden-dawn-the-golden.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-03-21_11-39PM_Magic_Monday/images/unknown_pixel.gif"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-03-21_11-39PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

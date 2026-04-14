@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://media.s-bol.com/311OoXx36mOA/545x840.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-07-14_10-44PM_Magic_Monday/images/unknown_545x840.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-07-14_10-44PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {
@@ -897,7 +897,7 @@
                                     "images": [
                                         {
                                             "url": "https://www.art-prints-on-demand.com/kunst/franz_von_stuck/Wild-hunting.jpg",
-                                            "local_path": null
+                                            "local_path": "./data/archive/2024/2024-07-14_10-44PM_Magic_Monday/images/2024-07-15_05_07_pm_Wild-hunting.jpg"
                                         }
                                     ]
                                 }

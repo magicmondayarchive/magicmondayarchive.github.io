@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Splendor_Solis_-_Trait%C3%A9_d'Alchimie_-_Le_Philosophe_%C3%A0_la_flasque.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-11-22_11-40PM_Magic_Monday/images/unknown_Splendor_Solis_-_Trait_C3_A9_d_Alchimie_-_Le_Philosophe__C3_A0_la_flasque.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-11-22_11-40PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

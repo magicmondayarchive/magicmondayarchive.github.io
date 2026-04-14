@@ -15,15 +15,15 @@
             "images": [
                 {
                     "url": "https://sanet.pics/storage-5/0419/bit4NyZE2OQ9a8UVoXnd62jpDNgUOz20.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2023/2023-11-12_11-49PM_Magic_Monday/images/unknown_bit4NyZE2OQ9a8UVoXnd62jpDNgUOz20.jpg"
                 },
                 {
                     "url": "https://psychicscience.org/Images/Geomancy/figures.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2023/2023-11-12_11-49PM_Magic_Monday/images/unknown_figures.gif"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2023/2023-11-12_11-49PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

@@ -15,15 +15,15 @@
             "images": [
                 {
                     "url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Druids_celebrating_at_Stonehenge_(0).png",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-02-28_11-18PM_Magic_Monday/images/unknown_Druids_celebrating_at_Stonehenge__0_.png"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-02-28_11-18PM_Magic_Monday/images/unknown_pixel.gif"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-02-28_11-18PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

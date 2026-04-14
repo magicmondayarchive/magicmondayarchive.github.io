@@ -15,7 +15,7 @@
             "images": [
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/272824.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-09-15_10-56PM_Magic_Monday/images/unknown_272824.jpg"
                 },
                 {
                     "url": "https://360.scdn8.secure.raxcdn.com/ased/sites/6/2022/08/Rees-Thomas-1-3354-972x648.jpg",
@@ -23,7 +23,7 @@
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-09-15_10-56PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {
@@ -801,7 +801,7 @@
             "images": [
                 {
                     "url": "https://frittermywig.dreamwidth.org/file/480x480/45015.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-09-15_10-56PM_Magic_Monday/images/2024-09-16_12_12_pm_45015.jpg"
                 }
             ],
             "replies": [

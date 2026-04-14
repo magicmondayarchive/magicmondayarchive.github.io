@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://newtopiamagazine.files.wordpress.com/2013/03/genevieve_stebbins11.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2018/2018-09-16_11-45PM_Magic_Monday/images/unknown_genevieve_stebbins11.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2018/2018-09-16_11-45PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

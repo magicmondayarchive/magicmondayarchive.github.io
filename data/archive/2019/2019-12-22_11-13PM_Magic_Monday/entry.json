@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://www.hermetik-international.com/wp-content/uploads/2015/08/louis_claude_de_saint_martin5.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-12-22_11-13PM_Magic_Monday/images/unknown_louis_claude_de_saint_martin5.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-12-22_11-13PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

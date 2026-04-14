@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://www.ancient-origins.net/sites/default/files/Merlin-reciting-his-poem.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-10-13_11-58PM_Magic_Monday/images/unknown_Merlin-reciting-his-poem.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-10-13_11-58PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

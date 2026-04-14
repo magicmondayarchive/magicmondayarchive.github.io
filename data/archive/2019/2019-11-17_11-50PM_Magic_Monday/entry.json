@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://p2.dreamwidth.org/5b5ee9c7686e/2821740-73482/www.portaelucis.fr/images/dubuis1.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-11-17_11-50PM_Magic_Monday/images/unknown_dubuis1.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-11-17_11-50PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

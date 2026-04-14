@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://www.deslegte.com/images/cached/resample/jpg/data/uploads/294/450/cms_visual_1982565.jpg_1681735513000_294x450.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-04-14_10-42PM_Magic_Monday/images/unknown_cms_visual_1982565.jpg_1681735513000_294x450.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-04-14_10-42PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

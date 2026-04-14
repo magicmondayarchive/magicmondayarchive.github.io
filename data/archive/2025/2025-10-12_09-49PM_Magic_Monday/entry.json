@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/340573.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2025/2025-10-12_09-49PM_Magic_Monday/images/unknown_340573.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2025/2025-10-12_09-49PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {
@@ -296,7 +296,7 @@
                     "images": [
                         {
                             "url": "https://ecosophia.dreamwidth.org/file/344630.jpg",
-                            "local_path": null
+                            "local_path": "./data/archive/2025/2025-10-12_09-49PM_Magic_Monday/images/2025-10-14_01_18_am_344630.jpg"
                         }
                     ],
                     "replies": [

@@ -15,15 +15,15 @@
             "images": [
                 {
                     "url": "https://www.karnacbooks.com/Covers/38721.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-01-07_10-46PM_Magic_Monday/images/unknown_38721.jpg"
                 },
                 {
                     "url": "https://i.ytimg.com/vi/ILzpa62tiwI/maxresdefault.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-01-07_10-46PM_Magic_Monday/images/unknown_maxresdefault.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-01-07_10-46PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

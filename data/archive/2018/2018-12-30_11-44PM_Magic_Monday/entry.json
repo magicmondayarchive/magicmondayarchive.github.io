@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://newtopiamagazine.files.wordpress.com/2014/08/145032.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2018/2018-12-30_11-44PM_Magic_Monday/images/unknown_145032.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2018/2018-12-30_11-44PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://pictures.abebooks.com/MONKEYBUSINESS/md/md1908842197.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-09-13_11-30PM_Magic_Monday/images/unknown_md1908842197.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-09-13_11-30PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781644112588/the-king-in-orange-9781644112588_hr.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2025/2025-01-19_10-30PM_Magic_Monday/images/unknown_the-king-in-orange-9781644112588_hr.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2025/2025-01-19_10-30PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

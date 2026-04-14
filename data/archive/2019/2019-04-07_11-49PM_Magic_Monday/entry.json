@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://jaksview3.files.wordpress.com/2010/05/pierre_bernard.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-04-07_11-49PM_Magic_Monday/images/unknown_pierre_bernard.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-04-07_11-49PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

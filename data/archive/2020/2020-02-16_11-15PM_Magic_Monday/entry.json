@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://pictures.abebooks.com/isbn/9780911662252-us-300.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-02-16_11-15PM_Magic_Monday/images/unknown_9780911662252-us-300.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-02-16_11-15PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

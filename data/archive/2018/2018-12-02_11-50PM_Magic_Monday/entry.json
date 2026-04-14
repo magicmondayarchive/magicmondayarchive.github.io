@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://anthrowiki.at/images/thumb/d/dd/Alan_Leo.jpg/300px-Alan_Leo.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2018/2018-12-02_11-50PM_Magic_Monday/images/unknown_300px-Alan_Leo.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2018/2018-12-02_11-50PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

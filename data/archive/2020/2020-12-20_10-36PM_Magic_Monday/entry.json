@@ -15,15 +15,15 @@
             "images": [
                 {
                     "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Splendor_Solis_06_philosophers_beside_tree.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-12-20_10-36PM_Magic_Monday/images/unknown_Splendor_Solis_06_philosophers_beside_tree.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-12-20_10-36PM_Magic_Monday/images/unknown_pixel.gif"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-12-20_10-36PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

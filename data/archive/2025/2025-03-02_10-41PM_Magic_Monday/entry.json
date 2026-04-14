@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://i.thriftbooks.com/api/imagehandler/m/099DDBCC5F7B9BD3C71D09E25E97FA5D30585E7A.jpeg",
-                    "local_path": null
+                    "local_path": "./data/archive/2025/2025-03-02_10-41PM_Magic_Monday/images/unknown_099DDBCC5F7B9BD3C71D09E25E97FA5D30585E7A.jpeg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2025/2025-03-02_10-41PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

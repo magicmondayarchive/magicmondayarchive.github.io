@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/170586.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2023/2023-02-12_11-49PM_Magic_Monday/images/unknown_170586.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2023/2023-02-12_11-49PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

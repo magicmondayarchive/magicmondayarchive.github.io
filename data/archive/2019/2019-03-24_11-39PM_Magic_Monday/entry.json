@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://babelio.com/users/AVT_R-A-Schwaller-de-Lubicz_3723.jpeg",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-03-24_11-39PM_Magic_Monday/images/unknown_AVT_R-A-Schwaller-de-Lubicz_3723.jpeg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-03-24_11-39PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

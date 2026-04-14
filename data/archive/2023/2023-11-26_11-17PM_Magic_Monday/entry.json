@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://cdn.waterstones.com/bookjackets/large/9781/9135/9781913504588.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2023/2023-11-26_11-17PM_Magic_Monday/images/unknown_9781913504588.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2023/2023-11-26_11-17PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

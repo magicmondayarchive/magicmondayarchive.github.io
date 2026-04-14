@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://images-us.bookshop.org/ingram/9781578633845.jpg?height=500&v=v2",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-01-14_10-08PM_Magic_Monday/images/unknown_9781578633845.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-01-14_10-08PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

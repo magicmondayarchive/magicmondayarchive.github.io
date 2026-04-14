@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://d202m5krfqbpi5.cloudfront.net/books/1356857697l/743545.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-05-10_11-39PM_Magic_Monday/images/unknown_743545.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-05-10_11-39PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

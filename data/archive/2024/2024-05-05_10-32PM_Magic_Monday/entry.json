@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://ecsmedia.pl/c/the-druid-grove-handbook-b-iext139028227.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-05-05_10-32PM_Magic_Monday/images/unknown_the-druid-grove-handbook-b-iext139028227.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-05-05_10-32PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {
@@ -309,7 +309,7 @@
                                     "images": [
                                         {
                                             "url": "https://files.catbox.moe/yj1waf.jpeg",
-                                            "local_path": null
+                                            "local_path": "./data/archive/2024/2024-05-05_10-32PM_Magic_Monday/images/2024-05-06_01_55_pm_yj1waf.jpeg"
                                         }
                                     ],
                                     "edit_time": "2024-05-06 01:55 pm (UTC)",

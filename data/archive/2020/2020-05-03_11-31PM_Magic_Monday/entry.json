@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://images.bonanzastatic.com/afu/images/4831/4726/e3ec_7628812934/s-l1600.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-05-03_11-31PM_Magic_Monday/images/unknown_s-l1600.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-05-03_11-31PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

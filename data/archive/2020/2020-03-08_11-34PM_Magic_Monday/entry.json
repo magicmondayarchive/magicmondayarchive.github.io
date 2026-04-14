@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://archive.org/services/img/IsraelRegardie-CeremonialMagic-1980",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-03-08_11-34PM_Magic_Monday/images/unknown_IsraelRegardie-CeremonialMagic-1980"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-03-08_11-34PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

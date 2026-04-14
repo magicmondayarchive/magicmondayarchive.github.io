@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://classicalwisdom.com/wp-content/uploads/2014/07/pythagoras-painting.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-10-27_11-39PM_Magic_Monday/images/unknown_pythagoras-painting.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-10-27_11-39PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://p2.dreamwidth.org/7585ec91c8d7/2821740-35811/alchemyguild.memberlodge.org/Resources/Pictures/frater_albertus.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2018/2018-10-14_11-53PM_Magic_Monday/images/unknown_frater_albertus.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2018/2018-10-14_11-53PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

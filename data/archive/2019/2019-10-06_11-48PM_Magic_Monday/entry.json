@@ -15,15 +15,15 @@
             "images": [
                 {
                     "url": "https://usercontent1.hubstatic.com/5117272_f520.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-10-06_11-48PM_Magic_Monday/images/unknown_5117272_f520.jpg"
                 },
                 {
                     "url": "https://s128.podbean.com/pb/9fca60b558e40b76499d5580cb4d08e1/5d9ab6ad/data2/fs15/296127/uploads/The-Shadow-Knows.jpg?pbss=72195421-887a-5154-ae78-37e41301af42",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-10-06_11-48PM_Magic_Monday/images/unknown_The-Shadow-Knows.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-10-06_11-48PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://i.ebayimg.com/images/g/Zb0AAOSwXCBmh14v/s-l400.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-10-13_10-11PM_Magic_Monday/images/unknown_s-l400.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-10-13_10-11PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

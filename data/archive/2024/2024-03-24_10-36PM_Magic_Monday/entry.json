@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1347909037i/6376463.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-03-24_10-36PM_Magic_Monday/images/unknown_6376463.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-03-24_10-36PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

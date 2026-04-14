@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://pbs.twimg.com/media/FNnaqbfVQAMg5_f.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-06-16_09-32PM_Magic_Monday/images/unknown_FNnaqbfVQAMg5_f.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-06-16_09-32PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

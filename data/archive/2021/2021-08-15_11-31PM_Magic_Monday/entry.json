@@ -15,15 +15,15 @@
             "images": [
                 {
                     "url": "https://www.sria.org/wp-content/uploads/2015/07/rose-tri.c.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-08-15_11-31PM_Magic_Monday/images/unknown_rose-tri.c.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-08-15_11-31PM_Magic_Monday/images/unknown_pixel.gif"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-08-15_11-31PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://p2.dreamwidth.org/e8156d4ec263/2821740-43934/www.radioarchives.com/v/vspfiles/assets/images/pictures/Walter%20Gibson.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-01-06_11-55PM_Magic_Monday/images/unknown_Walter_20Gibson.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-01-06_11-55PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

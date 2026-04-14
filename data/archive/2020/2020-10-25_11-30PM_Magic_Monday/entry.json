@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://i.pinimg.com/736x/8a/1b/9b/8a1b9be08dbe16794b825c9bf035c0fc--rey-arturo-king-arthur.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-10-25_11-30PM_Magic_Monday/images/unknown_8a1b9be08dbe16794b825c9bf035c0fc--rey-arturo-king-arthur.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-10-25_11-30PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://d28hgpri8am2if.cloudfront.net/book_images/onix/cvr9781936740000/apocalypse-not-9781936740000_hr.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-04-28_11-03PM_Magic_Monday/images/unknown_apocalypse-not-9781936740000_hr.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-04-28_11-03PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

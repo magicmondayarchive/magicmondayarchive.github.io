@@ -15,15 +15,15 @@
             "images": [
                 {
                     "url": "https://www.sria.org/wp-content/uploads/2015/07/EternalNowc1.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-06-13_11-25PM_Magic_Monday/images/unknown_EternalNowc1.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-06-13_11-25PM_Magic_Monday/images/unknown_pixel.gif"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-06-13_11-25PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

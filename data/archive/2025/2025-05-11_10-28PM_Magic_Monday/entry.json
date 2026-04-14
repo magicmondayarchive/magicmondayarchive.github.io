@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://books.boomerangbooks.com.au/Large/482/9781801521482.jpg?1743714624654",
-                    "local_path": null
+                    "local_path": "./data/archive/2025/2025-05-11_10-28PM_Magic_Monday/images/unknown_9781801521482.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2025/2025-05-11_10-28PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

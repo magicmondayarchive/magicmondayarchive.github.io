@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://i.pinimg.com/564x/e2/0c/88/e20c8858d19dad04c4ecfb8d2a7e5f9d.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-07-19_11-26PM_Magic_Monday/images/unknown_e20c8858d19dad04c4ecfb8d2a7e5f9d.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-07-19_11-26PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

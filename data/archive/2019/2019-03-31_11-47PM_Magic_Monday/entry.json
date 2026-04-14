@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://i2.wp.com/media.boingboing.net/wp-content/uploads/2015/10/occultist-alesteir-crowley-who-dubbed-himself-great-beast-getty-1.jpg?w=600",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-03-31_11-47PM_Magic_Monday/images/unknown_occultist-alesteir-crowley-who-dubbed-himself-great-beast-getty-1.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-03-31_11-47PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

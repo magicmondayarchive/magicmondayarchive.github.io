@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://p2.dreamwidth.org/c85f2929c2f6/2821740-81997/ecx.images-amazon.com/images/I/513VmzPiu0L._SL500_SY344_BO1,204,203,200_.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-03-16_12-03AM_Magic_Monday/images/unknown_513VmzPiu0L._SL500_SY344_BO1_204_203_200_.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-03-16_12-03AM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

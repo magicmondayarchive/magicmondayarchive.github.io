@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://img.stevensbooks.com/z9shc8ctnn0026stivh3d304gmwd?width=650&height=650&format=jpg&image_fit=inside",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-05-12_10-28PM_Magic_Monday/images/unknown_z9shc8ctnn0026stivh3d304gmwd"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-05-12_10-28PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

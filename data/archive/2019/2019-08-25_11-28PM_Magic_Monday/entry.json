@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://upload.wikimedia.org/wikipedia/commons/7/7d/Karl_Reichenbach.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-08-25_11-28PM_Magic_Monday/images/unknown_Karl_Reichenbach.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-08-25_11-28PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

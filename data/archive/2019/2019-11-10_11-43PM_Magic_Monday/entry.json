@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://s3.amazonaws.com/s3.timetoast.com/public/uploads/photos/1236864/giordano_bruno.gif?1473539429",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-11-10_11-43PM_Magic_Monday/images/unknown_giordano_bruno.gif"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-11-10_11-43PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

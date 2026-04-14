@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://p2.dreamwidth.org/109224ef130a/2821740-108800/arsmagine.com/wp-content/uploads/2013/01/profimedia-0004958005.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-11-01_11-48PM_Magic_Monday/images/unknown_profimedia-0004958005.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-11-01_11-48PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

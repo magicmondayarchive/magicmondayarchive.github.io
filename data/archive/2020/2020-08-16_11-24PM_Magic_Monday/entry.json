@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://archive.org/services/img/practicaloccultismindailylifedionfortune_202003_971_W/full/pct:200/0/default.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-08-16_11-24PM_Magic_Monday/images/unknown_default.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-08-16_11-24PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

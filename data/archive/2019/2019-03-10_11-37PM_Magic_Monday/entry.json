@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://newtopiamagazine.files.wordpress.com/2012/10/john-winthrop.jpg?w=750",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-03-10_11-37PM_Magic_Monday/images/unknown_john-winthrop.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-03-10_11-37PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

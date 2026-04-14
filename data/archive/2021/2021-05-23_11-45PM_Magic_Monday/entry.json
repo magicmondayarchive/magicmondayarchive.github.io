@@ -15,15 +15,15 @@
             "images": [
                 {
                     "url": "https://i.pinimg.com/736x/57/07/1a/57071afd479a7c781e6eb5916a32a4fe--occult--september.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-05-23_11-45PM_Magic_Monday/images/unknown_57071afd479a7c781e6eb5916a32a4fe--occult--september.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-05-23_11-45PM_Magic_Monday/images/unknown_pixel.gif"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-05-23_11-45PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

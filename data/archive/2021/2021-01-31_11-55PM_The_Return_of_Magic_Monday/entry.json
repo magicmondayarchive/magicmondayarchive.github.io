@@ -15,15 +15,15 @@
             "images": [
                 {
                     "url": "https://lucernarium.files.wordpress.com/2008/12/druids_ph1.jpg?w=450&h=325",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-01-31_11-55PM_The_Return_of_Magic_Monday/images/unknown_druids_ph1.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-01-31_11-55PM_The_Return_of_Magic_Monday/images/unknown_pixel.gif"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2021/2021-01-31_11-55PM_The_Return_of_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://cdn.kobo.com/book-images/e9eeb990-dd4c-44e0-87e8-5b7e0bdff3b4/1200/1200/False/the-wealth-of-nature-5.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-04-21_11-00PM_Magic_Monday/images/unknown_the-wealth-of-nature-5.jpg"
                 },
                 {
                     "url": "https://ecosophia.dreamwidth.org/file/59333.png",
-                    "local_path": null
+                    "local_path": "./data/archive/2024/2024-04-21_11-00PM_Magic_Monday/images/unknown_59333.png"
                 }
             ],
             "metadata": {

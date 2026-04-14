@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Bio-papus-image-1.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-01-27_11-47PM_Magic_Monday/images/unknown_Bio-papus-image-1.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-01-27_11-47PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

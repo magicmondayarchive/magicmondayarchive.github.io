@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://imgv2-1-f.scribdassets.com/img/document/371537901/original/a8e7da958b/1573854381?v=1",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-08-23_11-16PM_Magic_Monday/images/unknown_1573854381"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2020/2020-08-23_11-16PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {

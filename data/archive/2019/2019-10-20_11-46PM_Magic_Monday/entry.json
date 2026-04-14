@@ -15,11 +15,11 @@
             "images": [
                 {
                     "url": "https://www.theosociety.org/pasadena/sunrise/53-03-4/s3onfap.jpg",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-10-20_11-46PM_Magic_Monday/images/unknown_s3onfap.jpg"
                 },
                 {
                     "url": "https://www.paypalobjects.com/en_US/i/scr/pixel.gif",
-                    "local_path": null
+                    "local_path": "./data/archive/2019/2019-10-20_11-46PM_Magic_Monday/images/unknown_pixel.gif"
                 }
             ],
             "metadata": {
