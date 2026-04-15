@@ -404,8 +404,9 @@
       By default, all words must appear somewhere in the comment, but can be in any order.<br><br>
       <strong>Exact phrase</strong> — words must appear in the order you typed them. e.g. useful to match "middle pillar" as one term.<br><br>
       <strong>Whole word</strong> — words won't match on substrings. e.g. "MP" won't match on "i<strong>mp</strong>ressive".<br><br>
-      <strong>Case sensitive</strong> — "Magic" won't match "magic".
-	  <br><br><hr><br>
+	  <strong>Case sensitive</strong> — "Magic" won't match "magic".<br><br>
+	  <strong>Regex</strong> — advanced search using regex. e.g. "middle pillar|\bmp\b" will match either "middle pillar" or "mp".<br><br>
+	  <hr><br>
 	  <strong>Highlighted matches</strong><br><br>
 	  Clicking on a match will update the right-side nav with the current match.
     </div>
@@ -423,6 +424,11 @@
       <input type="checkbox" id="case-toggle">
       <span class="toggle-track"><span class="toggle-thumb"></span></span>
       <span class="toggle-text">Case sensitive</span>
+    </label>
+    <label class="toggle-label">
+      <input type="checkbox" id="regex-toggle">
+      <span class="toggle-track"><span class="toggle-thumb"></span></span>
+      <span class="toggle-text">Regex</span>
     </label>
   </div>
   <div class="filter-group">
@@ -473,9 +479,16 @@ function normalizeWS(text) {
   return text.replace(/[\s\u00a0]+/g, ' ').trim();
 }
 
-function matchesAll(text, terms, exact, caseSensitive, wholeWord) {
+function matchesAll(text, terms, exact, caseSensitive, wholeWord, regex) {
   const normalized = normalizeWS(caseSensitive ? text : text.toLowerCase());
   const flags = caseSensitive ? '' : 'i';
+  if (regex) {
+    try {
+      return new RegExp(terms[0], flags).test(normalized);
+    } catch (e) {
+      return false; // invalid regex
+    }
+  }
   if (exact) {
     const pattern = terms[0].replace(/\s+/g, '\\s+');
     const wrapped = wholeWord ? `\\b${pattern}\\b` : pattern;
@@ -488,13 +501,23 @@ function matchesAll(text, terms, exact, caseSensitive, wholeWord) {
   });
 }
 
-function highlight(text, terms, caseSensitive, wholeWord) {
+function highlight(text, terms, caseSensitive, wholeWord, regex) {
   if (!terms.length) return text;
-  const patterns = terms.map(t => {
-    const escaped = t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s+');
-    return wholeWord ? `\\b${escaped}\\b` : escaped;
-  });
-  const re = new RegExp(`(${patterns.join('|')})`, caseSensitive ? 'g' : 'gi');
+  const flags = caseSensitive ? 'g' : 'gi';
+  let re;
+  try {
+    if (regex) {
+      re = new RegExp(`(${terms[0]})`, flags);
+    } else {
+      const patterns = terms.map(t => {
+        const escaped = t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, '\\s+');
+        return wholeWord ? `\\b${escaped}\\b` : escaped;
+      });
+      re = new RegExp(`(${patterns.join('|')})`, flags);
+    }
+  } catch (e) {
+    return text; // invalid regex — render unhighlighted
+  }
   // Only highlight text nodes — skip content inside HTML tags
   return text.replace(/(<[^>]*>)|([^<]+)/g, (match, tag, textNode) => {
     if (tag) return tag;
@@ -503,7 +526,7 @@ function highlight(text, terms, caseSensitive, wholeWord) {
 }
 
 // -- Split content on [IMAGE:N] tokens and render text + inline load buttons --
-function renderContent(content, images, terms, caseSensitive, wholeWord) {
+function renderContent(content, images, terms, caseSensitive, wholeWord, regex) {
   const parts = content.split(/(\[IMAGE:\d+\])/);
   return parts.map(part => {
     const m = part.match(/^\[IMAGE:(\d+)\]$/);
@@ -512,7 +535,7 @@ function renderContent(content, images, terms, caseSensitive, wholeWord) {
       const src = img && img.local_path ? esc(img.local_path) : 'assets/images/image_missing.png';
       return `<span style="display:block"><button class="load-img-btn" onclick="loadImg(event, this,'${src}')">Load image</button></span>`;
     }
-    return highlight(part, terms, caseSensitive, wholeWord);
+    return highlight(part, terms, caseSensitive, wholeWord, regex);
   }).join('');
 }
 
@@ -604,21 +627,21 @@ function stripHTML(text) {
 
 // -- Check if a thread (comment + all its replies) contains any match --
 // A thread matches if ANY single comment within it contains ALL terms
-function threadMatches(comment, terms, exact, caseSensitive, wholeWord) {
+function threadMatches(comment, terms, exact, caseSensitive, wholeWord, regex) {
   const text = (comment.title || '') + ' ' + (comment.user || '') + ' ' + stripHTML(comment.content || '');
-  if (matchesAll(text, terms, exact, caseSensitive, wholeWord)) return true;
-  return (comment.replies || []).some(r => threadMatches(r, terms, exact, caseSensitive, wholeWord));
+  if (matchesAll(text, terms, exact, caseSensitive, wholeWord, regex)) return true;
+  return (comment.replies || []).some(r => threadMatches(r, terms, exact, caseSensitive, wholeWord, regex));
 }
 
 // -- Render a comment and all its replies recursively --
-function commentHTML(c, terms, depth, caseSensitive, wholeWord) {
+function commentHTML(c, terms, depth, caseSensitive, wholeWord, regex) {
   const replyClass = depth > 0 ? ' is-reply' : '';
   const indent = depth > 0 ? ` style="margin-left: ${depth * 2.0}rem"` : '';
   const titleLine = c.title
-    ? `<div class="comment-title-line">${highlight(c.title, terms, caseSensitive, wholeWord)}</div>` : '';
+    ? `<div class="comment-title-line">${highlight(c.title, terms, caseSensitive, wholeWord, regex)}</div>` : '';
   const dateLine = c.date
     ? `<div class="comment-date">${esc(c.date)}</div>` : '';
-  const body = renderContent(c.content || '', c.images, terms, caseSensitive, wholeWord);
+  const body = renderContent(c.content || '', c.images, terms, caseSensitive, wholeWord, regex);
   const editLine = c.edit_time
     ? `<div class="comment-edit-time">Edited Date: ${esc(c.edit_time)}</div>` : '';
   let metaLine = '';
@@ -633,7 +656,7 @@ function commentHTML(c, terms, depth, caseSensitive, wholeWord) {
     if (tagLinks) parts.push(`<span class="meta-tags"><strong>Tags:</strong> ${tagLinks}</span>`);
     if (parts.length) metaLine = `<div class="comment-metadata">${parts.join('<br>')}</div>`;
   }
-  const repliesHTML = (c.replies || []).map(r => commentHTML(r, terms, depth + 1, caseSensitive, wholeWord)).join('');
+  const repliesHTML = (c.replies || []).map(r => commentHTML(r, terms, depth + 1, caseSensitive, wholeWord, regex)).join('');
   return `<div class="comment-card${replyClass}"${indent}>
     ${titleLine}
     ${dateLine}
@@ -659,7 +682,11 @@ async function render() {
   const exact = document.getElementById('exact-toggle').checked;
   const caseSensitive = document.getElementById('case-toggle').checked;
   const wholeWord = document.getElementById('word-toggle').checked;
-  const terms = exact ? [caseSensitive ? raw : raw.toLowerCase()] : (caseSensitive ? raw : raw.toLowerCase()).split(/\s+/).filter(Boolean);
+  const regex = document.getElementById('regex-toggle').checked;
+  const terms = regex
+    ? [raw]
+    : exact ? [caseSensitive ? raw : raw.toLowerCase()]
+    : (caseSensitive ? raw : raw.toLowerCase()).split(/\s+/).filter(Boolean);
 
   if (!terms.length || raw.length < MIN_CHARS) {
     const hint = raw.length > 0 ? `Type ${MIN_CHARS - raw.length} more character${MIN_CHARS - raw.length === 1 ? '' : 's'}...` : `${totalEntries.toLocaleString()} entries loaded — type to search`;
@@ -684,7 +711,7 @@ async function render() {
   let totalThreads = 0;
 
   for (const entry of entries) {
-    const matchingThreads = (entry.comments || []).filter(c => threadMatches(c, terms, exact, caseSensitive, wholeWord));
+    const matchingThreads = (entry.comments || []).filter(c => threadMatches(c, terms, exact, caseSensitive, wholeWord, regex));
     if (!matchingThreads.length) continue;
     totalThreads += matchingThreads.length;
     allMatchedEntries.push({ entry, matchingThreads });
@@ -694,10 +721,10 @@ async function render() {
     ? `${totalThreads} thread${totalThreads===1?'':'s'} across ${allMatchedEntries.length} entr${allMatchedEntries.length===1?'y':'ies'}`
     : 'No matches';
 
-  renderPage(terms, 0, caseSensitive, wholeWord);
+  renderPage(terms, 0, caseSensitive, wholeWord, regex);
 }
 
-function renderPage(terms, offset, caseSensitive, wholeWord) {
+function renderPage(terms, offset, caseSensitive, wholeWord, regex) {
   const slice = allMatchedEntries.slice(offset, offset + PAGE_SIZE);
   const html  = [];
 
@@ -710,7 +737,7 @@ function renderPage(terms, offset, caseSensitive, wholeWord) {
       <span class="entry-count">${matchingThreads.length} thread${matchingThreads.length===1?'':'s'}</span>
     </div>`);
     for (const thread of matchingThreads) {
-      html.push(commentHTML(thread, terms, 0, caseSensitive, wholeWord));
+      html.push(commentHTML(thread, terms, 0, caseSensitive, wholeWord, regex));
     }
     html.push(`</div>`);
   }
@@ -737,7 +764,7 @@ function renderPage(terms, offset, caseSensitive, wholeWord) {
   const btn = document.getElementById('load-more');
   if (btn) {
     const nextOffset = offset + slice.length;
-    btn.addEventListener('click', () => renderPage(terms, nextOffset, caseSensitive, wholeWord));
+    btn.addEventListener('click', () => renderPage(terms, nextOffset, caseSensitive, wholeWord, regex));
   }
 }
 
@@ -753,6 +780,18 @@ monthSel.addEventListener('change', render);
 document.getElementById('exact-toggle').addEventListener('change', render);
 document.getElementById('case-toggle').addEventListener('change', render);
 document.getElementById('word-toggle').addEventListener('change', render);
+document.getElementById('regex-toggle').addEventListener('change', e => {
+  const on = e.target.checked;
+  ['exact-toggle', 'word-toggle', 'case-toggle'].forEach(id => {
+    const input = document.getElementById(id);
+    const label = input.closest('.toggle-label');
+    if (on) input.checked = false;
+    input.disabled = on;
+    label.style.opacity = on ? '0.4' : '';
+    label.style.pointerEvents = on ? 'none' : '';
+  });
+  render();
+});
 
 // -- Match navigator --
 const matchNav   = document.getElementById('match-nav');
