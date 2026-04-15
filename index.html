@@ -79,6 +79,19 @@
     border-radius: 2px;
   }
   .search-bar input:focus { border-color: var(--accent); }
+  #search-btn {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.9rem;
+    padding: 0.55rem 1rem;
+    background: var(--accent);
+    color: var(--paper);
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+  }
+  #search-btn:hover { opacity: 0.85; }
   .search-bar select {
     font-family: 'Source Serif 4', serif;
     font-size: 0.9rem;
@@ -397,6 +410,7 @@
 
 <div class="search-bar">
   <input type="search" id="query" placeholder="Search comments..." autofocus>
+  <button id="search-btn">Search</button>
   <div class="toggle-group">
     <button class="help-btn" id="help-btn">?</button>
     <div class="help-popover" id="help-popover">
@@ -407,8 +421,7 @@
 	  <strong>Case sensitive</strong> — "Magic" won't match "magic".<br><br>
 	  <strong>Regex</strong> — advanced search using regex. e.g. "middle pillar|\bmp\b" will match either "middle pillar" or "mp".<br><br>
 	  <hr><br>
-	  <strong>Highlighted matches</strong><br><br>
-	  Clicking on a match will update the right-side nav with the current match.
+	  <strong>Highlighted matches</strong> — clicking on a matched comment will update the right-side nav to that match.
     </div>
     <label class="toggle-label">
       <input type="checkbox" id="exact-toggle">
@@ -701,6 +714,7 @@ async function render() {
   }
 
   statusEl.textContent = 'Searching...';
+  await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
   const yearsToSearch = year ? [year] : YEARS;
   await Promise.all(yearsToSearch.map(loadYear));
 
@@ -774,12 +788,13 @@ function debounceRender() {
 }
 
 // -- Event listeners --
-queryEl.addEventListener('input', debounceRender);
-yearSel.addEventListener('change', () => { populateMonths(yearSel.value); render(); });
-monthSel.addEventListener('change', render);
-document.getElementById('exact-toggle').addEventListener('change', render);
-document.getElementById('case-toggle').addEventListener('change', render);
-document.getElementById('word-toggle').addEventListener('change', render);
+document.getElementById('search-btn').addEventListener('click', render);
+queryEl.addEventListener('keydown', e => { if (e.key === 'Enter') render(); });
+yearSel.addEventListener('change', () => { populateMonths(yearSel.value); });
+monthSel.addEventListener('change', () => {});
+document.getElementById('exact-toggle').addEventListener('change', () => {});
+document.getElementById('case-toggle').addEventListener('change', () => {});
+document.getElementById('word-toggle').addEventListener('change', () => {});
 document.getElementById('regex-toggle').addEventListener('change', e => {
   const on = e.target.checked;
   ['exact-toggle', 'word-toggle', 'case-toggle'].forEach(id => {
@@ -790,7 +805,6 @@ document.getElementById('regex-toggle').addEventListener('change', e => {
     label.style.opacity = on ? '0.4' : '';
     label.style.pointerEvents = on ? 'none' : '';
   });
-  render();
 });
 
 // -- Match navigator --
