@@ -667,7 +667,7 @@ function commentHTML(c, terms, depth, caseSensitive, wholeWord, regex) {
     if (parts.length) metaLine = `<div class="comment-metadata">${parts.join('<br>')}</div>`;
   }
   const repliesHTML = (c.replies || []).map(r => commentHTML(r, terms, depth + 1, caseSensitive, wholeWord, regex)).join('');
-  return `<div class="comment-card${replyClass}"${indent}>
+  return `<div class="comment-card${replyClass}" data-id="${esc(c.id || '')}"${indent}>
     ${titleLine}
     ${dateLine}
     <div class="comment-meta">
@@ -732,6 +732,7 @@ async function render() {
     : 'No matches';
 
   renderPage(terms, 0, caseSensitive, wholeWord, regex);
+  saveState(null);
 }
 
 function renderPage(terms, offset, caseSensitive, wholeWord, regex) {
@@ -777,6 +778,37 @@ function renderPage(terms, offset, caseSensitive, wholeWord, regex) {
     const nextOffset = offset + slice.length;
     btn.addEventListener('click', () => renderPage(terms, nextOffset, caseSensitive, wholeWord, regex));
   }
+}
+
+// -- URL state --
+function saveState(activeCardId) {
+  const params = new URLSearchParams();
+  const q = queryEl.value.trim();
+  if (q) params.set('q', q);
+  if (yearSel.value) params.set('year', yearSel.value);
+  if (monthSel.value) params.set('month', monthSel.value);
+  if (document.getElementById('exact-toggle').checked) params.set('exact', '1');
+  if (document.getElementById('word-toggle').checked) params.set('word', '1');
+  if (document.getElementById('case-toggle').checked) params.set('case', '1');
+  if (document.getElementById('regex-toggle').checked) params.set('regex', '1');
+  if (activeCardId) params.set('comment', activeCardId);
+  const qs = params.toString();
+  history.replaceState(null, '', qs ? `?${qs}` : location.pathname);
+}
+
+function loadState() {
+  const params = new URLSearchParams(location.search);
+  if (params.has('q')) queryEl.value = params.get('q');
+  if (params.has('year')) yearSel.value = params.get('year');
+  if (params.has('month')) { populateMonths(yearSel.value); monthSel.value = params.get('month'); }
+  if (params.get('exact') === '1') document.getElementById('exact-toggle').checked = true;
+  if (params.get('word')  === '1') document.getElementById('word-toggle').checked  = true;
+  if (params.get('case')  === '1') document.getElementById('case-toggle').checked  = true;
+  if (params.get('regex') === '1') {
+    document.getElementById('regex-toggle').checked = true;
+    document.getElementById('regex-toggle').dispatchEvent(new Event('change'));
+  }
+  return params.get('comment') || null;
 }
 
 // -- Event listeners --
@@ -825,6 +857,7 @@ function goToCard(index) {
   matchedCards[cardIndex].classList.add('active-card');
   matchedCards[cardIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
   navCount.textContent = `${cardIndex + 1} / ${matchedCards.length}`;
+  saveState(matchedCards[cardIndex].dataset.id);
 }
 
 document.getElementById('nav-up').addEventListener('click',   () => { if (cardIndex > 0) goToCard(cardIndex - 1); });
@@ -841,10 +874,32 @@ resultsEl.addEventListener('click', e => {
   cardIndex = index;
   card.classList.add('active-card');
   navCount.textContent = `${cardIndex + 1} / ${matchedCards.length}`;
+  saveState(card.dataset.id);
 });
 
 statusEl.textContent = `${totalEntries.toLocaleString()} entries loaded — type to search`;
 resultsEl.innerHTML = emptyStateHTML;
+
+// -- Restore state from URL --
+const restoredComment = loadState();
+if (queryEl.value.trim().length >= MIN_CHARS) {
+  render().then(async () => {
+    if (restoredComment) {
+      // Keep loading more pages until the target card appears
+      while (!resultsEl.querySelector(`[data-id="${restoredComment}"]`)) {
+        const btn = document.getElementById('load-more');
+        if (!btn) break;
+        btn.click();
+        await new Promise(r => setTimeout(r, 0));
+      }
+      const card = resultsEl.querySelector(`[data-id="${restoredComment}"]`);
+      if (card) {
+        const index = matchedCards.indexOf(card);
+        if (index !== -1) goToCard(index);
+      }
+    }
+  });
+}
 </script>
 </body>
 </html>
