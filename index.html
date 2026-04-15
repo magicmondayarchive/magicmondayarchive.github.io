@@ -281,7 +281,6 @@
     word-break: break-word;
   }
   mark { background: #f0d080; border-radius: 2px; padding: 0 1px; }
-  mark.active-mark { background: #e8a020; outline: 2px solid var(--accent); border-radius: 2px; }
   .comment-card.active-card { outline: 2px solid var(--accent); }
   .no-results { color: var(--muted); font-style: italic; padding: 3rem 0; }
 
@@ -489,16 +488,13 @@ function esc(str) {
     ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
 }
 
-function normalizeWS(text) {
-  return text.replace(/[\s\u00a0]+/g, ' ').trim();
-}
-
 function matchesAll(text, terms, exact, caseSensitive, wholeWord, regex) {
-  const normalized = normalizeWS(caseSensitive ? text : text.toLowerCase());
+  const normalized = text.replace(/[\s\u00a0]+/g, ' ').trim();
+  const compared = caseSensitive ? normalized : normalized.toLowerCase();
   const flags = caseSensitive ? '' : 'i';
   if (regex) {
     try {
-      return new RegExp(terms[0], flags).test(normalized);
+      return new RegExp(terms[0], flags).test(compared);
     } catch (e) {
       return false; // invalid regex
     }
@@ -506,12 +502,12 @@ function matchesAll(text, terms, exact, caseSensitive, wholeWord, regex) {
   if (exact) {
     const pattern = terms[0].replace(/\s+/g, '\\s+');
     const wrapped = wholeWord ? `\\b${pattern}\\b` : pattern;
-    return new RegExp(wrapped, flags).test(normalized);
+    return new RegExp(wrapped, flags).test(compared);
   }
   return terms.every(t => {
     const escaped = t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const wrapped = wholeWord ? `\\b${escaped}\\b` : escaped;
-    return new RegExp(wrapped, flags).test(normalized);
+    return new RegExp(wrapped, flags).test(compared);
   });
 }
 
@@ -686,7 +682,6 @@ function commentHTML(c, terms, depth, caseSensitive, wholeWord, regex) {
 // -- Render --
 const MIN_CHARS    = 2;   // don't search until at least this many chars
 const PAGE_SIZE    = 20;  // entries to render at once
-let   debounceTimer = null;
 let   allMatchedEntries = []; // full result set, rendered in pages
 
 async function render() {
@@ -784,19 +779,10 @@ function renderPage(terms, offset, caseSensitive, wholeWord, regex) {
   }
 }
 
-function debounceRender() {
-  clearTimeout(debounceTimer);
-  debounceTimer = setTimeout(render, 300);
-}
-
 // -- Event listeners --
 document.getElementById('search-btn').addEventListener('click', render);
 queryEl.addEventListener('keydown', e => { if (e.key === 'Enter') render(); });
-yearSel.addEventListener('change', () => { populateMonths(yearSel.value); });
-monthSel.addEventListener('change', () => {});
-document.getElementById('exact-toggle').addEventListener('change', () => {});
-document.getElementById('case-toggle').addEventListener('change', () => {});
-document.getElementById('word-toggle').addEventListener('change', () => {});
+yearSel.addEventListener('change', () => populateMonths(yearSel.value));
 document.getElementById('regex-toggle').addEventListener('change', e => {
   const on = e.target.checked;
   ['exact-toggle', 'word-toggle', 'case-toggle'].forEach(id => {
