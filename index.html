@@ -184,7 +184,8 @@
     padding: 0;
   }
 
-  .entry-block { margin-bottom: 4rem; padding-top: 1rem; overflow-x: auto; }
+  .entry-block { margin-bottom: 4rem; padding-top: 1rem; }
+  .entry-block-scroll { overflow-x: auto; padding: 2px; }
   .entry-header {
     display: flex;
     align-items: baseline;
@@ -750,10 +751,11 @@ function renderPage(terms, offset, caseSensitive, wholeWord, regex) {
       <span class="entry-title"><a href="${esc(entry.url)}" target="_blank">${esc(entry.title)}</a></span>
       <span class="entry-count">${matchingThreads.length} thread${matchingThreads.length===1?'':'s'}</span>
     </div>`);
+    html.push(`<div class="entry-block-scroll">`);
     for (const thread of matchingThreads) {
       html.push(commentHTML(thread, terms, 0, caseSensitive, wholeWord, regex));
     }
-    html.push(`</div>`);
+    html.push(`</div></div>`);
   }
 
   const remaining = allMatchedEntries.length - offset - slice.length;
