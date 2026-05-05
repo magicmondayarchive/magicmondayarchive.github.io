@@ -52,13 +52,14 @@ def url_to_cache_path(url):
     return os.path.join(CACHE_DIR, f"{key}.html")
 
 
-def fetch(url, retries=10):
+def fetch(url, retries=10, use_cache=True):
     """Returns (soup, from_cache)."""
     cache_path = url_to_cache_path(url)
-    if os.path.exists(cache_path):
-        log.info(f"  [cache] {url}")
-        with open(cache_path, encoding="utf-8") as f:
-            return BeautifulSoup(f.read(), "html.parser"), True
+    if use_cache:
+        if os.path.exists(cache_path):
+            log.info(f"  [cache] {url}")
+            with open(cache_path, encoding="utf-8") as f:
+                return BeautifulSoup(f.read(), "html.parser"), True
 
     os.makedirs(CACHE_DIR, exist_ok=True)
     for attempt in range(retries):
@@ -66,8 +67,9 @@ def fetch(url, retries=10):
             # r = requests.get(url, headers=HEADERS, timeout=(30, 120))
             r = cffi_requests.get(url, impersonate="chrome120", timeout=(30, 120))
             r.raise_for_status()
-            with open(cache_path, "w", encoding="utf-8") as f:
-                f.write(r.text)
+            if use_cache:
+                with open(cache_path, "w", encoding="utf-8") as f:
+                    f.write(r.text)
             return BeautifulSoup(r.text, "html.parser"), False
         except Exception as e:
             wait = 30 * (2 ** attempt)  # 30s, 60s, 120s, 240s, 480s
@@ -79,7 +81,7 @@ def fetch(url, retries=10):
 def get_entry_links(skip):
     url = f"{BASE_URL}/?tag=magic+monday&skip={skip}"
     log.info(f"Fetching index page: {url}")
-    soup, _ = fetch(url)
+    soup, _ = fetch(url, use_cache=False)
 
     entries = []
     for h3 in soup.find_all("h3", class_="entry-title"):
